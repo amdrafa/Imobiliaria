@@ -37,7 +37,7 @@ const RoomsNumber = [
   },
 ];
 
-const suites = [
+const bathrooms = [
   {
     name: "1",
   },
@@ -70,6 +70,7 @@ const TabFilters = () => {
   const [isFurnishedState, setIsFurnishedState] = useState(true);
   const [rangePrices, setRangePrices] = useState([100, 50000]);
   const [fileTypesState, setfileTypesState] = useState<string[]>([]);
+  const [bathroomState, setBathroomState] = useState<string[]>([]);
   const [saleTypeStates, setSaleTypeStates] = useState<string[]>([]);
   const [sortOrderStates, setSortOrderStates] = useState<string>("");
 
@@ -82,6 +83,12 @@ const TabFilters = () => {
     checked
       ? setfileTypesState([...fileTypesState, name])
       : setfileTypesState(fileTypesState.filter((i) => i !== name));
+  };
+
+  const handleChangeBathroom = (checked: boolean, name: string) => {
+    checked
+      ? setBathroomState([...fileTypesState, name])
+      : setBathroomState(fileTypesState.filter((i) => i !== name));
   };
 
   const handleChangeSaleType = (checked: boolean, name: string) => {
@@ -347,7 +354,7 @@ const TabFilters = () => {
   };
 
   // OK
-  const renderTabsFileTypes = () => {
+  const renderRoomsNumber = () => {
     return (
       <Popover className="relative">
         {({ open, close }) => (
@@ -445,6 +452,127 @@ const TabFilters = () => {
                       onClick={() => {
                         close();
                         setfileTypesState([]);
+                      }}
+                      sizeClass="px-4 py-2 sm:px-5"
+                    >
+                      Clear
+                    </ButtonThird>
+                    <ButtonPrimary
+                      onClick={close}
+                      sizeClass="px-4 py-2 sm:px-5"
+                    >
+                      Apply
+                    </ButtonPrimary>
+                  </div>
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
+    );
+  };
+
+  //Bathrooms 
+
+  const renderBathroomNumber = () => {
+    return (
+      <Popover className="relative">
+        {({ open, close }) => (
+          <>
+            <Popover.Button
+              className={`flex items-center justify-center px-4 py-2 text-sm rounded-full border focus:outline-none 
+              ${open ? "!border-primary-500 " : ""}
+                ${
+                  !!bathroomState.length
+                    ? "!border-primary-500 bg-primary-50 text-primary-900"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
+                }
+                `}
+            >
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2.52002 7.11011H21.48"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M8.52002 2.11011V6.97011"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M15.48 2.11011V6.52011"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <span className="ml-2">Banheiros</span>
+              {!bathroomState.length ? (
+                <ChevronDownIcon className="w-4 h-4 ml-3" />
+              ) : (
+                <span onClick={() => setBathroomState([])}>
+                  {renderXClear()}
+                </span>
+              )}
+            </Popover.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute z-40 w-screen max-w-sm px-4 mt-3 left-0 sm:px-0 lg:max-w-md">
+                <div className="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
+                  <div className="relative flex flex-col px-5 py-6 space-y-5">
+                    {bathrooms.map((item) => (
+                      <div key={item.name} className="">
+                        <Checkbox
+                          name={item.name}
+                          label={item.name}
+                          defaultChecked={bathroomState.includes(item.name)}
+                          onChange={(checked) =>
+                            handleChangeBathroom(checked, item.name)
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
+                    <ButtonThird
+                      onClick={() => {
+                        close();
+                        setBathroomState([]);
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
@@ -907,7 +1035,8 @@ const TabFilters = () => {
       <div className="hidden lg:flex space-x-4">
         {renderTabsPriceRage()}
         {renderTabsTypeOfSales()}
-        {renderTabsFileTypes()}
+        {renderRoomsNumber()}
+        {renderBathroomNumber()}
         {renderTabsSortOrder()}
         {isFurnished()}
       </div>
