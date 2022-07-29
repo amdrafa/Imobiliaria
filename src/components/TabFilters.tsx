@@ -37,6 +37,42 @@ const RoomsNumber = [
   },
 ];
 
+const carSpot = [
+  {
+    name: "1",
+  },
+  {
+    name: "2",
+  },
+  {
+    name: "3",
+  },
+  {
+    name: "4",
+  },
+  {
+    name: "5",
+  },
+];
+
+const Suites = [
+  {
+    name: "1",
+  },
+  {
+    name: "2",
+  },
+  {
+    name: "3",
+  },
+  {
+    name: "4",
+  },
+  {
+    name: "5",
+  },
+];
+
 const bathrooms = [
   {
     name: "1",
@@ -55,13 +91,6 @@ const bathrooms = [
   },
 ];
 
-const sortOrderRadios = [
-  { name: "Recently listed", id: "Recently-listed" },
-  { name: "Ending soon", id: "Ending-soon" },
-  { name: "Price low - hight", id: "Price-low-hight" },
-  { name: "Price hight - low", id: "Price-hight-low" },
-  { name: "Most favorited", id: "Most-favorited" },
-];
 
 //
 const TabFilters = () => {
@@ -71,8 +100,10 @@ const TabFilters = () => {
   const [rangePrices, setRangePrices] = useState([100, 50000]);
   const [fileTypesState, setfileTypesState] = useState<string[]>([]);
   const [bathroomState, setBathroomState] = useState<string[]>([]);
+  const [suitesState, setSuitesState] = useState<string[]>([]);
+  const [carSpotState, setCarSpotState] = useState<string[]>([]);
   const [saleTypeStates, setSaleTypeStates] = useState<string[]>([]);
-  const [sortOrderStates, setSortOrderStates] = useState<string>("");
+  
 
   //
   const closeModalMoreFilter = () => setisOpenMoreFilter(false);
@@ -87,8 +118,20 @@ const TabFilters = () => {
 
   const handleChangeBathroom = (checked: boolean, name: string) => {
     checked
-      ? setBathroomState([...fileTypesState, name])
-      : setBathroomState(fileTypesState.filter((i) => i !== name));
+      ? setBathroomState([...bathroomState, name])
+      : setBathroomState(bathroomState.filter((i) => i !== name));
+  };
+
+  const handleChangeSuites = (checked: boolean, name: string) => {
+    checked
+      ? setSuitesState([...suitesState, name])
+      : setSuitesState(suitesState.filter((i) => i !== name));
+  };
+
+  const handleChangeCarSpot = (checked: boolean, name: string) => {
+    checked
+      ? setCarSpotState([...carSpotState, name])
+      : setCarSpotState(carSpotState.filter((i) => i !== name));
   };
 
   const handleChangeSaleType = (checked: boolean, name: string) => {
@@ -214,13 +257,13 @@ const TabFilters = () => {
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Clear
+                      Limpar
                     </ButtonThird>
                     <ButtonPrimary
                       onClick={close}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Apply
+                      Aplicar
                     </ButtonPrimary>
                   </div>
                 </div>
@@ -233,126 +276,7 @@ const TabFilters = () => {
   };
 
   // OK
-  const renderTabsSortOrder = () => {
-    return (
-      <Popover className="relative">
-        {({ open, close }) => (
-          <>
-            <Popover.Button
-              className={`flex items-center justify-center px-4 py-2 text-sm border rounded-full focus:outline-none 
-              ${open ? "!border-primary-500 " : ""}
-                ${
-                  !!sortOrderStates.length
-                    ? "!border-primary-500 bg-primary-50 text-primary-900"
-                    : "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
-                }
-                `}
-            >
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M11.5166 5.70834L14.0499 8.24168"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M11.5166 14.2917V5.70834"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.48327 14.2917L5.94995 11.7583"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.48315 5.70834V14.2917"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M10.0001 18.3333C14.6025 18.3333 18.3334 14.6024 18.3334 10C18.3334 5.39763 14.6025 1.66667 10.0001 1.66667C5.39771 1.66667 1.66675 5.39763 1.66675 10C1.66675 14.6024 5.39771 18.3333 10.0001 18.3333Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-
-              <span className="ml-2">
-                {sortOrderStates
-                  ? sortOrderRadios.filter((i) => i.id === sortOrderStates)[0]
-                      .name
-                  : "Sort order"}
-              </span>
-              {!sortOrderStates.length ? (
-                <ChevronDownIcon className="w-4 h-4 ml-3" />
-              ) : (
-                <span onClick={() => setSortOrderStates("")}>
-                  {renderXClear()}
-                </span>
-              )}
-            </Popover.Button>
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute z-40 w-screen max-w-sm px-4 mt-3 left-0 sm:px-0 lg:max-w-md">
-                <div className="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
-                  <div className="relative flex flex-col px-5 py-6 space-y-5">
-                    {sortOrderRadios.map((item) => (
-                      <Radio
-                        id={item.id}
-                        key={item.id}
-                        name="radioNameSort"
-                        label={item.name}
-                        defaultChecked={sortOrderStates === item.id}
-                        onChange={setSortOrderStates}
-                      />
-                    ))}
-                  </div>
-                  <div className="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
-                    <ButtonThird
-                      onClick={() => {
-                        close();
-                        setSortOrderStates("");
-                      }}
-                      sizeClass="px-4 py-2 sm:px-5"
-                    >
-                      Clear
-                    </ButtonThird>
-                    <ButtonPrimary
-                      onClick={close}
-                      sizeClass="px-4 py-2 sm:px-5"
-                    >
-                      Apply
-                    </ButtonPrimary>
-                  </div>
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </>
-        )}
-      </Popover>
-    );
-  };
-
+  
   // OK
   const renderRoomsNumber = () => {
     return (
@@ -455,13 +379,134 @@ const TabFilters = () => {
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Clear
+                      Limpar
                     </ButtonThird>
                     <ButtonPrimary
                       onClick={close}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Apply
+                      Aplicar
+                    </ButtonPrimary>
+                  </div>
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
+    );
+  };
+
+
+
+  const renderCarSpot = () => {
+    return (
+      <Popover className="relative">
+        {({ open, close }) => (
+          <>
+            <Popover.Button
+              className={`flex items-center justify-center px-4 py-2 text-sm rounded-full border focus:outline-none 
+              ${open ? "!border-primary-500 " : ""}
+                ${
+                  !!carSpotState.length
+                    ? "!border-primary-500 bg-primary-50 text-primary-900"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
+                }
+                `}
+            >
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2.52002 7.11011H21.48"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M8.52002 2.11011V6.97011"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M15.48 2.11011V6.52011"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <span className="ml-2">Vagas</span>
+              {!carSpotState.length ? (
+                <ChevronDownIcon className="w-4 h-4 ml-3" />
+              ) : (
+                <span onClick={() => setCarSpotState([])}>
+                  {renderXClear()}
+                </span>
+              )}
+            </Popover.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute z-40 w-screen max-w-sm px-4 mt-3 left-0 sm:px-0 lg:max-w-md">
+                <div className="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
+                  <div className="relative flex flex-col px-5 py-6 space-y-5">
+                    {carSpot.map((item) => (
+                      <div key={item.name} className="">
+                        <Checkbox
+                          name={item.name}
+                          label={item.name}
+                          defaultChecked={carSpotState.includes(item.name)}
+                          onChange={(checked) =>
+                            handleChangeCarSpot(checked, item.name)
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
+                    <ButtonThird
+                      onClick={() => {
+                        close();
+                        setCarSpotState([]);
+                      }}
+                      sizeClass="px-4 py-2 sm:px-5"
+                    >
+                      Limpar
+                    </ButtonThird>
+                    <ButtonPrimary
+                      onClick={close}
+                      sizeClass="px-4 py-2 sm:px-5"
+                    >
+                      Aplicar
                     </ButtonPrimary>
                   </div>
                 </div>
@@ -474,6 +519,131 @@ const TabFilters = () => {
   };
 
   //Bathrooms 
+
+  const renderSuitesNumber = () => {
+    return (
+      <Popover className="relative">
+        {({ open, close }) => (
+          <>
+            <Popover.Button
+              className={`flex items-center justify-center px-4 py-2 text-sm rounded-full border focus:outline-none 
+              ${open ? "!border-primary-500 " : ""}
+                ${
+                  !!suitesState.length
+                    ? "!border-primary-500 bg-primary-50 text-primary-900"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
+                }
+                `}
+            >
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2.52002 7.11011H21.48"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M8.52002 2.11011V6.97011"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M15.48 2.11011V6.52011"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <span className="ml-2">Suites</span>
+              {!suitesState.length ? (
+                <ChevronDownIcon className="w-4 h-4 ml-3" />
+              ) : (
+                <span onClick={() => setSuitesState([])}>
+                  {renderXClear()}
+                </span>
+              )}
+            </Popover.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute z-40 w-screen max-w-sm px-4 mt-3 left-0 sm:px-0 lg:max-w-md">
+                <div className="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
+                  <div className="relative flex flex-col px-5 py-6 space-y-5">
+                    {Suites.map((item) => (
+                      <div key={item.name} className="">
+                        <Checkbox
+                          name={item.name}
+                          label={item.name}
+                          defaultChecked={suitesState.includes(item.name)}
+                          onChange={(checked) =>
+                            handleChangeSuites(checked, item.name)
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
+                    <ButtonThird
+                      onClick={() => {
+                        close();
+                        setSuitesState([]);
+                      }}
+                      sizeClass="px-4 py-2 sm:px-5"
+                    >
+                      Limpar
+                    </ButtonThird>
+                    <ButtonPrimary
+                      onClick={close}
+                      sizeClass="px-4 py-2 sm:px-5"
+                    >
+                      Aplicar
+                    </ButtonPrimary>
+                  </div>
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
+    );
+  };
+
+  // suites
+
+
+  
+
 
   const renderBathroomNumber = () => {
     return (
@@ -576,13 +746,13 @@ const TabFilters = () => {
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Clear
+                      Limpar
                     </ButtonThird>
                     <ButtonPrimary
                       onClick={close}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Apply
+                      Aplicar
                     </ButtonPrimary>
                   </div>
                 </div>
@@ -722,13 +892,13 @@ const TabFilters = () => {
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Clear
+                      Limpar
                     </ButtonThird>
                     <ButtonPrimary
                       onClick={close}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Apply
+                      Aplicar
                     </ButtonPrimary>
                   </div>
                 </div>
@@ -834,7 +1004,7 @@ const TabFilters = () => {
           onClick={openModalMoreFilter}
         >
           <span>
-            <span className="hidden sm:inline">NFTs</span> filters (3)
+            <span className="hidden sm:inline"></span> Filtros (4)
           </span>
           {renderXClear()}
         </div>
@@ -880,7 +1050,7 @@ const TabFilters = () => {
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-900"
                     >
-                      NFTs filters
+                      Filtros
                     </Dialog.Title>
                     <span className="absolute left-3 top-3">
                       <ButtonClose onClick={closeModalMoreFilter} />
@@ -892,7 +1062,7 @@ const TabFilters = () => {
                       {/* --------- */}
                       {/* ---- */}
                       <div className="py-7">
-                        <h3 className="text-xl font-medium">Sale Types</h3>
+                        <h3 className="text-xl font-medium">Modalidade</h3>
                         <div className="mt-6 relative ">
                           {renderMoreFilterItem(typeOfSales)}
                         </div>
@@ -909,7 +1079,7 @@ const TabFilters = () => {
                       {/* --------- */}
                       {/* ---- */}
                       <div className="py-7">
-                        <h3 className="text-xl font-medium">Range Prices</h3>
+                        <h3 className="text-xl font-medium">Preços</h3>
                         <div className="mt-6 relative ">
                           <div className="relative flex flex-col space-y-8">
                             <div className="space-y-5">
@@ -980,23 +1150,7 @@ const TabFilters = () => {
 
                       {/* --------- */}
                       {/* ---- */}
-                      <div className="py-7">
-                        <h3 className="text-xl font-medium">Sort Order</h3>
-                        <div className="mt-6 relative ">
-                          <div className="relative flex flex-col space-y-5">
-                            {sortOrderRadios.map((item) => (
-                              <Radio
-                                id={item.id}
-                                key={item.id}
-                                name="radioNameSort"
-                                label={item.name}
-                                defaultChecked={sortOrderStates === item.id}
-                                onChange={setSortOrderStates}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
 
@@ -1006,18 +1160,17 @@ const TabFilters = () => {
                         setRangePrices([0.01, 10]);
                         setSaleTypeStates([]);
                         setfileTypesState([]);
-                        setSortOrderStates("");
                         closeModalMoreFilter();
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Clear
+                      Limpar
                     </ButtonThird>
                     <ButtonPrimary
                       onClick={closeModalMoreFilter}
                       sizeClass="px-4 py-2 sm:px-5"
                     >
-                      Apply
+                      Aplicar
                     </ButtonPrimary>
                   </div>
                 </div>
@@ -1037,7 +1190,8 @@ const TabFilters = () => {
         {renderTabsTypeOfSales()}
         {renderRoomsNumber()}
         {renderBathroomNumber()}
-        {renderTabsSortOrder()}
+        {renderSuitesNumber()}
+        {renderCarSpot()}
         {isFurnished()}
       </div>
 
