@@ -7,7 +7,7 @@ export interface LikeButtonProps {
 
 const LikeButton: React.FC<LikeButtonProps> = ({
   className,
-  liked = Math.random() > 0.6,
+  liked = false
 }) => {
   const [isLiked, setIsLiked] = useState(liked);
 
@@ -26,7 +26,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
           strokeLinejoin="round"
         />
       </svg>
-      <span className="ml-2 text-sm">{isLiked ? 23 : 22}</span>
+     
     </button>
   );
 };

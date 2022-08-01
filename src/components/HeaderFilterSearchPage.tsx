@@ -72,7 +72,7 @@ const HeaderFilterSearchPage: FC<HeaderFilterSearchPageProps> = ({
               />
             </svg>
 
-            <span className="block truncate ml-2.5">Filter</span>
+            <span className="block truncate ml-2.5">Filtros</span>
             <span className="absolute top-1/2 -translate-y-1/2 right-5">
               <ChevronDownIcon
                 className={`w-4 h-4 sm:w-5 sm:h-5 ${

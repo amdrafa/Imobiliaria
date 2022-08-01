@@ -845,11 +845,11 @@ const TabFilters = () => {
                           htmlFor="minPrice"
                           className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                         >
-                          Min price
+                          Preço mínimo
                         </label>
                         <div className="mt-1 relative rounded-md">
                           <span className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-500 sm:text-sm">
-                            ETH
+                            R$
                           </span>
                           <input
                             type="text"
@@ -866,11 +866,11 @@ const TabFilters = () => {
                           htmlFor="maxPrice"
                           className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                         >
-                          Max price
+                          Preço máximo
                         </label>
                         <div className="mt-1 relative rounded-md">
                           <span className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-500 sm:text-sm">
-                            ETH
+                          R$
                           </span>
                           <input
                             type="text"

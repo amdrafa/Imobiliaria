@@ -107,16 +107,17 @@ const otherPageChildMenus: NavItemType[] = [
 ];
 
 export const NAVIGATION_DEMO_2: NavItemType[] = [
-  {
-    id: ncNanoId(),
-    href: "#",
-    name: "Discover",
-    type: "dropdown",
-    children: otherPageChildMenus,
-  },
+  
   {
     id: ncNanoId(),
     href: "/#",
-    name: "Help center",
+    name: "Favoritos",
+  },
+  {
+    id: ncNanoId(),
+    href: "#",
+    name: "Descubra mais",
+    type: "dropdown",
+    children: otherPageChildMenus,
   },
 ];

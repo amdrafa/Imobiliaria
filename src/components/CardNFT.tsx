@@ -22,7 +22,7 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
           containerClassName="ring-2 ring-white dark:ring-neutral-900"
           sizeClass="h-5 w-5 text-sm"
         />
-        <Avatar
+        {/* <Avatar
           containerClassName="ring-2 ring-white dark:ring-neutral-900"
           sizeClass="h-5 w-5 text-sm"
         />
@@ -33,7 +33,7 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
         <Avatar
           containerClassName="ring-2 ring-white dark:ring-neutral-900"
           sizeClass="h-5 w-5 text-sm"
-        />
+        /> */}
       </div>
     );
   };
@@ -47,18 +47,18 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
         <div>
           <NcImage
             containerClassName="flex aspect-w-11 aspect-h-12 w-full h-0 rounded-3xl overflow-hidden z-0"
-            src={nftsImgs[Math.floor(Math.random() * nftsImgs.length)]}
+            src={'https://midias.agazeta.com.br/2021/01/20/apartamentos-laterais-do-golden-barro-vermelho-em-vitoria-estao-a-venda-a-partir-de-r-718-mil-403229-article.jpg'}
             className="object-cover w-full h-full group-hover:scale-[1.03] transition-transform duration-300 ease-in-out will-change-transform"
           />
         </div>
-        {Math.random() > 0.5 ? (
-          <ItemTypeVideoIcon className="absolute top-3 left-3 !w-9 !h-9" />
-        ) : (
+        
+          {/* <ItemTypeVideoIcon className="absolute top-3 left-3 !w-9 !h-9" />
+        
           <ItemTypeImageIcon className="absolute top-3 left-3 !w-9 !h-9" />
-        )}
+         */}
         <LikeButton
           liked={isLiked}
-          className="absolute top-3 right-3 z-10 !h-9"
+          className="absolute top-3 left-3 z-10 !h-9"
         />
         <div className="absolute top-3 inset-x-3 flex"></div>
       </div>
@@ -67,21 +67,21 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
         <div className="flex justify-between">
           {renderAvatars()}
           <span className="text-neutral-700 dark:text-neutral-400 text-xs">
-            {Math.floor(Math.random() * 90) + 10} in stock
+            2 unidades
           </span>
         </div>
         <h2 className={`text-lg font-medium`}>
-          CloneF #{Math.floor(Math.random() * 1000) + 1000}
+          Residencial  #{Math.floor(Math.random() * 1000) + 1000}
         </h2>
 
         <div className="w-2d4 w-full border-b border-neutral-100 dark:border-neutral-700"></div>
 
         <div className="flex justify-between items-end ">
-          <Prices labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" />
+          <Prices price="R$500.000,00" labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" />
           <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400">
             <ClockIcon className="w-4 h-4" />
             <span className="ml-1 mt-0.5">
-              {Math.floor(Math.random() * 20) + 1} hours left
+              {Math.floor(Math.random() * 20) + 1} Horas atrás
             </span>
           </div>
         </div>
