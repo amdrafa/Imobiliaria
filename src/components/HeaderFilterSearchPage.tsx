@@ -23,7 +23,7 @@ const HeaderFilterSearchPage: FC<HeaderFilterSearchPageProps> = ({
           className="sm:space-x-2"
           containerClassName="relative flex w-full overflow-x-auto text-sm md:text-base hiddenScrollbar"
         >
-          {["Todos", "Apartamento", "Casa", "Terreno", "Comercial", "Galpão"].map(
+          {["Todos", "Apartamento", "Casa", "Terreno", "Comercial", "Galpão", "Sítio", "Chácara" ].map(
             (item, index) => (
               <NavItem
                 key={index}

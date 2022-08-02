@@ -36,13 +36,7 @@ const Logo: React.FC<LogoProps> = ({
       ) : (
         "Logo Here"
       )}
-      {imgLight && (
-        <img
-          className="hidden max-h-12 dark:block"
-          src={imgLight}
-          alt="Logo-Light"
-        />
-      )}
+      
     </Link>
   );
 };

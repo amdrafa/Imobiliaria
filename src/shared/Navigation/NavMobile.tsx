@@ -46,6 +46,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
                   onClick={(e) => e.preventDefault()}
                 >
                   <Disclosure.Button
+                    
                     as="span"
                     className="flex justify-end flex-grow"
                   >
@@ -117,10 +118,6 @@ const NavMobile: React.FC<NavMobileProps> = ({
       <div className="py-6 px-5">
         <Logo />
         <div className="flex flex-col mt-5 text-neutral-700 dark:text-neutral-300 text-sm">
-          <span>
-            Discover the most outstanding articles on all topics of life. Write
-            your stories and share them
-          </span>
 
           <div className="flex justify-between items-center mt-4">
             <SocialsList itemClass="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-xl" />
@@ -138,10 +135,10 @@ const NavMobile: React.FC<NavMobileProps> = ({
       </ul>
       <div className="flex items-center justify-between py-6 px-5 space-x-2">
         <ButtonPrimary href={"/page-upload-item"} className="!px-10">
-          Create
+          Anunciar
         </ButtonPrimary>
         <ButtonSecondary href={"/connect-wallet"} className="flex-1">
-          Connect Wallet
+          Entrar em contato
         </ButtonSecondary>
       </div>
     </div>
