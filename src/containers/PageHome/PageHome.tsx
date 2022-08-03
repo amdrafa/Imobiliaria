@@ -18,7 +18,7 @@ function PageHome() {
   return (
     <div className="nc-PageHome relative overflow-hidden">
       <Helmet>
-        <title>Ciscryp || NFT Marketplace Template</title>
+        <title>Anunciar imóvel</title>
       </Helmet>
       {/* GLASSMOPHIN */}
       <BgGlassmorphism />
@@ -29,15 +29,15 @@ function PageHome() {
           className="pb-10"
           heading={
             <span>
-              Discover 🖼
-              <br /> collect, and sell <br /> extraordinary {` `}
+              Anuncie 🏘️
+              <br /> venda e alugue <br /> seus {` `}
               <span className="relative pr-3">
                 <img
                   className="w-full absolute bottom-3 -left-1"
                   src={Vector1}
                   alt="Vector1"
                 />
-                <span className="relative">NFTs</span>
+                <span className="relative">Imóveis</span>
               </span>
             </span>
           }
@@ -47,41 +47,6 @@ function PageHome() {
         <SectionHowItWork />
       </div>
 
-      {/* SECTION LAERGE SLIDER */}
-      <div className="bg-neutral-100/80 dark:bg-black/20 py-20 lg:py-32">
-        <div className="container">
-          <SectionLargeSlider />
-        </div>
-      </div>
-
-      <div className="container relative space-y-24 my-24 lg:space-y-32 lg:my-32">
-        {/* SECTION */}
-        <SectionGridAuthorBox boxCard="box3" />
-
-        {/* SECTION */}
-        <div className="relative py-20 lg:py-28">
-          <BackgroundSection />
-          <SectionSliderCollections />
-        </div>
-
-        {/* SECTION */}
-        <SectionGridFeatureNFT />
-
-        {/* SECTION */}
-        <div className="relative py-20 lg:py-24">
-          <BackgroundSection />
-          <SectionBecomeAnAuthor />
-        </div>
-
-        {/* SECTION */}
-        <SectionSubscribe2 />
-
-        {/* SECTION 1 */}
-        <SectionSliderCategories />
-
-        {/* SECTION */}
-        <SectionVideos />
-      </div>
     </div>
   );
 }

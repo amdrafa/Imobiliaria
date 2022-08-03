@@ -30,11 +30,7 @@ const SectionHero: FC<SectionHeroProps> = ({
           </span>
           <div className="pt-7 flex  space-x-4">
             <ButtonPrimary href="/page-search">
-              <span className="">Explore</span>
-              <SearchIcon className="w-5 h-5 ml-2.5" />
-            </ButtonPrimary>
-            <ButtonSecondary href="/page-upload-item">
-              <span>Create</span>
+              <span className="">Entrar em contato</span>
               <svg className="w-5 h-5 ml-2.5" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M13.26 3.59997L5.04997 12.29C4.73997 12.62 4.43997 13.27 4.37997 13.72L4.00997 16.96C3.87997 18.13 4.71997 18.93 5.87997 18.73L9.09997 18.18C9.54997 18.1 10.18 17.77 10.49 17.43L18.7 8.73997C20.12 7.23997 20.76 5.52997 18.55 3.43997C16.35 1.36997 14.68 2.09997 13.26 3.59997Z"
@@ -61,6 +57,11 @@ const SectionHero: FC<SectionHeroProps> = ({
                   strokeLinejoin="round"
                 />
               </svg>
+              
+            </ButtonPrimary>
+            <ButtonSecondary href="/page-upload-item">
+              <span>Procurar um imóvel</span>
+              <SearchIcon className="w-5 h-5 ml-2.5" />
             </ButtonSecondary>
           </div>
         </div>
