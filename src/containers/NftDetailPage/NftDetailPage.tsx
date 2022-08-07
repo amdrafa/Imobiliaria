@@ -36,7 +36,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             <LikeSaveBtns />
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            BearX #3636
+            Residencial Águas Claras
           </h2>
 
           {/* ---------- 4 ----------  */}
@@ -44,28 +44,14 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             <div className="flex items-center ">
               <Avatar sizeClass="h-9 w-9" radius="rounded-full" />
               <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
-                <span className="text-sm">Creator</span>
+                <span className="text-sm">Corretor</span>
                 <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
-                  <span>{personNames[1]}</span>
+                  <span>Angela Simone</span>
                   <VerifyIcon iconClass="w-4 h-4" />
                 </span>
               </span>
             </div>
-            <div className="hidden sm:block h-6 border-l border-neutral-200 dark:border-neutral-700"></div>
-            <div className="flex items-center">
-              <Avatar
-                imgUrl={collectionPng}
-                sizeClass="h-9 w-9"
-                radius="rounded-full"
-              />
-              <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
-                <span className="text-sm">Collection</span>
-                <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
-                  <span>{"The Moon Ape"}</span>
-                  <VerifyIcon iconClass="w-4 h-4" />
-                </span>
-              </span>
-            </div>
+            
           </div>
         </div>
 

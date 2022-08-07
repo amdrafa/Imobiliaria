@@ -2,6 +2,7 @@ import Logo from "shared/Logo/Logo";
 import SocialsList1 from "shared/SocialsList1/SocialsList1";
 import { CustomLink } from "data/types";
 import React from "react";
+import SocialsList from "shared/SocialsList/SocialsList";
 
 export interface WidgetFooterMenu {
   id: string;
@@ -11,59 +12,33 @@ export interface WidgetFooterMenu {
 
 const widgetMenus: WidgetFooterMenu[] = [
   {
-    id: "5",
-    title: "Getting started",
-    menus: [
-      { href: "#", label: "Installation" },
-      { href: "#", label: "Release Notes" },
-      { href: "#", label: "Upgrade Guide" },
-      { href: "#", label: "Browser Support" },
-      { href: "#", label: "Editor Support" },
-      { href: "#", label: "Dark Mode" },
-    ],
-  },
-  {
     id: "1",
-    title: "Explore",
+    title: "Explorar",
     menus: [
-      { href: "#", label: "Design features" },
-      { href: "#", label: "Prototyping" },
-      { href: "#", label: "Design systems" },
-      { href: "#", label: "Pricing" },
-      { href: "#", label: "Customers" },
-      { href: "#", label: "Security" },
+      { href: "#", label: "Home" },
+      { href: "#", label: "Favoritos" },
+      { href: "#", label: "Anunciar Imóvel" },
+      { href: "#", label: "Corretores" },
     ],
   },
   {
     id: "2",
-    title: "Resources",
+    title: "Contatos",
     menus: [
-      { href: "#", label: "Best practices" },
-      { href: "#", label: "Support" },
-      { href: "#", label: "Developers" },
-      { href: "#", label: "Learn design" },
-      { href: "#", label: "What's new" },
-      { href: "#", label: "Releases" },
+      
+      { href: "#", label: "Entrar em contato" },
+      { href: "#", label: "angelasimone@gmail.com" },
+      { href: "#", label: "48 9 9289-9009" },
+      
     ],
   },
-  {
-    id: "4",
-    title: "Community",
-    menus: [
-      { href: "#", label: "Discussion Forums" },
-      { href: "#", label: "Code of Conduct" },
-      { href: "#", label: "Community Resources" },
-      { href: "#", label: "Contributing" },
-      { href: "#", label: "Concurrent Mode" },
-      { href: "#", label: "API Reference" },
-    ],
-  },
+  
 ];
 
 const Footer: React.FC = () => {
   const renderWidgetMenuItem = (menu: WidgetFooterMenu, index: number) => {
     return (
-      <div key={index} className="text-sm">
+      <div key={index} className="">
         <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">
           {menu.title}
         </h2>
@@ -86,13 +61,13 @@ const Footer: React.FC = () => {
 
   return (
     <div className="nc-Footer relative py-20 lg:pt-32 lg:pb-28 border-t border-neutral-200 dark:border-neutral-700">
-      <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 ">
+      <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-1 lg:grid-cols-3 lg:gap-x-10 ">
         <div className="grid grid-cols-4 gap-5 col-span-2 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
           <div className="col-span-2 md:col-span-1">
             <Logo />
           </div>
           <div className="col-span-2 flex items-center md:col-span-3">
-            <SocialsList1 className="flex items-center space-x-2 lg:space-x-0 lg:flex-col lg:space-y-3 lg:items-start" />
+            <SocialsList className="flex items-center space-x-2 lg:space-x-0 lg:flex-col lg:space-y-3 lg:items-start" />
           </div>
         </div>
         {widgetMenus.map(renderWidgetMenuItem)}

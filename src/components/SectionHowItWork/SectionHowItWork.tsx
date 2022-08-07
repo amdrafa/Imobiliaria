@@ -17,29 +17,29 @@ const DEMO_DATA = [
     id: 1,
     img: HIW1img,
     imgDark: HIW1img,
-    title: "Filter & Discover",
-    desc: "Connect with wallet, discover, buy NTFs, sell your NFTs and earn money",
+    title: "Contato",
+    desc: "Entre em contato através de um dos nossos canais de atendimento.",
   },
   {
     id: 2,
     img: HIW2img,
     imgDark: HIW2img,
-    title: "Connect wallet",
-    desc: "Connect with wallet, discover, buy NTFs, sell your NFTs and earn money",
+    title: "Coleta de dados",
+    desc: "As informações sobre seu imóvel serão coletadas para darmos início ao processo.",
   },
   {
     id: 3,
-    img: HIW3img,
-    imgDark: HIW3img,
-    title: "Start trading",
-    desc: "Connect with wallet, discover, buy NTFs, sell your NFTs and earn money",
+    img: HIW4img,
+    imgDark: HIW4img,
+    title: "Anúncio",
+    desc: "Com todas as informações em mãos, é hora de finalmente anunciar o imóvel.",
   },
   {
     id: 4,
-    img: HIW4img,
-    imgDark: HIW4img,
-    title: "Earn money",
-    desc: "Connect with wallet, discover, buy NTFs, sell your NFTs and earn money",
+    img: HIW3img,
+    imgDark: HIW3img,
+    title: "Venda",
+    desc: "Após anunciármos por diferentes canais, a venda do imóvel é realizada.",
   },
 ];
 
@@ -69,7 +69,7 @@ const SectionHowItWork: FC<SectionHowItWorkProps> = ({
             />
             <div className="text-center mt-auto space-y-5">
               <Badge
-                name={`Step ${index + 1}`}
+                name={`Passo ${index + 1}`}
                 color={
                   !index
                     ? "blue"

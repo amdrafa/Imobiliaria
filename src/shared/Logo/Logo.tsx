@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logoImg from "images/logo.svg";
+import logoDarkLetterPng from "images/logo.png"
+import logoWhiteLetterPng from "images/logowhiteletter.png"
 import logoLightImg from "images/logo-light.svg";
 
 export interface LogoProps {
@@ -22,21 +24,21 @@ const Logo: React.FC<LogoProps> = ({
       {/* THIS USE FOR MY CLIENT */}
       {/* PLEASE UN COMMENT BELLOW CODE AND USE IT */}
       {img ? (
-        // <img
-        //   className={`block max-h-12 ${imgLight ? "dark:hidden" : ""}`}
-        //   src={img}
-        //   alt="Logo"
-        // />
-        <div className="flex items-baseline">
-
-          <p className="flex text-primary-6000 text-xl mr-1 font-medium">Simone <p className="text-gray-500 font-normal">Imóveis</p></p>
-          <div className="rounded-full bg-primary-6000 w-2 h-2 text-blue-500 mr-2" ></div>
-          
-        </div>
+        <img
+          className={`block max-h-12 ${imgLight ? "dark:hidden" : ""}`}
+          src={logoDarkLetterPng}
+          alt="Logo"
+        />
       ) : (
         "Logo Here"
       )}
-      
+      {imgLight && (
+        <img
+          className="hidden max-h-12 dark:block"
+          src={logoWhiteLetterPng}
+          alt="Logo-Light"
+        />
+      )}
     </Link>
   );
 };

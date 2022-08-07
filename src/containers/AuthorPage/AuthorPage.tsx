@@ -23,13 +23,6 @@ export interface AuthorPageProps {
 }
 
 const AuthorPage: FC<AuthorPageProps> = ({ className = "" }) => {
-  let [categories] = useState([
-    "Collectibles",
-    "Created",
-    "Liked",
-    "Following",
-    "Followers",
-  ]);
 
   return (
     <div className={`nc-AuthorPage  ${className}`} data-nc-id="AuthorPage">

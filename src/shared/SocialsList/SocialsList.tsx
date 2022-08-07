@@ -5,7 +5,7 @@ import twitter from "images/socials/twitter.svg";
 import telegram from "images/socials/telegram.svg";
 import youtube from "images/socials/youtube.svg";
 import instagram from "images/instagram.png"
-import whatsapp from "images/whatsapp.png"
+import whatsapp from "images/socials/_Group_-3.svg"
 
 export interface SocialsListProps {
   className?: string;
@@ -33,13 +33,14 @@ const SocialsList: FC<SocialsListProps> = ({
       {socials.map((item, i) => (
         <a
           key={i}
-          className={`${itemClass}`}
+          className={`${itemClass} flex`}
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
           title={item.name}
         >
           <img src={item.icon} alt="" />
+          <p className="ml-4 text-base invisible lg:visible hover:text-primary-500">{item.name}</p>
         </a>
       ))}
     </nav>

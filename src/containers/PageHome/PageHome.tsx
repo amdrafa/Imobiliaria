@@ -27,6 +27,7 @@ function PageHome() {
         {/* SECTION HERO */}
         <SectionHero
           className="pb-10"
+          subHeading="Além de procurar, aqui você também pode solicitar a venda do seu imóvel."
           heading={
             <span>
               Anuncie 🏘️
@@ -35,7 +36,7 @@ function PageHome() {
                 <img
                   className="w-full absolute bottom-3 -left-1"
                   src={Vector1}
-                  alt="Vector1"
+                  alt="Apartamentos"
                 />
                 <span className="relative">Imóveis</span>
               </span>

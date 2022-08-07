@@ -21,13 +21,8 @@ const CardAuthorBox2: FC<CardAuthorBox2Props> = ({ className = "" }) => {
         <div>
           <NcImage
             containerClassName="flex aspect-w-7 aspect-h-5 sm:aspect-h-6 w-full h-0"
-            src={nftsImgs[Math.floor(Math.random() * nftsImgs.length)]}
+            src={'https://media.agenteimovel.com.br/images/8/80/8007115/high/20211005161914_2923img.jpg'}
           />
-        </div>
-        <div className="absolute top-3 inset-x-3 flex">
-          <div className=" py-1 px-4 bg-neutral-100 dark:bg-neutral-800 rounded-full flex items-center justify-center leading-none text-xs font-medium">
-            1.45 ETH <ArrowRightIcon className="w-5 h-5 text-yellow-600 ml-3" />
-          </div>
         </div>
       </div>
 
@@ -36,18 +31,20 @@ const CardAuthorBox2: FC<CardAuthorBox2Props> = ({ className = "" }) => {
           containerClassName="ring-2 ring-white"
           sizeClass="w-16 h-16 text-2xl"
           radius="rounded-full"
+          userName="Teste"
+          imgUrl="https://blog.grupozap.com/wp-content/uploads/2015/10/etica-imobiliaria-para-corretores-zappro.jpg"
         />
         <div className="mt-3">
           <h2
             className={`text-base font-medium flex items-center justify-center`}
           >
-            {_getPersonNameRd()}
-            <VerifyIcon />
+            Residencial San Camilo Itajaí/SC
+            
           </h2>
           <span
-            className={`block mt-1 text-sm text-neutral-500 dark:text-neutral-400`}
+            className={`flex justify-center mt-1 text-sm text-neutral-500 dark:text-neutral-400`}
           >
-            @creator
+            Rafael Amaro <VerifyIcon />
           </span>
         </div>
       </div>
