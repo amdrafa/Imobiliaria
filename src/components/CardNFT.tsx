@@ -71,17 +71,17 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
           </span>
         </div>
         <h2 className={`text-lg font-medium`}>
-          Residencial  #{Math.floor(Math.random() * 1000) + 1000}
+          Residencial Águas Claras
         </h2>
 
         <div className="w-2d4 w-full border-b border-neutral-100 dark:border-neutral-700"></div>
 
         <div className="flex justify-between items-end ">
-          <Prices price="R$500.000,00" labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" />
+          <Prices price="R$500.000,00" labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" labelText="Preço" />
           <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400">
             <ClockIcon className="w-4 h-4" />
             <span className="ml-1 mt-0.5">
-              {Math.floor(Math.random() * 20) + 1} Horas atrás
+              {Math.floor(Math.random() * 20) + 1} h atrás
             </span>
           </div>
         </div>

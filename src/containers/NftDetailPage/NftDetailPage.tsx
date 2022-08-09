@@ -16,6 +16,8 @@ import ItemTypeVideoIcon from "components/ItemTypeVideoIcon";
 import LikeButton from "components/LikeButton";
 import AccordionInfo from "./AccordionInfo";
 import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
+import { SearchIcon } from "@heroicons/react/solid";
+import { NftDetailPageInformations } from "components/NftDetailPageInformations";
 
 export interface NftDetailPageProps {
   className?: string;
@@ -32,8 +34,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
         {/* ---------- 1 ----------  */}
         <div className="pb-9 space-y-5">
           <div className="flex justify-between items-center">
-            <Badge name="Virtual Worlds" color="green" />
-            <LikeSaveBtns />
+            <Badge name="Disponível" color="green" />
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
             Residencial Águas Claras
@@ -42,7 +43,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
           {/* ---------- 4 ----------  */}
           <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
             <div className="flex items-center ">
-              <Avatar sizeClass="h-9 w-9" radius="rounded-full" />
+              <Avatar sizeClass="h-9 w-9" radius="rounded-full" imgUrl="https://rankim.com.br/blog/wp-content/uploads/2016/06/Stand-de-Vendas-de-Imoveis.jpg" />
               <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
                 <span className="text-sm">Corretor</span>
                 <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
@@ -53,11 +54,9 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             </div>
             
           </div>
-        </div>
 
-        {/* ---------- 6 ----------  */}
-        <div className="py-9">
-          <TimeCountDown />
+          <NftDetailPageInformations />
+
         </div>
 
         {/* ---------- 7 ----------  */}
@@ -66,18 +65,15 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
             <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
               <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
-                Current Bid
+                Preço
               </span>
               <span className="text-3xl xl:text-4xl font-semibold text-green-500">
-                1.000 ETH
-              </span>
-              <span className="text-lg text-neutral-400 sm:ml-5">
-                ( ≈ $3,221.22)
+                R$500.000,00
               </span>
             </div>
 
             <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-5 mt-2 sm:mt-0 sm:ml-10">
-              [96 in stock]
+              [1 in stock]
             </span>
           </div>
 
@@ -114,49 +110,24 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
                 />
               </svg>
 
-              <span className="ml-2.5">Place a bid</span>
+              <span className="ml-2.5">Comprar</span>
             </ButtonPrimary>
             <ButtonSecondary href={"/connect-wallet"} className="flex-1">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M8.57007 15.27L15.11 8.72998"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.98001 10.3699C9.65932 10.3699 10.21 9.81923 10.21 9.13992C10.21 8.46061 9.65932 7.90991 8.98001 7.90991C8.3007 7.90991 7.75 8.46061 7.75 9.13992C7.75 9.81923 8.3007 10.3699 8.98001 10.3699Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15.52 16.0899C16.1993 16.0899 16.75 15.5392 16.75 14.8599C16.75 14.1806 16.1993 13.6299 15.52 13.6299C14.8407 13.6299 14.29 14.1806 14.29 14.8599C14.29 15.5392 14.8407 16.0899 15.52 16.0899Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <SearchIcon className="w-5 h-5 ml-2.5" />
 
-              <span className="ml-2.5"> Make offer</span>
+              <span className="ml-2.5">Ver mais</span>
             </ButtonSecondary>
           </div>
+
+          {/* <NftDetailPageInformations /> */}
         </div>
 
+        
+
         {/* ---------- 9 ----------  */}
-        <div className="pt-9">
+        {/* <div className="pt-9">
           <TabDetail />
-        </div>
+        </div> */}
       </div>
     );
   };
@@ -174,17 +145,17 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             {/* HEADING */}
             <div className="relative">
               <NcImage
-                src={nftsLargeImgs[0]}
+                src='https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9bJDwnbk9Kawbnev1nxMNm9yHFhIP-MQkSx9WYNv32x+8YNgtlIDncoEbY3hjiWI2qud2-Smkxm0-KrI4LzDyJL7Zp79170f7Z+iEkKetJx+aeM3FX19WbFbYivEXYq8H2N9jyiihEv-ZL1lWTEIzyZujAdU3ECeZ7WhqFpujj78WqmA7y7VFPC+SxgWCqxAAdk57ENDsQK-XFB8p0pK9JGl+XaFOuW-M4DugSALG1In8oevXbnpmdnCJ5YnGrlrPXoH40EZTKZew-iTSP984RIB5LqWUUXD3lXE0bVyIZOnD94azfIFwlzHTeFK6Bnpk9XPhaX5PhzSLiBstfzauqOkPv6mTbzzJFypjJhGpM2Kf5gLaNrxQDQdFyQnZRFArjGkqb6b8BC5LG-KugJSVEGTi45k9CQoMQob-4JO+z31y9i2eQCN.jpg'
                 containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
               />
-              {/* META TYPE */}
-              <ItemTypeVideoIcon className="absolute left-3 top-3  w-8 h-8 md:w-10 md:h-10" />
 
               {/* META FAVORITES */}
-              <LikeButton className="absolute right-3 top-3 " />
+              <LikeButton className="absolute left-6 top-3 " />
             </div>
 
-            <AccordionInfo />
+            <AccordionInfo 
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            />
           </div>
 
           {/* SIDEBAR */}
@@ -195,18 +166,12 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
       </main>
 
       {/* OTHER SECTION */}
-      {!isPreviewMode && (
-        <div className="container py-24 lg:py-32">
+      
+        <div className="container py-14 lg:py-14">
           {/* SECTION 1 */}
-          <div className="relative py-24 lg:py-28">
-            <BackgroundSection />
-            <SectionSliderCategories />
-          </div>
-
-          {/* SECTION */}
-          <SectionBecomeAnAuthor className="pt-24 lg:pt-32" />
+          
         </div>
-      )}
+      
     </div>
   );
 };

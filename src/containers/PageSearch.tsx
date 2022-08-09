@@ -91,18 +91,9 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
           {/* PAGINATION */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
             <Pagination />
-            <ButtonPrimary loading>Show me more</ButtonPrimary>
           </div>
         </main>
 
-        {/* === SECTION 5 === */}
-        <div className="relative py-16 lg:py-28">
-          <BackgroundSection />
-          <SectionSliderCollections />
-        </div>
-
-        {/* SUBCRIBES */}
-        <SectionBecomeAnAuthor />
       </div>
     </div>
   );
