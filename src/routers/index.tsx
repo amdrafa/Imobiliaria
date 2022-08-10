@@ -22,6 +22,8 @@ import PageUploadItem from "containers/PageUploadItem";
 import PageConnectWallet from "containers/PageConnectWallet";
 import PageHome2 from "containers/PageHome/PageHome2";
 import PageHome3 from "containers/PageHome/PageHome3";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "../lib/apollo";
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageHome2 },
@@ -50,6 +52,7 @@ export const pages: Page[] = [
 
 const Routes = () => {
   return (
+    <ApolloProvider client={client}>
     <BrowserRouter>
       <ScrollToTop />
       <SiteHeader />
@@ -68,6 +71,7 @@ const Routes = () => {
       </Switch>
       <Footer />
     </BrowserRouter>
+    </ApolloProvider>
   );
 };
 

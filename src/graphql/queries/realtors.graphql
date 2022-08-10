@@ -1,0 +1,13 @@
+query MyQuery {
+  corretores {
+    nome
+    creci
+    email
+    telefone
+    instagram
+    facebook
+    resumo {
+      text
+    }
+  }
+}
