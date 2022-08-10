@@ -55,13 +55,18 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             
           </div>
 
-          <NftDetailPageInformations />
+          
 
         </div>
 
         {/* ---------- 7 ----------  */}
         {/* PRICE */}
-        <div className="pb-9 pt-14">
+        <div className="pb-9 pt-6">
+          <div className="block">
+
+          <NftDetailPageInformations />
+
+
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
             <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
               <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
@@ -71,11 +76,17 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
                 R$500.000,00
               </span>
             </div>
+            
 
             <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-5 mt-2 sm:mt-0 sm:ml-10">
-              [1 in stock]
+              [1 em estoque]
             </span>
           </div>
+
+          
+          </div>
+
+          
 
           <div className="mt-8 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
             <ButtonPrimary href={"/connect-wallet"} className="flex-1">

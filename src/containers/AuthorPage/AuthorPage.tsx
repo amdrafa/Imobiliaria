@@ -18,6 +18,8 @@ import CardAuthorBox3 from "components/CardAuthorBox3/CardAuthorBox3";
 import ArchiveFilterListBox from "components/ArchiveFilterListBox";
 import SectionGridAuthorBox from "components/SectionGridAuthorBox/SectionGridAuthorBox";
 
+import { gql, useQuery } from "@apollo/client";
+
 export interface AuthorPageProps {
   className?: string;
 }
