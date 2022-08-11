@@ -1,0 +1,11 @@
+query simone ($creci: String){
+  corretor(where: {creci: $creci}) {
+    id
+    nome
+    creci
+    telefone
+    email
+    instagram
+    facebook
+  }
+}

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import NcImage from "shared/NcImage/NcImage";
@@ -19,12 +19,25 @@ import ArchiveFilterListBox from "components/ArchiveFilterListBox";
 import SectionGridAuthorBox from "components/SectionGridAuthorBox/SectionGridAuthorBox";
 
 import { gql, useQuery } from "@apollo/client";
+import { useRealtorsQuery, useSimoneQuery } from "graphql/generated";
 
 export interface AuthorPageProps {
   className?: string;
 }
 
 const AuthorPage: FC<AuthorPageProps> = ({ className = "" }) => {
+
+  
+
+ const data = useSimoneQuery({
+  variables: {
+    creci: 'CRECI 41.359F'
+  }
+ })
+
+ useEffect(() => {
+  console.log(data)
+ }, [data])
 
   return (
     <div className={`nc-AuthorPage  ${className}`} data-nc-id="AuthorPage">
