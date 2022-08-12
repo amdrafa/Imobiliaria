@@ -15,9 +15,9 @@ export interface SocialsListProps {
 
 const socialsDemo: SocialType[] = [
   { name: "Facebook", icon: facebook, href: "#" },
-  { name: "Twitter", icon: twitter, href: "#" },
   { name: "Whatsapp", icon: whatsapp, href: "#" },
   { name: "Instagram", icon: instagram, href: "#" },
+  { name: "Youtube", icon: youtube, href: "#" },
 ];
 
 const SocialsList: FC<SocialsListProps> = ({
@@ -40,7 +40,7 @@ const SocialsList: FC<SocialsListProps> = ({
           title={item.name}
         >
           <img src={item.icon} alt="" />
-          <p className="ml-4 text-base invisible lg:visible hover:text-primary-500">{item.name}</p>
+          
         </a>
       ))}
     </nav>

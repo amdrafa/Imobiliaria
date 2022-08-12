@@ -32,7 +32,6 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
               htmlFor="search-input"
               className="text-neutral-500 dark:text-neutral-300"
             >
-              <span className="sr-only">Search all icons</span>
               <Input
                 className="shadow-lg border-0 dark:border"
                 id="search-input"

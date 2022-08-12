@@ -3590,10 +3590,10 @@ export enum _SystemDateTimeFieldVariation {
 export type RealtorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RealtorsQuery = { __typename?: 'Query', corretores: Array<{ __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, resumo: { __typename?: 'RichText', text: string } }> };
+export type RealtorsQuery = { __typename?: 'Query', corretores: Array<{ __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } }> };
 
 export type SimoneQueryVariables = Exact<{
-  creci: Scalars['String'];
+  creci?: InputMaybe<Scalars['String']>;
 }>;
 
 
@@ -3609,6 +3609,9 @@ export const RealtorsDocument = gql`
     telefone
     instagram
     facebook
+    fotoperfil {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
     resumo {
       text
     }
@@ -3643,7 +3646,7 @@ export type RealtorsQueryHookResult = ReturnType<typeof useRealtorsQuery>;
 export type RealtorsLazyQueryHookResult = ReturnType<typeof useRealtorsLazyQuery>;
 export type RealtorsQueryResult = Apollo.QueryResult<RealtorsQuery, RealtorsQueryVariables>;
 export const SimoneDocument = gql`
-    query simone($creci: String!) {
+    query simone($creci: String) {
   corretor(where: {creci: $creci}) {
     id
     nome
@@ -3672,7 +3675,7 @@ export const SimoneDocument = gql`
  *   },
  * });
  */
-export function useSimoneQuery(baseOptions: Apollo.QueryHookOptions<SimoneQuery, SimoneQueryVariables>) {
+export function useSimoneQuery(baseOptions?: Apollo.QueryHookOptions<SimoneQuery, SimoneQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<SimoneQuery, SimoneQueryVariables>(SimoneDocument, options);
       }

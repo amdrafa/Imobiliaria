@@ -6,6 +6,9 @@ query realtors {
     telefone
     instagram
     facebook
+    fotoperfil {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
     resumo {
       text
     }
