@@ -2,7 +2,7 @@ import React, { FC, Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import NcImage from "shared/NcImage/NcImage";
-import CardNFT from "components/CardNFT";
+import CardNFT from "components/CardPlace";
 import Pagination from "shared/Pagination/Pagination";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import authorBanner from "images/nfts/authorBanner.png";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import Pagination from "shared/Pagination/Pagination";
@@ -8,23 +8,39 @@ import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecom
 import HeaderFilterSearchPage from "components/HeaderFilterSearchPage";
 import Input from "shared/Input/Input";
 import ButtonCircle from "shared/Button/ButtonCircle";
-import CardNFT from "components/CardNFT";
+import CardPlace from "components/CardPlace";
+import { usePropertiesQuery } from "graphql/generated";
+import NcImage from "shared/NcImage/NcImage";
+import authorBanner from "images/nfts/authorBanner.png";
 
 export interface PageSearchProps {
   className?: string;
 }
 
 const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
+
+  const {data: properties} = usePropertiesQuery()
+
+  
+  useEffect(() => {
+    console.log(properties)
+    
+   }, [properties])
+
   return (
     <div className={`nc-PageSearch  ${className}`} data-nc-id="PageSearch">
       <Helmet>
         <title>Home</title>
       </Helmet>
 
-      <div
-        className={`nc-HeadBackgroundCommon h-24 2xl:h-28 top-0 left-0 right-0 w-full bg-primary-50 dark:bg-neutral-800/20 `}
-        data-nc-id="HeadBackgroundCommon"
-      />
+      
+      <div className="relative w-full h-40">
+          <NcImage
+            containerClassName="absolute inset-0"
+            src={authorBanner}
+            className="object-cover w-full h-full"
+          />
+        </div>
       <div className="container">
         <header className="max-w-2xl mx-auto -mt-10 flex flex-col lg:-mt-7">
           <form className="relative w-full " method="post">
@@ -82,9 +98,39 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
           {/* LOOP ITEMS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 mt-8 lg:mt-10">
-            {Array.from("1111").map((_, index) => (
-              <CardNFT key={index} />
-            ))}
+            
+          {properties?.imovels?.map(item => {
+            return (
+              <CardPlace
+              key={item?.nome?.toString()}
+              name={item?.nome?.toString()}
+              state={item?.estado?.toString()}
+              city={item?.cidade?.toString()}
+              district={item?.bairro?.toString()}
+              street={item?.rua?.toString()}
+              rooms={Number(item?.quartos)}
+              quantity={Number(item?.unidades)}
+              categoria={item?.categoria?.toString()}
+              mobiliado={true}
+              bathrooms={Number(item?.banheiros)}
+              suites={Number(item?.suites)}
+              parkingSpace={Number(item?.vagas)}
+              price={item?.preco?.toString()}
+              publishedAt={item?.publishedAt}
+              realtor={{
+                name: item?.corretor?.nome,
+                creci: item?.corretor?.creci,
+                email: item?.corretor?.email,
+                phone: item?.corretor?.telefone,
+                fotoDePerfil: item?.corretor?.fotoperfil?.url,
+                instagram: item?.corretor?.instagram?.toString(),
+                facebook: item?.corretor?.facebook?.toString(),
+                resume: 'a',
+              }}
+              />
+            )
+          })}
+            
           </div>
 
           {/* PAGINATION */}

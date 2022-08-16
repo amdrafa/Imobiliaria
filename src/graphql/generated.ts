@@ -683,6 +683,17 @@ export type BatchPayload = {
   count: Scalars['Long'];
 };
 
+export enum Categoria {
+  Apartamento = 'Apartamento',
+  Casa = 'Casa',
+  Chacara = 'Chacara',
+  Comercial = 'Comercial',
+  Galpao = 'Galpao',
+  Sitio = 'Sitio',
+  Terreno = 'Terreno',
+  Todos = 'Todos'
+}
+
 /** Representing a color value comprising of HEX, RGBA and css color values */
 export type Color = {
   __typename?: 'Color';
@@ -804,6 +815,7 @@ export type CorretorConnection = {
 };
 
 export type CorretorCreateInput = {
+  cl6vb5am536lj01uqbqd66fbi?: InputMaybe<ImovelCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   creci: Scalars['String'];
   email: Scalars['String'];
@@ -1060,6 +1072,7 @@ export enum CorretorOrderByInput {
 }
 
 export type CorretorUpdateInput = {
+  cl6vb5am536lj01uqbqd66fbi?: InputMaybe<ImovelUpdateManyInlineInput>;
   creci?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
@@ -1406,6 +1419,36 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+export enum Estado {
+  Ac = 'AC',
+  Al = 'AL',
+  Am = 'AM',
+  Ap = 'AP',
+  Ba = 'BA',
+  Ce = 'CE',
+  Df = 'DF',
+  Es = 'ES',
+  Go = 'GO',
+  Ma = 'MA',
+  Mg = 'MG',
+  Ms = 'MS',
+  Mt = 'MT',
+  Pa = 'PA',
+  Pb = 'PB',
+  Pe = 'PE',
+  Pi = 'PI',
+  Pr = 'PR',
+  Rj = 'RJ',
+  Rn = 'RN',
+  Ro = 'RO',
+  Rr = 'RR',
+  Rs = 'RS',
+  Sc = 'SC',
+  Se = 'SE',
+  Sp = 'SP',
+  To = 'TO'
+}
+
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
   Clip = 'clip',
@@ -1430,6 +1473,887 @@ export type ImageResizeInput = {
 export type ImageTransformationInput = {
   /** Resizes the image */
   resize?: InputMaybe<ImageResizeInput>;
+};
+
+export type Imovel = Node & {
+  __typename?: 'Imovel';
+  bairro?: Maybe<Scalars['String']>;
+  banheiros?: Maybe<Scalars['Int']>;
+  /** Apartamento, casa, sítio (...) */
+  categoria?: Maybe<Categoria>;
+  cidade?: Maybe<Scalars['String']>;
+  corretor?: Maybe<Corretor>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  descricao?: Maybe<RichText>;
+  /** Get the document in other stages */
+  documentInStages: Array<Imovel>;
+  estado?: Maybe<Estado>;
+  /** List of Imovel versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  mobiliado?: Maybe<Scalars['Boolean']>;
+  modalidade?: Maybe<Modalidade>;
+  /** Nome do residencial ou apartamento. Se for casa, pode colocar escrever apenas "Casa". */
+  nome?: Maybe<Scalars['String']>;
+  numeroDoImovel?: Maybe<Scalars['Int']>;
+  /** Ex: 500.000,00 (sempre nesse formato, sem "R$" ) */
+  preco?: Maybe<Scalars['String']>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  quartos?: Maybe<Scalars['Int']>;
+  rua?: Maybe<Scalars['String']>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  suites?: Maybe<Scalars['Int']>;
+  unidades?: Maybe<Scalars['Int']>;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  vagas?: Maybe<Scalars['Int']>;
+};
+
+
+export type ImovelCorretorArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type ImovelHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ImovelPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ImovelUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ImovelConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ImovelWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ImovelConnection = {
+  __typename?: 'ImovelConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ImovelEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ImovelCreateInput = {
+  bairro?: InputMaybe<Scalars['String']>;
+  banheiros?: InputMaybe<Scalars['Int']>;
+  categoria?: InputMaybe<Categoria>;
+  cidade?: InputMaybe<Scalars['String']>;
+  corretor?: InputMaybe<CorretorCreateOneInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  descricao?: InputMaybe<Scalars['RichTextAST']>;
+  estado?: InputMaybe<Estado>;
+  mobiliado?: InputMaybe<Scalars['Boolean']>;
+  modalidade?: InputMaybe<Modalidade>;
+  nome?: InputMaybe<Scalars['String']>;
+  numeroDoImovel?: InputMaybe<Scalars['Int']>;
+  preco?: InputMaybe<Scalars['String']>;
+  quartos?: InputMaybe<Scalars['Int']>;
+  rua?: InputMaybe<Scalars['String']>;
+  suites?: InputMaybe<Scalars['Int']>;
+  unidades?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  vagas?: InputMaybe<Scalars['Int']>;
+};
+
+export type ImovelCreateManyInlineInput = {
+  /** Connect multiple existing Imovel documents */
+  connect?: InputMaybe<Array<ImovelWhereUniqueInput>>;
+  /** Create and connect multiple existing Imovel documents */
+  create?: InputMaybe<Array<ImovelCreateInput>>;
+};
+
+export type ImovelCreateOneInlineInput = {
+  /** Connect one existing Imovel document */
+  connect?: InputMaybe<ImovelWhereUniqueInput>;
+  /** Create and connect one Imovel document */
+  create?: InputMaybe<ImovelCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ImovelEdge = {
+  __typename?: 'ImovelEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Imovel;
+};
+
+/** Identifies documents */
+export type ImovelManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ImovelWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ImovelWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ImovelWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  bairro?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  bairro_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  bairro_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  bairro_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  bairro_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  bairro_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  bairro_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  bairro_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  bairro_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  bairro_starts_with?: InputMaybe<Scalars['String']>;
+  banheiros?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  banheiros_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  banheiros_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  banheiros_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  banheiros_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  banheiros_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  banheiros_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  banheiros_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  categoria?: InputMaybe<Categoria>;
+  /** All values that are contained in given list. */
+  categoria_in?: InputMaybe<Array<InputMaybe<Categoria>>>;
+  /** All values that are not equal to given value. */
+  categoria_not?: InputMaybe<Categoria>;
+  /** All values that are not contained in given list. */
+  categoria_not_in?: InputMaybe<Array<InputMaybe<Categoria>>>;
+  cidade?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  cidade_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  cidade_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  cidade_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  cidade_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  cidade_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  cidade_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  cidade_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  cidade_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  cidade_starts_with?: InputMaybe<Scalars['String']>;
+  corretor?: InputMaybe<CorretorWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  estado?: InputMaybe<Estado>;
+  /** All values that are contained in given list. */
+  estado_in?: InputMaybe<Array<InputMaybe<Estado>>>;
+  /** All values that are not equal to given value. */
+  estado_not?: InputMaybe<Estado>;
+  /** All values that are not contained in given list. */
+  estado_not_in?: InputMaybe<Array<InputMaybe<Estado>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  mobiliado?: InputMaybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  mobiliado_not?: InputMaybe<Scalars['Boolean']>;
+  modalidade?: InputMaybe<Modalidade>;
+  /** All values that are contained in given list. */
+  modalidade_in?: InputMaybe<Array<InputMaybe<Modalidade>>>;
+  /** All values that are not equal to given value. */
+  modalidade_not?: InputMaybe<Modalidade>;
+  /** All values that are not contained in given list. */
+  modalidade_not_in?: InputMaybe<Array<InputMaybe<Modalidade>>>;
+  nome?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  nome_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  nome_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  nome_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  nome_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  nome_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  nome_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  nome_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  nome_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  nome_starts_with?: InputMaybe<Scalars['String']>;
+  numeroDoImovel?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  numeroDoImovel_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  numeroDoImovel_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  numeroDoImovel_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  numeroDoImovel_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  numeroDoImovel_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  numeroDoImovel_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  numeroDoImovel_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  preco?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  preco_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  preco_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  preco_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  preco_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  preco_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  preco_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  preco_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  preco_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  preco_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  quartos?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  quartos_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  quartos_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  quartos_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  quartos_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  quartos_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  quartos_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  quartos_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  rua?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  rua_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  rua_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  rua_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  rua_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  rua_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  rua_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  rua_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  rua_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  rua_starts_with?: InputMaybe<Scalars['String']>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  suites?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  suites_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  suites_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  suites_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  suites_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  suites_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  suites_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  suites_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  unidades?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  unidades_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  unidades_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  unidades_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  unidades_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  unidades_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  unidades_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  unidades_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  vagas?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  vagas_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  vagas_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  vagas_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  vagas_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  vagas_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  vagas_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  vagas_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+};
+
+export enum ImovelOrderByInput {
+  BairroAsc = 'bairro_ASC',
+  BairroDesc = 'bairro_DESC',
+  BanheirosAsc = 'banheiros_ASC',
+  BanheirosDesc = 'banheiros_DESC',
+  CategoriaAsc = 'categoria_ASC',
+  CategoriaDesc = 'categoria_DESC',
+  CidadeAsc = 'cidade_ASC',
+  CidadeDesc = 'cidade_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  EstadoAsc = 'estado_ASC',
+  EstadoDesc = 'estado_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  MobiliadoAsc = 'mobiliado_ASC',
+  MobiliadoDesc = 'mobiliado_DESC',
+  ModalidadeAsc = 'modalidade_ASC',
+  ModalidadeDesc = 'modalidade_DESC',
+  NomeAsc = 'nome_ASC',
+  NomeDesc = 'nome_DESC',
+  NumeroDoImovelAsc = 'numeroDoImovel_ASC',
+  NumeroDoImovelDesc = 'numeroDoImovel_DESC',
+  PrecoAsc = 'preco_ASC',
+  PrecoDesc = 'preco_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  QuartosAsc = 'quartos_ASC',
+  QuartosDesc = 'quartos_DESC',
+  RuaAsc = 'rua_ASC',
+  RuaDesc = 'rua_DESC',
+  SuitesAsc = 'suites_ASC',
+  SuitesDesc = 'suites_DESC',
+  UnidadesAsc = 'unidades_ASC',
+  UnidadesDesc = 'unidades_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  VagasAsc = 'vagas_ASC',
+  VagasDesc = 'vagas_DESC'
+}
+
+export type ImovelUpdateInput = {
+  bairro?: InputMaybe<Scalars['String']>;
+  banheiros?: InputMaybe<Scalars['Int']>;
+  categoria?: InputMaybe<Categoria>;
+  cidade?: InputMaybe<Scalars['String']>;
+  corretor?: InputMaybe<CorretorUpdateOneInlineInput>;
+  descricao?: InputMaybe<Scalars['RichTextAST']>;
+  estado?: InputMaybe<Estado>;
+  mobiliado?: InputMaybe<Scalars['Boolean']>;
+  modalidade?: InputMaybe<Modalidade>;
+  nome?: InputMaybe<Scalars['String']>;
+  numeroDoImovel?: InputMaybe<Scalars['Int']>;
+  preco?: InputMaybe<Scalars['String']>;
+  quartos?: InputMaybe<Scalars['Int']>;
+  rua?: InputMaybe<Scalars['String']>;
+  suites?: InputMaybe<Scalars['Int']>;
+  unidades?: InputMaybe<Scalars['Int']>;
+  vagas?: InputMaybe<Scalars['Int']>;
+};
+
+export type ImovelUpdateManyInlineInput = {
+  /** Connect multiple existing Imovel documents */
+  connect?: InputMaybe<Array<ImovelConnectInput>>;
+  /** Create and connect multiple Imovel documents */
+  create?: InputMaybe<Array<ImovelCreateInput>>;
+  /** Delete multiple Imovel documents */
+  delete?: InputMaybe<Array<ImovelWhereUniqueInput>>;
+  /** Disconnect multiple Imovel documents */
+  disconnect?: InputMaybe<Array<ImovelWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Imovel documents */
+  set?: InputMaybe<Array<ImovelWhereUniqueInput>>;
+  /** Update multiple Imovel documents */
+  update?: InputMaybe<Array<ImovelUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Imovel documents */
+  upsert?: InputMaybe<Array<ImovelUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ImovelUpdateManyInput = {
+  bairro?: InputMaybe<Scalars['String']>;
+  banheiros?: InputMaybe<Scalars['Int']>;
+  categoria?: InputMaybe<Categoria>;
+  cidade?: InputMaybe<Scalars['String']>;
+  descricao?: InputMaybe<Scalars['RichTextAST']>;
+  estado?: InputMaybe<Estado>;
+  mobiliado?: InputMaybe<Scalars['Boolean']>;
+  modalidade?: InputMaybe<Modalidade>;
+  nome?: InputMaybe<Scalars['String']>;
+  numeroDoImovel?: InputMaybe<Scalars['Int']>;
+  preco?: InputMaybe<Scalars['String']>;
+  quartos?: InputMaybe<Scalars['Int']>;
+  rua?: InputMaybe<Scalars['String']>;
+  suites?: InputMaybe<Scalars['Int']>;
+  unidades?: InputMaybe<Scalars['Int']>;
+  vagas?: InputMaybe<Scalars['Int']>;
+};
+
+export type ImovelUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ImovelUpdateManyInput;
+  /** Document search */
+  where: ImovelWhereInput;
+};
+
+export type ImovelUpdateOneInlineInput = {
+  /** Connect existing Imovel document */
+  connect?: InputMaybe<ImovelWhereUniqueInput>;
+  /** Create and connect one Imovel document */
+  create?: InputMaybe<ImovelCreateInput>;
+  /** Delete currently connected Imovel document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Imovel document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Imovel document */
+  update?: InputMaybe<ImovelUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Imovel document */
+  upsert?: InputMaybe<ImovelUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ImovelUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ImovelUpdateInput;
+  /** Unique document search */
+  where: ImovelWhereUniqueInput;
+};
+
+export type ImovelUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ImovelCreateInput;
+  /** Update document if it exists */
+  update: ImovelUpdateInput;
+};
+
+export type ImovelUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ImovelUpsertInput;
+  /** Unique document search */
+  where: ImovelWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ImovelWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ImovelWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ImovelWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ImovelWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  bairro?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  bairro_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  bairro_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  bairro_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  bairro_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  bairro_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  bairro_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  bairro_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  bairro_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  bairro_starts_with?: InputMaybe<Scalars['String']>;
+  banheiros?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  banheiros_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  banheiros_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  banheiros_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  banheiros_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  banheiros_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  banheiros_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  banheiros_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  categoria?: InputMaybe<Categoria>;
+  /** All values that are contained in given list. */
+  categoria_in?: InputMaybe<Array<InputMaybe<Categoria>>>;
+  /** All values that are not equal to given value. */
+  categoria_not?: InputMaybe<Categoria>;
+  /** All values that are not contained in given list. */
+  categoria_not_in?: InputMaybe<Array<InputMaybe<Categoria>>>;
+  cidade?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  cidade_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  cidade_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  cidade_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  cidade_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  cidade_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  cidade_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  cidade_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  cidade_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  cidade_starts_with?: InputMaybe<Scalars['String']>;
+  corretor?: InputMaybe<CorretorWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  estado?: InputMaybe<Estado>;
+  /** All values that are contained in given list. */
+  estado_in?: InputMaybe<Array<InputMaybe<Estado>>>;
+  /** All values that are not equal to given value. */
+  estado_not?: InputMaybe<Estado>;
+  /** All values that are not contained in given list. */
+  estado_not_in?: InputMaybe<Array<InputMaybe<Estado>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  mobiliado?: InputMaybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  mobiliado_not?: InputMaybe<Scalars['Boolean']>;
+  modalidade?: InputMaybe<Modalidade>;
+  /** All values that are contained in given list. */
+  modalidade_in?: InputMaybe<Array<InputMaybe<Modalidade>>>;
+  /** All values that are not equal to given value. */
+  modalidade_not?: InputMaybe<Modalidade>;
+  /** All values that are not contained in given list. */
+  modalidade_not_in?: InputMaybe<Array<InputMaybe<Modalidade>>>;
+  nome?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  nome_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  nome_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  nome_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  nome_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  nome_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  nome_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  nome_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  nome_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  nome_starts_with?: InputMaybe<Scalars['String']>;
+  numeroDoImovel?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  numeroDoImovel_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  numeroDoImovel_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  numeroDoImovel_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  numeroDoImovel_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  numeroDoImovel_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  numeroDoImovel_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  numeroDoImovel_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  preco?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  preco_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  preco_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  preco_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  preco_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  preco_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  preco_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  preco_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  preco_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  preco_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  quartos?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  quartos_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  quartos_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  quartos_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  quartos_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  quartos_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  quartos_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  quartos_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  rua?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  rua_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  rua_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  rua_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  rua_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  rua_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  rua_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  rua_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  rua_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  rua_starts_with?: InputMaybe<Scalars['String']>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  suites?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  suites_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  suites_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  suites_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  suites_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  suites_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  suites_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  suites_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  unidades?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  unidades_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  unidades_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  unidades_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  unidades_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  unidades_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  unidades_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  unidades_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  vagas?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  vagas_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  vagas_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  vagas_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  vagas_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  vagas_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  vagas_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  vagas_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+};
+
+/** References Imovel record uniquely */
+export type ImovelWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 /** Locale system enumeration */
@@ -1458,6 +2382,11 @@ export type LocationInput = {
   longitude: Scalars['Float'];
 };
 
+export enum Modalidade {
+  Aluguel = 'Aluguel',
+  Venda = 'Venda'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   /**
@@ -1467,12 +2396,16 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one corretor */
   createCorretor?: Maybe<Corretor>;
+  /** Create one imovel */
+  createImovel?: Maybe<Imovel>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
   /** Delete one corretor from _all_ existing stages. Returns deleted document. */
   deleteCorretor?: Maybe<Corretor>;
+  /** Delete one imovel from _all_ existing stages. Returns deleted document. */
+  deleteImovel?: Maybe<Imovel>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -1487,6 +2420,13 @@ export type Mutation = {
   deleteManyCorretores: BatchPayload;
   /** Delete many Corretor documents, return deleted documents */
   deleteManyCorretoresConnection: CorretorConnection;
+  /**
+   * Delete many Imovel documents
+   * @deprecated Please use the new paginated many mutation (deleteManyImovelsConnection)
+   */
+  deleteManyImovels: BatchPayload;
+  /** Delete many Imovel documents, return deleted documents */
+  deleteManyImovelsConnection: ImovelConnection;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -1495,6 +2435,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one corretor */
   publishCorretor?: Maybe<Corretor>;
+  /** Publish one imovel */
+  publishImovel?: Maybe<Imovel>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -1509,18 +2451,31 @@ export type Mutation = {
   publishManyCorretores: BatchPayload;
   /** Publish many Corretor documents */
   publishManyCorretoresConnection: CorretorConnection;
+  /**
+   * Publish many Imovel documents
+   * @deprecated Please use the new paginated many mutation (publishManyImovelsConnection)
+   */
+  publishManyImovels: BatchPayload;
+  /** Publish many Imovel documents */
+  publishManyImovelsConnection: ImovelConnection;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one corretor */
   schedulePublishCorretor?: Maybe<Corretor>;
+  /** Schedule to publish one imovel */
+  schedulePublishImovel?: Maybe<Imovel>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one corretor from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishCorretor?: Maybe<Corretor>;
+  /** Unpublish one imovel from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishImovel?: Maybe<Imovel>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one corretor from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishCorretor?: Maybe<Corretor>;
+  /** Unpublish one imovel from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishImovel?: Maybe<Imovel>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -1535,10 +2490,19 @@ export type Mutation = {
   unpublishManyCorretores: BatchPayload;
   /** Find many Corretor documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyCorretoresConnection: CorretorConnection;
+  /**
+   * Unpublish many Imovel documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyImovelsConnection)
+   */
+  unpublishManyImovels: BatchPayload;
+  /** Find many Imovel documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyImovelsConnection: ImovelConnection;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one corretor */
   updateCorretor?: Maybe<Corretor>;
+  /** Update one imovel */
+  updateImovel?: Maybe<Imovel>;
   /**
    * Update many assets
    * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
@@ -1553,12 +2517,21 @@ export type Mutation = {
   updateManyCorretores: BatchPayload;
   /** Update many Corretor documents */
   updateManyCorretoresConnection: CorretorConnection;
+  /**
+   * Update many imovels
+   * @deprecated Please use the new paginated many mutation (updateManyImovelsConnection)
+   */
+  updateManyImovels: BatchPayload;
+  /** Update many Imovel documents */
+  updateManyImovelsConnection: ImovelConnection;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
   /** Upsert one corretor */
   upsertCorretor?: Maybe<Corretor>;
+  /** Upsert one imovel */
+  upsertImovel?: Maybe<Imovel>;
 };
 
 
@@ -1569,6 +2542,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateCorretorArgs = {
   data: CorretorCreateInput;
+};
+
+
+export type MutationCreateImovelArgs = {
+  data: ImovelCreateInput;
 };
 
 
@@ -1584,6 +2562,11 @@ export type MutationDeleteAssetArgs = {
 
 export type MutationDeleteCorretorArgs = {
   where: CorretorWhereUniqueInput;
+};
+
+
+export type MutationDeleteImovelArgs = {
+  where: ImovelWhereUniqueInput;
 };
 
 
@@ -1617,6 +2600,21 @@ export type MutationDeleteManyCorretoresConnectionArgs = {
 };
 
 
+export type MutationDeleteManyImovelsArgs = {
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
+export type MutationDeleteManyImovelsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
@@ -1639,6 +2637,12 @@ export type MutationPublishAssetArgs = {
 export type MutationPublishCorretorArgs = {
   to?: Array<Stage>;
   where: CorretorWhereUniqueInput;
+};
+
+
+export type MutationPublishImovelArgs = {
+  to?: Array<Stage>;
+  where: ImovelWhereUniqueInput;
 };
 
 
@@ -1684,6 +2688,24 @@ export type MutationPublishManyCorretoresConnectionArgs = {
 };
 
 
+export type MutationPublishManyImovelsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
+export type MutationPublishManyImovelsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1700,6 +2722,14 @@ export type MutationSchedulePublishCorretorArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: CorretorWhereUniqueInput;
+};
+
+
+export type MutationSchedulePublishImovelArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: ImovelWhereUniqueInput;
 };
 
 
@@ -1721,6 +2751,14 @@ export type MutationScheduleUnpublishCorretorArgs = {
 };
 
 
+export type MutationScheduleUnpublishImovelArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: ImovelWhereUniqueInput;
+};
+
+
 export type MutationUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1732,6 +2770,12 @@ export type MutationUnpublishAssetArgs = {
 export type MutationUnpublishCorretorArgs = {
   from?: Array<Stage>;
   where: CorretorWhereUniqueInput;
+};
+
+
+export type MutationUnpublishImovelArgs = {
+  from?: Array<Stage>;
+  where: ImovelWhereUniqueInput;
 };
 
 
@@ -1775,6 +2819,24 @@ export type MutationUnpublishManyCorretoresConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyImovelsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyImovelsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
@@ -1784,6 +2846,12 @@ export type MutationUpdateAssetArgs = {
 export type MutationUpdateCorretorArgs = {
   data: CorretorUpdateInput;
   where: CorretorWhereUniqueInput;
+};
+
+
+export type MutationUpdateImovelArgs = {
+  data: ImovelUpdateInput;
+  where: ImovelWhereUniqueInput;
 };
 
 
@@ -1821,6 +2889,23 @@ export type MutationUpdateManyCorretoresConnectionArgs = {
 };
 
 
+export type MutationUpdateManyImovelsArgs = {
+  data: ImovelUpdateManyInput;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
+export type MutationUpdateManyImovelsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: ImovelUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelManyWhereInput>;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -1836,6 +2921,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertCorretorArgs = {
   upsert: CorretorUpsertInput;
   where: CorretorWhereUniqueInput;
+};
+
+
+export type MutationUpsertImovelArgs = {
+  upsert: ImovelUpsertInput;
+  where: ImovelWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -1886,6 +2977,14 @@ export type Query = {
   corretores: Array<Corretor>;
   /** Retrieve multiple corretores using the Relay connection interface */
   corretoresConnection: CorretorConnection;
+  /** Retrieve a single imovel */
+  imovel?: Maybe<Imovel>;
+  /** Retrieve document version */
+  imovelVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple imovels */
+  imovels: Array<Imovel>;
+  /** Retrieve multiple imovels using the Relay connection interface */
+  imovelsConnection: ImovelConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single scheduledOperation */
@@ -1982,6 +3081,44 @@ export type QueryCorretoresConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<CorretorWhereInput>;
+};
+
+
+export type QueryImovelArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ImovelWhereUniqueInput;
+};
+
+
+export type QueryImovelVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryImovelsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+export type QueryImovelsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ImovelWhereInput>;
 };
 
 
@@ -2197,7 +3334,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Corretor;
+export type ScheduledOperationAffectedDocument = Asset | Corretor | Imovel;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -3587,6 +4724,11 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type PropertiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
+
 export type RealtorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3600,6 +4742,67 @@ export type SimoneQueryVariables = Exact<{
 export type SimoneQuery = { __typename?: 'Query', corretor?: { __typename?: 'Corretor', id: string, nome: string, creci: string, telefone: string, email: string, instagram?: string | null, facebook?: string | null } | null };
 
 
+export const PropertiesDocument = gql`
+    query properties {
+  imovels {
+    nome
+    estado
+    cidade
+    bairro
+    rua
+    quartos
+    banheiros
+    suites
+    unidades
+    categoria
+    mobiliado
+    vagas
+    preco
+    publishedAt
+    corretor {
+      nome
+      creci
+      email
+      telefone
+      instagram
+      facebook
+      fotoperfil {
+        url(transformation: {document: {output: {format: jpg}}})
+      }
+      resumo {
+        text
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __usePropertiesQuery__
+ *
+ * To run a query within a React component, call `usePropertiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePropertiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePropertiesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePropertiesQuery(baseOptions?: Apollo.QueryHookOptions<PropertiesQuery, PropertiesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PropertiesQuery, PropertiesQueryVariables>(PropertiesDocument, options);
+      }
+export function usePropertiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PropertiesQuery, PropertiesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PropertiesQuery, PropertiesQueryVariables>(PropertiesDocument, options);
+        }
+export type PropertiesQueryHookResult = ReturnType<typeof usePropertiesQuery>;
+export type PropertiesLazyQueryHookResult = ReturnType<typeof usePropertiesLazyQuery>;
+export type PropertiesQueryResult = Apollo.QueryResult<PropertiesQuery, PropertiesQueryVariables>;
 export const RealtorsDocument = gql`
     query realtors {
   corretores {

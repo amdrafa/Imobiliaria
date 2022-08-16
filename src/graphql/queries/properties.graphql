@@ -1,0 +1,33 @@
+query properties {
+  imovels {
+    nome
+    estado
+    cidade
+    bairro
+    rua
+    quartos
+    banheiros
+    suites
+    unidades
+    categoria
+    mobiliado
+    vagas
+    preco
+    publishedAt
+    corretor {
+      nome
+      creci
+      email
+      telefone
+      instagram
+      facebook
+      fotoperfil {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+      resumo {
+        text
+      }
+    }
+  }
+}
+

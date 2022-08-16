@@ -8,13 +8,39 @@ import LikeButton from "./LikeButton";
 import Prices from "./Prices";
 import { ClockIcon } from "@heroicons/react/outline";
 import ItemTypeVideoIcon from "./ItemTypeVideoIcon";
+import dayjs from "dayjs";
 
 export interface CardNFTProps {
   className?: string;
   isLiked?: boolean;
+  name?: string;
+  state?: string;
+  city?: string;
+  district?: string;
+  street?: string;
+  rooms?: number;
+  mobiliado?: boolean;
+  quantity?: number;
+  categoria?: string;
+  bathrooms?: number;
+  suites?: number;
+  parkingSpace?: number;
+  price?: string;
+  publishedAt?: string;
+  realtor?: {
+    name?: string;
+    creci?: string;
+    email?: string;
+    phone?: string;
+    instagram?: string;
+    fotoDePerfil?: string;
+    facebook?: string;
+    resume?: string;
+  }
+  
 }
 
-const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
+const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price}) => {
   const renderAvatars = () => {
     return (
       <div className="flex -space-x-1 ">
@@ -64,24 +90,29 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
       </div>
 
       <div className="p-4 py-5 space-y-3">
-        <div className="flex justify-between">
-          {renderAvatars()}
+        <div className="flex justify-between items-center">
+          <span className="flex items-center">
+          <img className="rounded-full" width={24} src={realtor?.fotoDePerfil} alt="Corretor" />
+          <p className="ml-2">{realtor?.name}</p>
+          </span>
           <span className="text-neutral-700 dark:text-neutral-400 text-xs">
-            2 unidades
+            {`${quantity} uni.`}
           </span>
         </div>
         <h2 className={`text-lg font-medium`}>
-          Residencial Águas Claras
+          {name}
+
+          {/* Fazer um switch case com cada tipo de imóvel */}
         </h2>
 
         <div className="w-2d4 w-full border-b border-neutral-100 dark:border-neutral-700"></div>
 
         <div className="flex justify-between items-end ">
-          <Prices price="R$500.000,00" labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" labelText="Preço" />
+          <Prices price={price?.toString()} labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" labelText="Preço" />
           <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400">
             <ClockIcon className="w-4 h-4" />
             <span className="ml-1 mt-0.5">
-              {Math.floor(Math.random() * 20) + 1} h atrás
+              {Number(dayjs(publishedAt).format('D')) - (Number(dayjs(publishedAt).format('D')) - 1)} {Number(dayjs(publishedAt).format('D')) - (Number(dayjs(publishedAt).format('D')) - 1) == 1? 'dia atrás' : 'dias atrás'}
             </span>
           </div>
         </div>
@@ -92,4 +123,4 @@ const CardNFT: FC<CardNFTProps> = ({ className = "", isLiked }) => {
   );
 };
 
-export default CardNFT;
+export default CardPlace;
