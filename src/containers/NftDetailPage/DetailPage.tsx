@@ -21,6 +21,7 @@ import { DetailPageInformations } from "components/DetailPageInformations";
 import { usePropertydetailQuery } from "graphql/generated";
 import { Link } from "react-router-dom";
 
+
 export interface NftDetailPageProps {
   className?: string;
   isPreviewMode?: boolean;
@@ -44,9 +45,12 @@ const DetailPage: FC<NftDetailPageProps> = ({
     
    }, [property])
 
-  //  const images = [
-  //   {title}
-  //  ]
+   const images = [
+    {image1: property?.imovel?.fotoPrincipal1},
+    {image2: property?.imovel?.foto2},
+    {image3: property?.imovel?.foto3},
+    {image4: property?.imovel?.foto4},
+   ]
 
   const renderSection1 = () => {
     return (
@@ -185,11 +189,10 @@ const DetailPage: FC<NftDetailPageProps> = ({
           <div className="space-y-8 lg:space-y-10">
             {/* HEADING */}
             <div className="relative">
-              <NcImage
+            <NcImage
                 src={property?.imovel?.fotoPrincipal1?.url}
                 containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
               />
-
               {/* META FAVORITES */}
               <LikeButton className="absolute left-6 top-3 " />
             </div>
