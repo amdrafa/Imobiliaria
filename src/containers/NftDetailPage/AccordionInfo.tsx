@@ -1,12 +1,18 @@
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
-import { NftDetailPageInformations } from "components/NftDetailPageInformations";
+import { DetailPageInformations } from "components/DetailPageInformations";
 
 type AccordingInfoProps = {
-  description: string;
+  description: string | undefined;
+  rooms?: number;
+  mobiliado?: boolean;
+  categoria?: string;
+  bathrooms?: number;
+  suites?: number;
+  parkingSpace?: number;
 }
 
-export default function AccordionInfo({description}: AccordingInfoProps) {
+export default function AccordionInfo({description, rooms, mobiliado, categoria, bathrooms, suites,parkingSpace}: AccordingInfoProps) {
   return (
     <div className="w-full rounded-2xl">
       <Disclosure defaultOpen>
@@ -41,7 +47,14 @@ export default function AccordionInfo({description}: AccordingInfoProps) {
               />
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 pt-4 pb-2 flex flex-col text-xs text-neutral-500 dark:text-neutral-400 overflow-hidden">
-            <NftDetailPageInformations />
+            <DetailPageInformations
+            rooms={rooms}
+            mobiliado={mobiliado}
+            categoria={categoria}
+            bathrooms={bathrooms}
+            suites={suites}
+            parkingSpace={parkingSpace}
+            />
             </Disclosure.Panel>
           </>
         )}

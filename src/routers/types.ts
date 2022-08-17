@@ -2,19 +2,20 @@ import { ComponentType } from "react";
 
 export interface LocationStates {
   "/"?: {};
-  "/#"?: {};
+  "/imoveis/:slug"?: {};
   "/home2"?: {};
   "/home3"?: {};
   //
   "/nft-detailt"?: {};
   "/page-collection"?: {};
   "/page-search"?: {};
-  "/page-author"?: {};
+  "/corretores"?: {};
   "/page-upload-item"?: {};
   "/home-header-2"?: {};
   "/connect-wallet"?: {};
   //
   "/account"?: {};
+  "/contato"?: {};
   //
   "/blog"?: {};
   "/blog-single"?: {};

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import Avatar from "shared/Avatar/Avatar";
 import Badge from "shared/Badge/Badge";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
@@ -17,17 +17,37 @@ import LikeButton from "components/LikeButton";
 import AccordionInfo from "./AccordionInfo";
 import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
 import { SearchIcon } from "@heroicons/react/solid";
-import { NftDetailPageInformations } from "components/NftDetailPageInformations";
+import { DetailPageInformations } from "components/DetailPageInformations";
+import { usePropertydetailQuery } from "graphql/generated";
+import { Link } from "react-router-dom";
 
 export interface NftDetailPageProps {
   className?: string;
   isPreviewMode?: boolean;
+  slug?: string;
 }
 
-const NftDetailPage: FC<NftDetailPageProps> = ({
+const DetailPage: FC<NftDetailPageProps> = ({
   className = "",
   isPreviewMode,
+  slug
 }) => {
+
+  const {data: property} = usePropertydetailQuery({
+    variables: {
+      slug: slug
+    }
+  })
+
+  useEffect(() => {
+    console.log(property)
+    
+   }, [property])
+
+  //  const images = [
+  //   {title}
+  //  ]
+
   const renderSection1 = () => {
     return (
       <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
@@ -37,7 +57,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             <Badge name="Disponível" color="green" />
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            Residencial Águas Claras
+            {property?.imovel?.nome}
           </h2>
 
           {/* ---------- 4 ----------  */}
@@ -47,7 +67,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
               <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
                 <span className="text-sm">Corretor</span>
                 <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
-                  <span>Angela Simone</span>
+                  <span>{property?.imovel?.corretor?.nome}</span>
                   <VerifyIcon iconClass="w-4 h-4" />
                 </span>
               </span>
@@ -64,7 +84,14 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
         <div className="pb-9 pt-6">
           <div className="block">
 
-          <NftDetailPageInformations />
+          <DetailPageInformations 
+          rooms={Number(property?.imovel?.quartos)}
+          mobiliado={property?.imovel?.mobiliado?.valueOf()}
+          categoria={(property?.imovel?.categoria?.toString())}
+          bathrooms={Number(property?.imovel?.banheiros)}
+          suites={Number(property?.imovel?.suites)}
+          parkingSpace={Number(property?.imovel?.vagas)}
+          />
 
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
@@ -73,13 +100,13 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
                 Preço
               </span>
               <span className="text-3xl xl:text-4xl font-semibold text-green-500">
-                R$500.000,00
+                R${property?.imovel?.preco?.toString()}
               </span>
             </div>
             
 
             <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-5 mt-2 sm:mt-0 sm:ml-10">
-              [1 em estoque]
+              [{property?.imovel?.unidades} em estoque]
             </span>
           </div>
 
@@ -89,7 +116,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
           
 
           <div className="mt-8 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-            <ButtonPrimary href={"/connect-wallet"} className="flex-1">
+            <ButtonPrimary href={"/contato"} className="flex-1">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M18.04 13.55C17.62 13.96 17.38 14.55 17.44 15.18C17.53 16.26 18.52 17.05 19.6 17.05H21.5V18.24C21.5 20.31 19.81 22 17.74 22H6.26C4.19 22 2.5 20.31 2.5 18.24V11.51C2.5 9.44001 4.19 7.75 6.26 7.75H17.74C19.81 7.75 21.5 9.44001 21.5 11.51V12.95H19.48C18.92 12.95 18.41 13.17 18.04 13.55Z"
@@ -123,11 +150,14 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
 
               <span className="ml-2.5">Comprar</span>
             </ButtonPrimary>
-            <ButtonSecondary href={"/connect-wallet"} className="flex-1">
+          
+            <ButtonSecondary href={"/"} className="flex-1" >
+            
             <SearchIcon className="w-5 h-5 ml-2.5" />
 
               <span className="ml-2.5">Ver mais</span>
             </ButtonSecondary>
+            
           </div>
 
           {/* <NftDetailPageInformations /> */}
@@ -156,7 +186,7 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             {/* HEADING */}
             <div className="relative">
               <NcImage
-                src='https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9bJDwnbk9Kawbnev1nxMNm9yHFhIP-MQkSx9WYNv32x+8YNgtlIDncoEbY3hjiWI2qud2-Smkxm0-KrI4LzDyJL7Zp79170f7Z+iEkKetJx+aeM3FX19WbFbYivEXYq8H2N9jyiihEv-ZL1lWTEIzyZujAdU3ECeZ7WhqFpujj78WqmA7y7VFPC+SxgWCqxAAdk57ENDsQK-XFB8p0pK9JGl+XaFOuW-M4DugSALG1In8oevXbnpmdnCJ5YnGrlrPXoH40EZTKZew-iTSP984RIB5LqWUUXD3lXE0bVyIZOnD94azfIFwlzHTeFK6Bnpk9XPhaX5PhzSLiBstfzauqOkPv6mTbzzJFypjJhGpM2Kf5gLaNrxQDQdFyQnZRFArjGkqb6b8BC5LG-KugJSVEGTi45k9CQoMQob-4JO+z31y9i2eQCN.jpg'
+                src={property?.imovel?.fotoPrincipal1?.url}
                 containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
               />
 
@@ -165,7 +195,13 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
             </div>
 
             <AccordionInfo 
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            description={property?.imovel?.descricao?.text}
+            rooms={Number(property?.imovel?.quartos)}
+            mobiliado={property?.imovel?.mobiliado?.valueOf()}
+            categoria={(property?.imovel?.categoria?.toString())}
+            bathrooms={Number(property?.imovel?.banheiros)}
+            suites={Number(property?.imovel?.suites)}
+            parkingSpace={Number(property?.imovel?.vagas)}
             />
           </div>
 
@@ -187,4 +223,4 @@ const NftDetailPage: FC<NftDetailPageProps> = ({
   );
 };
 
-export default NftDetailPage;
+export default DetailPage;

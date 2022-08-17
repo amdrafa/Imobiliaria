@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import Pagination from "shared/Pagination/Pagination";
@@ -12,14 +12,19 @@ import CardPlace from "components/CardPlace";
 import { usePropertiesQuery } from "graphql/generated";
 import NcImage from "shared/NcImage/NcImage";
 import authorBanner from "images/nfts/authorBanner.png";
+import { Link, useParams } from "react-router-dom";
+import DetailPage from "./NftDetailPage/DetailPage";
 
 export interface PageSearchProps {
   className?: string;
 }
 
 const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
+  
 
   const {data: properties} = usePropertiesQuery()
+
+  const {slug} = useParams<{slug: string;}>()
 
   
   useEffect(() => {
@@ -28,7 +33,12 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
    }, [properties])
 
   return (
-    <div className={`nc-PageSearch  ${className}`} data-nc-id="PageSearch">
+    slug? (
+      <DetailPage 
+      slug={slug}
+      />
+    ) : (
+      <div className={`nc-PageSearch  ${className}`} data-nc-id="PageSearch">
       <Helmet>
         <title>Home</title>
       </Helmet>
@@ -101,8 +111,10 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
             
           {properties?.imovels?.map(item => {
             return (
+              
               <CardPlace
               key={item?.nome?.toString()}
+              slug={item?.slug?.toString()}
               name={item?.nome?.toString()}
               state={item?.estado?.toString()}
               city={item?.cidade?.toString()}
@@ -117,6 +129,10 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
               parkingSpace={Number(item?.vagas)}
               price={item?.preco?.toString()}
               publishedAt={item?.publishedAt}
+              fotoPrincipal1={item?.fotoPrincipal1?.url}
+              foto2={item?.foto2?.url}
+              foto3={item?.foto3?.url}
+              foto4={item?.foto4?.url}
               realtor={{
                 name: item?.corretor?.nome,
                 creci: item?.corretor?.creci,
@@ -125,9 +141,9 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
                 fotoDePerfil: item?.corretor?.fotoperfil?.url,
                 instagram: item?.corretor?.instagram?.toString(),
                 facebook: item?.corretor?.facebook?.toString(),
-                resume: 'a',
               }}
               />
+              
             )
           })}
             
@@ -141,6 +157,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
       </div>
     </div>
+    )
   );
 };
 

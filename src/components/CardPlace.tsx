@@ -27,6 +27,11 @@ export interface CardNFTProps {
   parkingSpace?: number;
   price?: string;
   publishedAt?: string;
+  slug?: string;
+  fotoPrincipal1?:string;
+  foto2?:string;
+  foto3?:string;
+  foto4?:string;
   realtor?: {
     name?: string;
     creci?: string;
@@ -40,7 +45,7 @@ export interface CardNFTProps {
   
 }
 
-const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price}) => {
+const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price, fotoPrincipal1, slug}) => {
   const renderAvatars = () => {
     return (
       <div className="flex -space-x-1 ">
@@ -73,7 +78,7 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
         <div>
           <NcImage
             containerClassName="flex aspect-w-11 aspect-h-12 w-full h-0 rounded-3xl overflow-hidden z-0"
-            src={'https://midias.agazeta.com.br/2021/01/20/apartamentos-laterais-do-golden-barro-vermelho-em-vitoria-estao-a-venda-a-partir-de-r-718-mil-403229-article.jpg'}
+            src={fotoPrincipal1}
             className="object-cover w-full h-full group-hover:scale-[1.03] transition-transform duration-300 ease-in-out will-change-transform"
           />
         </div>
@@ -118,7 +123,7 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
         </div>
       </div>
 
-      <Link to={"/nft-detailt"} className="absolute inset-0"></Link>
+      <Link to={`/imoveis/${slug}`} className="absolute inset-0"></Link>
     </div>
   );
 };

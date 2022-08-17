@@ -5,7 +5,7 @@ const otherPageChildMenus: NavItemType[] = [
   {
     id: ncNanoId(),
     href: "/",
-    name: "Home Demo 1",
+    name: "Procurar imóveis",
   },
   {
     id: ncNanoId(),
@@ -22,15 +22,11 @@ const otherPageChildMenus: NavItemType[] = [
     href: "/page-collection",
     name: "Collection page",
   },
+  
   {
     id: ncNanoId(),
-    href: "/page-search",
-    name: "Search page",
-  },
-  {
-    id: ncNanoId(),
-    href: "/page-author",
-    name: "Author Profile",
+    href: "/corretores",
+    name: "Corretores",
   },
   {
     id: ncNanoId(),
@@ -46,6 +42,11 @@ const otherPageChildMenus: NavItemType[] = [
     id: ncNanoId(),
     href: "/page-upload-item",
     name: "Upload Item",
+  },
+  {
+    id: ncNanoId(),
+    href: "/contato",
+    name: "Contato",
   },
   {
     id: ncNanoId(),

@@ -1,5 +1,5 @@
-query properties {
-  imovels {
+query propertydetail($slug: String) {
+  imovel(where: {slug: $slug}) {
     nome
     estado
     cidade
@@ -9,6 +9,9 @@ query properties {
     banheiros
     suites
     unidades
+    descricao{
+        text
+      }
     categoria
     mobiliado
     vagas
@@ -43,4 +46,3 @@ query properties {
     }
   }
 }
-

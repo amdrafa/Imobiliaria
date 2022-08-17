@@ -15,7 +15,7 @@ import PageSubcription from "containers/PageSubcription/PageSubcription";
 import BlogPage from "containers/BlogPage/BlogPage";
 import BlogSingle from "containers/BlogPage/BlogSingle";
 import SiteHeader from "containers/SiteHeader";
-import NftDetailPage from "containers/NftDetailPage/NftDetailPage";
+import NftDetailPage from "containers/NftDetailPage/DetailPage";
 import PageSearch from "containers/PageSearch";
 import PageUploadItem from "containers/PageUploadItem";
 import PageConnectWallet from "containers/PageConnectWallet";
@@ -25,15 +25,16 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "../lib/apollo";
 
 export const pages: Page[] = [
-  { path: "/", exact: true, component: PageHome2 },
-  { path: "/#", exact: true, component: PageHome2 },
-  { path: "/home2", exact: true, component: PageHome },
+  { path: "/", exact: true, component: PageSearch },
+  { path: "/imoveis/:slug", exact: true, component: PageSearch },
+  { path: "/home2", exact: true, component: PageHome2 },
   { path: "/home3", exact: true, component: PageHome3 },
   //
   { path: "/home-header-2", exact: true, component: PageHome },
   { path: "/nft-detailt", component: NftDetailPage },
   { path: "/page-search", component: PageSearch },
-  { path: "/page-author", component: AuthorPage },
+  { path: "/corretores", component: AuthorPage },
+  { path: "/contato", component: PageContact },
   { path: "/account", component: AccountPage },
   { path: "/page-upload-item", component: PageUploadItem },
   { path: "/connect-wallet", component: PageConnectWallet },

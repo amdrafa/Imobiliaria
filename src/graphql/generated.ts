@@ -40,6 +40,10 @@ export type Asset = Node & {
   /** The file name */
   fileName: Scalars['String'];
   foto1Corretor: Array<Corretor>;
+  foto2Imovel: Array<Imovel>;
+  foto3Imovel: Array<Imovel>;
+  foto4Imovel: Array<Imovel>;
+  fotoPrincipal1Imovel: Array<Imovel>;
   /** The file handle */
   handle: Scalars['String'];
   /** The height of the file */
@@ -104,6 +108,58 @@ export type AssetFoto1CorretorArgs = {
   orderBy?: InputMaybe<CorretorOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CorretorWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto2ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto3ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto4ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFotoPrincipal1ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
 };
 
 
@@ -184,6 +240,10 @@ export type AssetCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   fileName: Scalars['String'];
   foto1Corretor?: InputMaybe<CorretorCreateManyInlineInput>;
+  foto2Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  foto3Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  foto4Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  fotoPrincipal1Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
   handle: Scalars['String'];
   height?: InputMaybe<Scalars['Float']>;
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -268,6 +328,18 @@ export type AssetManyWhereInput = {
   foto1Corretor_every?: InputMaybe<CorretorWhereInput>;
   foto1Corretor_none?: InputMaybe<CorretorWhereInput>;
   foto1Corretor_some?: InputMaybe<CorretorWhereInput>;
+  foto2Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto2Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto2Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto3Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto3Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto3Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto4Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto4Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto4Imovel_some?: InputMaybe<ImovelWhereInput>;
+  fotoPrincipal1Imovel_every?: InputMaybe<ImovelWhereInput>;
+  fotoPrincipal1Imovel_none?: InputMaybe<ImovelWhereInput>;
+  fotoPrincipal1Imovel_some?: InputMaybe<ImovelWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -358,6 +430,10 @@ export type AssetTransformationInput = {
 export type AssetUpdateInput = {
   fileName?: InputMaybe<Scalars['String']>;
   foto1Corretor?: InputMaybe<CorretorUpdateManyInlineInput>;
+  foto2Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  foto3Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  foto4Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  fotoPrincipal1Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
   handle?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Float']>;
   /** Manage document localizations */
@@ -533,6 +609,18 @@ export type AssetWhereInput = {
   foto1Corretor_every?: InputMaybe<CorretorWhereInput>;
   foto1Corretor_none?: InputMaybe<CorretorWhereInput>;
   foto1Corretor_some?: InputMaybe<CorretorWhereInput>;
+  foto2Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto2Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto2Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto3Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto3Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto3Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto4Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto4Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto4Imovel_some?: InputMaybe<ImovelWhereInput>;
+  fotoPrincipal1Imovel_every?: InputMaybe<ImovelWhereInput>;
+  fotoPrincipal1Imovel_none?: InputMaybe<ImovelWhereInput>;
+  fotoPrincipal1Imovel_some?: InputMaybe<ImovelWhereInput>;
   handle?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   handle_contains?: InputMaybe<Scalars['String']>;
@@ -1491,6 +1579,10 @@ export type Imovel = Node & {
   /** Get the document in other stages */
   documentInStages: Array<Imovel>;
   estado?: Maybe<Estado>;
+  foto2?: Maybe<Asset>;
+  foto3?: Maybe<Asset>;
+  foto4?: Maybe<Asset>;
+  fotoPrincipal1?: Maybe<Asset>;
   /** List of Imovel versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -1509,6 +1601,7 @@ export type Imovel = Node & {
   quartos?: Maybe<Scalars['Int']>;
   rua?: Maybe<Scalars['String']>;
   scheduledIn: Array<ScheduledOperation>;
+  slug?: Maybe<Scalars['String']>;
   /** System stage field */
   stage: Stage;
   suites?: Maybe<Scalars['Int']>;
@@ -1535,6 +1628,26 @@ export type ImovelDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
+};
+
+
+export type ImovelFoto2Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFoto3Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFoto4Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFotoPrincipal1Args = {
+  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -1591,6 +1704,10 @@ export type ImovelCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   descricao?: InputMaybe<Scalars['RichTextAST']>;
   estado?: InputMaybe<Estado>;
+  foto2?: InputMaybe<AssetCreateOneInlineInput>;
+  foto3?: InputMaybe<AssetCreateOneInlineInput>;
+  foto4?: InputMaybe<AssetCreateOneInlineInput>;
+  fotoPrincipal1?: InputMaybe<AssetCreateOneInlineInput>;
   mobiliado?: InputMaybe<Scalars['Boolean']>;
   modalidade?: InputMaybe<Modalidade>;
   nome?: InputMaybe<Scalars['String']>;
@@ -1598,6 +1715,7 @@ export type ImovelCreateInput = {
   preco?: InputMaybe<Scalars['String']>;
   quartos?: InputMaybe<Scalars['Int']>;
   rua?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
   suites?: InputMaybe<Scalars['Int']>;
   unidades?: InputMaybe<Scalars['Int']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -1721,6 +1839,10 @@ export type ImovelManyWhereInput = {
   estado_not?: InputMaybe<Estado>;
   /** All values that are not contained in given list. */
   estado_not_in?: InputMaybe<Array<InputMaybe<Estado>>>;
+  foto2?: InputMaybe<AssetWhereInput>;
+  foto3?: InputMaybe<AssetWhereInput>;
+  foto4?: InputMaybe<AssetWhereInput>;
+  fotoPrincipal1?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -1856,6 +1978,25 @@ export type ImovelManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  slug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']>;
   suites?: InputMaybe<Scalars['Int']>;
   /** All values greater than the given value. */
   suites_gt?: InputMaybe<Scalars['Int']>;
@@ -1950,6 +2091,8 @@ export enum ImovelOrderByInput {
   QuartosDesc = 'quartos_DESC',
   RuaAsc = 'rua_ASC',
   RuaDesc = 'rua_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SuitesAsc = 'suites_ASC',
   SuitesDesc = 'suites_DESC',
   UnidadesAsc = 'unidades_ASC',
@@ -1968,6 +2111,10 @@ export type ImovelUpdateInput = {
   corretor?: InputMaybe<CorretorUpdateOneInlineInput>;
   descricao?: InputMaybe<Scalars['RichTextAST']>;
   estado?: InputMaybe<Estado>;
+  foto2?: InputMaybe<AssetUpdateOneInlineInput>;
+  foto3?: InputMaybe<AssetUpdateOneInlineInput>;
+  foto4?: InputMaybe<AssetUpdateOneInlineInput>;
+  fotoPrincipal1?: InputMaybe<AssetUpdateOneInlineInput>;
   mobiliado?: InputMaybe<Scalars['Boolean']>;
   modalidade?: InputMaybe<Modalidade>;
   nome?: InputMaybe<Scalars['String']>;
@@ -1975,6 +2122,7 @@ export type ImovelUpdateInput = {
   preco?: InputMaybe<Scalars['String']>;
   quartos?: InputMaybe<Scalars['Int']>;
   rua?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
   suites?: InputMaybe<Scalars['Int']>;
   unidades?: InputMaybe<Scalars['Int']>;
   vagas?: InputMaybe<Scalars['Int']>;
@@ -2153,6 +2301,10 @@ export type ImovelWhereInput = {
   estado_not?: InputMaybe<Estado>;
   /** All values that are not contained in given list. */
   estado_not_in?: InputMaybe<Array<InputMaybe<Estado>>>;
+  foto2?: InputMaybe<AssetWhereInput>;
+  foto3?: InputMaybe<AssetWhereInput>;
+  foto4?: InputMaybe<AssetWhereInput>;
+  fotoPrincipal1?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -2288,6 +2440,25 @@ export type ImovelWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  slug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']>;
   suites?: InputMaybe<Scalars['Int']>;
   /** All values greater than the given value. */
   suites_gt?: InputMaybe<Scalars['Int']>;
@@ -2354,6 +2525,7 @@ export type ImovelWhereInput = {
 /** References Imovel record uniquely */
 export type ImovelWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 /** Locale system enumeration */
@@ -4727,7 +4899,14 @@ export enum _SystemDateTimeFieldVariation {
 export type PropertiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
+export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
+
+export type PropertydetailQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type PropertydetailQuery = { __typename?: 'Query', imovel?: { __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, descricao?: { __typename?: 'RichText', text: string } | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null } | null };
 
 export type RealtorsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4759,6 +4938,19 @@ export const PropertiesDocument = gql`
     vagas
     preco
     publishedAt
+    slug
+    fotoPrincipal1 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto2 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto3 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto4 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
     corretor {
       nome
       creci
@@ -4803,6 +4995,84 @@ export function usePropertiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type PropertiesQueryHookResult = ReturnType<typeof usePropertiesQuery>;
 export type PropertiesLazyQueryHookResult = ReturnType<typeof usePropertiesLazyQuery>;
 export type PropertiesQueryResult = Apollo.QueryResult<PropertiesQuery, PropertiesQueryVariables>;
+export const PropertydetailDocument = gql`
+    query propertydetail($slug: String) {
+  imovel(where: {slug: $slug}) {
+    nome
+    estado
+    cidade
+    bairro
+    rua
+    quartos
+    banheiros
+    suites
+    unidades
+    descricao {
+      text
+    }
+    categoria
+    mobiliado
+    vagas
+    preco
+    publishedAt
+    slug
+    fotoPrincipal1 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto2 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto3 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto4 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    corretor {
+      nome
+      creci
+      email
+      telefone
+      instagram
+      facebook
+      fotoperfil {
+        url(transformation: {document: {output: {format: jpg}}})
+      }
+      resumo {
+        text
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __usePropertydetailQuery__
+ *
+ * To run a query within a React component, call `usePropertydetailQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePropertydetailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePropertydetailQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function usePropertydetailQuery(baseOptions?: Apollo.QueryHookOptions<PropertydetailQuery, PropertydetailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PropertydetailQuery, PropertydetailQueryVariables>(PropertydetailDocument, options);
+      }
+export function usePropertydetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PropertydetailQuery, PropertydetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PropertydetailQuery, PropertydetailQueryVariables>(PropertydetailDocument, options);
+        }
+export type PropertydetailQueryHookResult = ReturnType<typeof usePropertydetailQuery>;
+export type PropertydetailLazyQueryHookResult = ReturnType<typeof usePropertydetailLazyQuery>;
+export type PropertydetailQueryResult = Apollo.QueryResult<PropertydetailQuery, PropertydetailQueryVariables>;
 export const RealtorsDocument = gql`
     query realtors {
   corretores {
