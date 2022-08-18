@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Avatar from "shared/Avatar/Avatar";
 import Badge from "shared/Badge/Badge";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
@@ -20,6 +20,9 @@ import { SearchIcon } from "@heroicons/react/solid";
 import { DetailPageInformations } from "components/DetailPageInformations";
 import { usePropertydetailQuery } from "graphql/generated";
 import { Link } from "react-router-dom";
+import NextImageArrow from "components/NextImageArrow";
+import NextImageArrowRight from "components/NextImageArrowRight";
+import ImageModal from "components/ImageModal";
 
 
 export interface NftDetailPageProps {
@@ -34,23 +37,64 @@ const DetailPage: FC<NftDetailPageProps> = ({
   slug
 }) => {
 
-  const {data: property} = usePropertydetailQuery({
+  const {data: property, loading} = usePropertydetailQuery({
     variables: {
       slug: slug
     }
   })
+  
+  const [imageIndex, setImageIndex] = useState(0)
+
+  const images = [
+    property?.imovel?.fotoPrincipal1?.url?.toString(),
+     property?.imovel?.foto2?.url?.toString(),
+    property?.imovel?.foto3?.url?.toString(),
+    property?.imovel?.foto4?.url?.toString(),
+   ]
+
+  const [mainImage, setMainImage] = useState<string | undefined>(property?.imovel?.fotoPrincipal1?.url)
 
   useEffect(() => {
-    console.log(property)
+    
+    setMainImage(property?.imovel?.fotoPrincipal1?.url)
     
    }, [property])
 
-   const images = [
-    {image1: property?.imovel?.fotoPrincipal1},
-    {image2: property?.imovel?.foto2},
-    {image3: property?.imovel?.foto3},
-    {image4: property?.imovel?.foto4},
-   ]
+   function handleCarrouselClick(img: string | undefined) {
+
+    if(mainImage == property?.imovel?.fotoPrincipal1?.url){
+      return
+    }else{
+      
+      
+      setMainImage(images[imageIndex - 1])
+      setImageIndex(imageIndex - 1)
+
+      return ;
+    }
+
+    
+   }
+
+   function handleCarrouselClickRight(img: string | undefined) {
+
+    if(mainImage == property?.imovel?.foto4?.url){
+      return
+    }else{
+      
+      if(images[imageIndex + 1] == undefined){
+        return
+      }
+      setMainImage(images[imageIndex + 1])
+      setImageIndex(imageIndex + 1)
+
+      return ;
+    }
+
+    
+   }
+
+   
 
   const renderSection1 = () => {
     return (
@@ -67,7 +111,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
           {/* ---------- 4 ----------  */}
           <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
             <div className="flex items-center ">
-              <Avatar sizeClass="h-9 w-9" radius="rounded-full" imgUrl="https://rankim.com.br/blog/wp-content/uploads/2016/06/Stand-de-Vendas-de-Imoveis.jpg" />
+              <Avatar sizeClass="h-9 w-9" radius="rounded-full" imgUrl={property?.imovel?.corretor?.fotoperfil?.url} />
               <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
                 <span className="text-sm">Corretor</span>
                 <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
@@ -189,13 +233,28 @@ const DetailPage: FC<NftDetailPageProps> = ({
           <div className="space-y-8 lg:space-y-10">
             {/* HEADING */}
             <div className="relative">
-            <NcImage
-                src={property?.imovel?.fotoPrincipal1?.url}
-                containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
-              />
+              <NcImage
+                  src={loading ? '' : mainImage}
+                  containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
+                />
               {/* META FAVORITES */}
               <LikeButton className="absolute left-6 top-3 " />
+
+              {mainImage == property?.imovel?.fotoPrincipal1?.url ? ('') : (
+                <NextImageArrow 
+              className="absolute left-4 top-72 "
+              handleUserClick={handleCarrouselClick}
+              />
+              )}
+              
+
+              {mainImage == property?.imovel?.foto4?.url ? ('') : (
+                <NextImageArrowRight handleUserClick={handleCarrouselClickRight} className="absolute right-4 top-72 "/>
+              ) }
+              
             </div>
+
+            {/* <ImageModal /> */}
 
             <AccordionInfo 
             description={property?.imovel?.descricao?.text}

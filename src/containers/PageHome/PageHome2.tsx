@@ -32,8 +32,8 @@ function PageHome() {
           <BackgroundSection />
           <SectionGridAuthorBox
             sectionStyle="style2"
-            data={Array.from("11111111")}
-            boxCard="box2"
+            data={Array.from("1111111")}
+            boxCard="box4"
           />
         </div>
         
