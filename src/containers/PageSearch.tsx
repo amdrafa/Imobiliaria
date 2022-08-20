@@ -124,6 +124,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
               quantity={Number(item?.unidades)}
               categoria={item?.categoria?.toString()}
               mobiliado={true}
+              modalidade={item?.modalidade?.toString()}
               bathrooms={Number(item?.banheiros)}
               suites={Number(item?.suites)}
               parkingSpace={Number(item?.vagas)}

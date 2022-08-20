@@ -1,25 +1,16 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import NcImage from "shared/NcImage/NcImage";
-import CardNFT from "components/CardPlace";
-import Pagination from "shared/Pagination/Pagination";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import authorBanner from "images/nfts/authorBanner.png";
-import { nftsImgs } from "contains/fakeData";
-import NftMoreDropdown from "components/NftMoreDropdown";
-import ButtonDropDownShare from "components/ButtonDropDownShare";
-import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
 import SocialsList from "shared/SocialsList/SocialsList";
-import FollowButton from "components/FollowButton";
 import VerifyIcon from "components/VerifyIcon";
-import { Tab } from "@headlessui/react";
-import CardAuthorBox3 from "components/CardAuthorBox3/CardAuthorBox3";
-import ArchiveFilterListBox from "components/ArchiveFilterListBox";
-import SectionGridAuthorBox from "components/SectionGridAuthorBox/SectionGridAuthorBox";
+import facebook from "images/socials/facebook.svg";
+import youtube from "images/socials/youtube.svg";
+import instagram from "images/instagram.png"
+import whatsapp from "images/socials/_Group_-3.svg"
 
-import { gql, useQuery } from "@apollo/client";
-import { useRealtorsQuery, useSimoneQuery } from "graphql/generated";
+import { useRealtorsQuery } from "graphql/generated";
 
 export interface AuthorPageProps {
   className?: string;
@@ -85,12 +76,25 @@ const AuthorPage: FC<AuthorPageProps> = ({ className = "" }) => {
                 </span>
               </div>
               <div className="mt-4 ">
-                <SocialsList itemClass="block w-7 h-7" />
+                <SocialsList  
+                socials={[
+                  { name: "Facebook", icon: facebook, href:  realtor?.facebook == undefined || realtor?.facebook == ''  ? 'notfound' : `https://www.facebook.com/${realtor?.facebook}` },
+                  { name: "Whatsapp", icon: whatsapp, href: realtor?.whatsappLink == undefined || realtor?.whatsappLink == '' ? 'notfound' : `${realtor?.whatsappLink}`  },
+                  { name: "Instagram", icon: instagram, href: realtor?.instagram == undefined || realtor?.instagram == '' ? 'notfound' : `https://www.instagram.com/${realtor?.instagram}` },
+                  { name: "Youtube", icon: youtube, href: realtor?.youtube == undefined ||realtor?.youtube == '' ? 'notfound' : `https://www.youtube.com/${realtor?.youtube}` },
+                ]}
+                itemClass="block w-7 h-7" />
               </div>
             </div>
             <div className="absolute md:static left-5 top-4 sm:left-auto sm:top-5 sm:right-5 flex flex-row-reverse justify-end">
               <div className="invisible lg:visible">
-              <ButtonPrimary sizeClass="px-4 py-2 sm:px-5">Entrar em contato</ButtonPrimary>
+              <ButtonPrimary 
+              targetBlank={true}
+              href={realtor?.whatsappLink == undefined || realtor?.whatsappLink == '' ? 'contato' : realtor?.whatsappLink}
+              sizeClass="px-4 py-2 sm:px-5" 
+              >
+                Entrar em contato
+              </ButtonPrimary>
               </div>
             </div>
           </div>

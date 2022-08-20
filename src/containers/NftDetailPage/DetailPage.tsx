@@ -196,7 +196,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
                 />
               </svg>
 
-              <span className="ml-2.5">Comprar</span>
+              <span className="ml-2.5">{property?.imovel?.modalidade == 'Venda' ? 'Comprar' : 'Alugar'}</span>
             </ButtonPrimary>
           
             <ButtonSecondary href={"/"} className="flex-1" >

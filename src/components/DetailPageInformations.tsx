@@ -67,7 +67,7 @@ export function DetailPageInformations({
 
             <div className="flex justify-start items-center text-gray-500  my-2">
                 <MdOutlineGarage fontSize={20} className='mr-1'/>
-                {parkingSpace == 0? '' : parkingSpace} {parkingSpace == 1? ('Vaga') : ('Vagas')}
+                {parkingSpace == 0? 'Nenhuma vaga' : parkingSpace == 1? (parkingSpace + ' Vaga') : (parkingSpace +' Vagas')} 
             </div>
             </div>
 

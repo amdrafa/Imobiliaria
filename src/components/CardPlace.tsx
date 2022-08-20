@@ -20,6 +20,7 @@ export interface CardNFTProps {
   street?: string;
   rooms?: number;
   mobiliado?: boolean;
+  modalidade?: string;
   quantity?: number;
   categoria?: string;
   bathrooms?: number;
@@ -45,7 +46,7 @@ export interface CardNFTProps {
   
 }
 
-const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price, fotoPrincipal1, slug}) => {
+const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price, fotoPrincipal1, slug, modalidade}) => {
   const renderAvatars = () => {
     return (
       <div className="flex -space-x-1 ">
@@ -104,11 +105,16 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
             {`${quantity} uni.`}
           </span>
         </div>
+        <div>
         <h2 className={`text-lg font-medium`}>
           {name}
 
           {/* Fazer um switch case com cada tipo de imóvel */}
         </h2>
+
+        <p className="text-gray-700 opacity-80 text-sm">{modalidade}</p>
+        </div>
+        
 
         <div className="w-2d4 w-full border-b border-neutral-100 dark:border-neutral-700"></div>
 
@@ -119,7 +125,7 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
             <span className="ml-1 mt-0.5">
               {Number(dayjs(publishedAt).format('D')) - (Number(dayjs(publishedAt).format('D')) - 1)} {Number(dayjs(publishedAt).format('D')) - (Number(dayjs(publishedAt).format('D')) - 1) == 1? 'dia atrás' : 'dias atrás'}
             </span>
-          </div>
+          </div>  
         </div>
       </div>
 

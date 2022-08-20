@@ -11,6 +11,7 @@ query properties {
     unidades
     categoria
     mobiliado
+    modalidade
     vagas
     preco
     publishedAt
@@ -34,6 +35,11 @@ query properties {
       telefone
       instagram
       facebook
+      youtube
+      whatsappLink
+      whatsappQrCode {
+        url(transformation: {document: {output: {format: png}}})
+      }
       fotoperfil {
       url(transformation: {document: {output: {format: jpg}}})
     }

@@ -73,6 +73,7 @@ export type Asset = Node & {
   updatedBy?: Maybe<User>;
   /** Get the url for the asset with provided transformations applied. */
   url: Scalars['String'];
+  whatsappQrCodeCorretor: Array<Corretor>;
   /** The file width */
   width?: Maybe<Scalars['Float']>;
 };
@@ -219,6 +220,19 @@ export type AssetUrlArgs = {
   transformation?: InputMaybe<AssetTransformationInput>;
 };
 
+
+/** Asset system model */
+export type AssetWhatsappQrCodeCorretorArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<CorretorOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CorretorWhereInput>;
+};
+
 export type AssetConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -251,6 +265,7 @@ export type AssetCreateInput = {
   mimeType?: InputMaybe<Scalars['String']>;
   size?: InputMaybe<Scalars['Float']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  whatsappQrCodeCorretor?: InputMaybe<CorretorCreateManyInlineInput>;
   width?: InputMaybe<Scalars['Float']>;
 };
 
@@ -394,6 +409,9 @@ export type AssetManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  whatsappQrCodeCorretor_every?: InputMaybe<CorretorWhereInput>;
+  whatsappQrCodeCorretor_none?: InputMaybe<CorretorWhereInput>;
+  whatsappQrCodeCorretor_some?: InputMaybe<CorretorWhereInput>;
 };
 
 export enum AssetOrderByInput {
@@ -440,6 +458,7 @@ export type AssetUpdateInput = {
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
   mimeType?: InputMaybe<Scalars['String']>;
   size?: InputMaybe<Scalars['Float']>;
+  whatsappQrCodeCorretor?: InputMaybe<CorretorUpdateManyInlineInput>;
   width?: InputMaybe<Scalars['Float']>;
 };
 
@@ -743,6 +762,9 @@ export type AssetWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  whatsappQrCodeCorretor_every?: InputMaybe<CorretorWhereInput>;
+  whatsappQrCodeCorretor_none?: InputMaybe<CorretorWhereInput>;
+  whatsappQrCodeCorretor_some?: InputMaybe<CorretorWhereInput>;
   width?: InputMaybe<Scalars['Float']>;
   /** All values greater than the given value. */
   width_gt?: InputMaybe<Scalars['Float']>;
@@ -838,6 +860,9 @@ export type Corretor = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  whatsappLink?: Maybe<Scalars['String']>;
+  whatsappQrCode?: Maybe<Asset>;
+  youtube?: Maybe<Scalars['String']>;
 };
 
 
@@ -885,6 +910,11 @@ export type CorretorUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type CorretorWhatsappQrCodeArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
 export type CorretorConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -914,6 +944,9 @@ export type CorretorCreateInput = {
   resumo: Scalars['RichTextAST'];
   telefone: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  whatsappLink?: InputMaybe<Scalars['String']>;
+  whatsappQrCode?: InputMaybe<AssetCreateOneInlineInput>;
+  youtube?: InputMaybe<Scalars['String']>;
 };
 
 export type CorretorCreateManyInlineInput = {
@@ -1134,6 +1167,45 @@ export type CorretorManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  whatsappLink?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  whatsappLink_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  whatsappLink_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  whatsappLink_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  whatsappLink_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  whatsappLink_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  whatsappLink_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  whatsappLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  whatsappLink_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  whatsappLink_starts_with?: InputMaybe<Scalars['String']>;
+  whatsappQrCode?: InputMaybe<AssetWhereInput>;
+  youtube?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  youtube_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  youtube_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  youtube_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  youtube_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  youtube_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  youtube_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  youtube_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  youtube_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  youtube_starts_with?: InputMaybe<Scalars['String']>;
 };
 
 export enum CorretorOrderByInput {
@@ -1156,7 +1228,11 @@ export enum CorretorOrderByInput {
   TelefoneAsc = 'telefone_ASC',
   TelefoneDesc = 'telefone_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
+  WhatsappLinkAsc = 'whatsappLink_ASC',
+  WhatsappLinkDesc = 'whatsappLink_DESC',
+  YoutubeAsc = 'youtube_ASC',
+  YoutubeDesc = 'youtube_DESC'
 }
 
 export type CorretorUpdateInput = {
@@ -1169,6 +1245,9 @@ export type CorretorUpdateInput = {
   nome?: InputMaybe<Scalars['String']>;
   resumo?: InputMaybe<Scalars['RichTextAST']>;
   telefone?: InputMaybe<Scalars['String']>;
+  whatsappLink?: InputMaybe<Scalars['String']>;
+  whatsappQrCode?: InputMaybe<AssetUpdateOneInlineInput>;
+  youtube?: InputMaybe<Scalars['String']>;
 };
 
 export type CorretorUpdateManyInlineInput = {
@@ -1195,6 +1274,8 @@ export type CorretorUpdateManyInput = {
   nome?: InputMaybe<Scalars['String']>;
   resumo?: InputMaybe<Scalars['RichTextAST']>;
   telefone?: InputMaybe<Scalars['String']>;
+  whatsappLink?: InputMaybe<Scalars['String']>;
+  youtube?: InputMaybe<Scalars['String']>;
 };
 
 export type CorretorUpdateManyWithNestedWhereInput = {
@@ -1435,6 +1516,45 @@ export type CorretorWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  whatsappLink?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  whatsappLink_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  whatsappLink_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  whatsappLink_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  whatsappLink_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  whatsappLink_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  whatsappLink_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  whatsappLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  whatsappLink_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  whatsappLink_starts_with?: InputMaybe<Scalars['String']>;
+  whatsappQrCode?: InputMaybe<AssetWhereInput>;
+  youtube?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  youtube_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  youtube_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  youtube_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  youtube_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  youtube_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  youtube_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  youtube_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  youtube_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  youtube_starts_with?: InputMaybe<Scalars['String']>;
 };
 
 /** References Corretor record uniquely */
@@ -4899,19 +5019,19 @@ export enum _SystemDateTimeFieldVariation {
 export type PropertiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
+export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, modalidade?: Modalidade | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
 
 export type PropertydetailQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type PropertydetailQuery = { __typename?: 'Query', imovel?: { __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, descricao?: { __typename?: 'RichText', text: string } | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null } | null };
+export type PropertydetailQuery = { __typename?: 'Query', imovel?: { __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, modalidade?: Modalidade | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, descricao?: { __typename?: 'RichText', text: string } | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null } | null };
 
 export type RealtorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RealtorsQuery = { __typename?: 'Query', corretores: Array<{ __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } }> };
+export type RealtorsQuery = { __typename?: 'Query', corretores: Array<{ __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } }> };
 
 export type SimoneQueryVariables = Exact<{
   creci?: InputMaybe<Scalars['String']>;
@@ -4935,6 +5055,7 @@ export const PropertiesDocument = gql`
     unidades
     categoria
     mobiliado
+    modalidade
     vagas
     preco
     publishedAt
@@ -4958,6 +5079,11 @@ export const PropertiesDocument = gql`
       telefone
       instagram
       facebook
+      youtube
+      whatsappLink
+      whatsappQrCode {
+        url(transformation: {document: {output: {format: png}}})
+      }
       fotoperfil {
         url(transformation: {document: {output: {format: jpg}}})
       }
@@ -5007,6 +5133,7 @@ export const PropertydetailDocument = gql`
     banheiros
     suites
     unidades
+    modalidade
     descricao {
       text
     }
@@ -5035,6 +5162,11 @@ export const PropertydetailDocument = gql`
       telefone
       instagram
       facebook
+      youtube
+      whatsappLink
+      whatsappQrCode {
+        url(transformation: {document: {output: {format: png}}})
+      }
       fotoperfil {
         url(transformation: {document: {output: {format: jpg}}})
       }
@@ -5082,6 +5214,11 @@ export const RealtorsDocument = gql`
     telefone
     instagram
     facebook
+    youtube
+    whatsappLink
+    whatsappQrCode {
+      url(transformation: {document: {output: {format: png}}})
+    }
     fotoperfil {
       url(transformation: {document: {output: {format: jpg}}})
     }
