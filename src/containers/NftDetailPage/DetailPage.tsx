@@ -37,6 +37,8 @@ const DetailPage: FC<NftDetailPageProps> = ({
   slug
 }) => {
 
+  // const { asPath } = useRouter()
+
   const {data: property, loading} = usePropertydetailQuery({
     variables: {
       slug: slug
@@ -72,7 +74,6 @@ const DetailPage: FC<NftDetailPageProps> = ({
 
       return ;
     }
-
     
    }
 
@@ -110,6 +111,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
 
           {/* ---------- 4 ----------  */}
           <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
+            <a href={`http://${window.location.host}/contatos/creci/${property?.imovel?.corretor?.creci}`}>
             <div className="flex items-center ">
               <Avatar sizeClass="h-9 w-9" radius="rounded-full" imgUrl={property?.imovel?.corretor?.fotoperfil?.url} />
               <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
@@ -120,7 +122,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
                 </span>
               </span>
             </div>
-            
+            </a>
           </div>
 
           
@@ -164,7 +166,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
           
 
           <div className="mt-8 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-            <ButtonPrimary href={"/contato"} className="flex-1">
+            <ButtonPrimary href={`http://${window.location.host}/contatos/creci/${property?.imovel?.corretor?.creci}`} className="flex-1">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M18.04 13.55C17.62 13.96 17.38 14.55 17.44 15.18C17.53 16.26 18.52 17.05 19.6 17.05H21.5V18.24C21.5 20.31 19.81 22 17.74 22H6.26C4.19 22 2.5 20.31 2.5 18.24V11.51C2.5 9.44001 4.19 7.75 6.26 7.75H17.74C19.81 7.75 21.5 9.44001 21.5 11.51V12.95H19.48C18.92 12.95 18.41 13.17 18.04 13.55Z"

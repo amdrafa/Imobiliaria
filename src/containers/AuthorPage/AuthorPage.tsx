@@ -27,11 +27,11 @@ const AuthorPage: FC<AuthorPageProps> = ({ className = "" }) => {
  }, [realtors])
 
   return (
-    <div className={`nc-AuthorPage  ${className}`} data-nc-id="AuthorPage">
+    <div className={`nc-AuthorPage ${className}`} data-nc-id="AuthorPage">
       <Helmet>
-        <title>Corretores</title>
+        <title>Corretores || Angela Simone</title>
       </Helmet>
-
+      
       {/* HEADER */}
       <div className="w-full">
         <div className="relative w-full h-40 md:h-60 2xl:h-72">
@@ -76,7 +76,7 @@ const AuthorPage: FC<AuthorPageProps> = ({ className = "" }) => {
                 </span>
               </div>
               <div className="mt-4 ">
-                <SocialsList  
+                <SocialsList
                 socials={[
                   { name: "Facebook", icon: facebook, href:  realtor?.facebook == undefined || realtor?.facebook == ''  ? 'notfound' : `https://www.facebook.com/${realtor?.facebook}` },
                   { name: "Whatsapp", icon: whatsapp, href: realtor?.whatsappLink == undefined || realtor?.whatsappLink == '' ? 'notfound' : `${realtor?.whatsappLink}`  },

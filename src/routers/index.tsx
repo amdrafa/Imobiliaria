@@ -35,6 +35,7 @@ export const pages: Page[] = [
   { path: "/page-search", component: PageSearch },
   { path: "/corretores", component: AuthorPage },
   { path: "/contato", component: PageContact },
+  { path: "/contatos/creci/:slug", component: PageContact },
   { path: "/account", component: AccountPage },
   { path: "/page-upload-item", component: PageUploadItem },
   { path: "/connect-wallet", component: PageConnectWallet },

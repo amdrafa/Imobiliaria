@@ -16,6 +16,7 @@ export interface LocationStates {
   //
   "/account"?: {};
   "/contato"?: {};
+  "/contatos/creci/:slug"?: {};
   //
   "/blog"?: {};
   "/blog-single"?: {};

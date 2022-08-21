@@ -1,11 +1,22 @@
 query simone ($creci: String){
   corretor(where: {creci: $creci}) {
-    id
     nome
     creci
-    telefone
     email
+    telefone
     instagram
     facebook
+    youtube
+    whatsappLink
+    endereco
+    whatsappQrCode {
+      url(transformation: {document: {output: {format: png}}})
+    }
+    fotoperfil {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    resumo {
+      text
+    }
   }
 }

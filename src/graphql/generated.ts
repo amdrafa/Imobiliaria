@@ -839,6 +839,8 @@ export type Corretor = Node & {
   /** Get the document in other stages */
   documentInStages: Array<Corretor>;
   email: Scalars['String'];
+  /** Endereço do escritório ou local de trabalho */
+  endereco?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   fotoperfil: Asset;
   /** List of Corretor versions */
@@ -937,6 +939,7 @@ export type CorretorCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   creci: Scalars['String'];
   email: Scalars['String'];
+  endereco?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
   fotoperfil: AssetCreateOneInlineInput;
   instagram?: InputMaybe<Scalars['String']>;
@@ -1036,6 +1039,25 @@ export type CorretorManyWhereInput = {
   email_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   email_starts_with?: InputMaybe<Scalars['String']>;
+  endereco?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  endereco_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  endereco_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  endereco_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  endereco_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  endereco_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  endereco_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  endereco_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  endereco_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  endereco_starts_with?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   facebook_contains?: InputMaybe<Scalars['String']>;
@@ -1215,6 +1237,8 @@ export enum CorretorOrderByInput {
   CreciDesc = 'creci_DESC',
   EmailAsc = 'email_ASC',
   EmailDesc = 'email_DESC',
+  EnderecoAsc = 'endereco_ASC',
+  EnderecoDesc = 'endereco_DESC',
   FacebookAsc = 'facebook_ASC',
   FacebookDesc = 'facebook_DESC',
   IdAsc = 'id_ASC',
@@ -1239,6 +1263,7 @@ export type CorretorUpdateInput = {
   cl6vb5am536lj01uqbqd66fbi?: InputMaybe<ImovelUpdateManyInlineInput>;
   creci?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
+  endereco?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
   fotoperfil?: InputMaybe<AssetUpdateOneInlineInput>;
   instagram?: InputMaybe<Scalars['String']>;
@@ -1269,6 +1294,7 @@ export type CorretorUpdateManyInlineInput = {
 
 export type CorretorUpdateManyInput = {
   email?: InputMaybe<Scalars['String']>;
+  endereco?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
   instagram?: InputMaybe<Scalars['String']>;
   nome?: InputMaybe<Scalars['String']>;
@@ -1385,6 +1411,25 @@ export type CorretorWhereInput = {
   email_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   email_starts_with?: InputMaybe<Scalars['String']>;
+  endereco?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  endereco_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  endereco_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  endereco_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  endereco_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  endereco_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  endereco_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  endereco_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  endereco_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  endereco_starts_with?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   facebook_contains?: InputMaybe<Scalars['String']>;
@@ -5038,7 +5083,7 @@ export type SimoneQueryVariables = Exact<{
 }>;
 
 
-export type SimoneQuery = { __typename?: 'Query', corretor?: { __typename?: 'Corretor', id: string, nome: string, creci: string, telefone: string, email: string, instagram?: string | null, facebook?: string | null } | null };
+export type SimoneQuery = { __typename?: 'Query', corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, endereco?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null };
 
 
 export const PropertiesDocument = gql`
@@ -5258,13 +5303,24 @@ export type RealtorsQueryResult = Apollo.QueryResult<RealtorsQuery, RealtorsQuer
 export const SimoneDocument = gql`
     query simone($creci: String) {
   corretor(where: {creci: $creci}) {
-    id
     nome
     creci
-    telefone
     email
+    telefone
     instagram
     facebook
+    youtube
+    whatsappLink
+    endereco
+    whatsappQrCode {
+      url(transformation: {document: {output: {format: png}}})
+    }
+    fotoperfil {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    resumo {
+      text
+    }
   }
 }
     `;
