@@ -1,5 +1,5 @@
-query properties {
-  imovels {
+query properties ($searchValue: String, $modalidadeValue: [Modalidade]) {
+  imovels (where: {_search: $searchValue, OR: {modalidade_in: $modalidadeValue}}) {
     nome
     estado
     cidade

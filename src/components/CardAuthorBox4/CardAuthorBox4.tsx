@@ -6,23 +6,40 @@ import { nftsAbstracts, personNames } from "contains/fakeData";
 import VerifyIcon from "components/VerifyIcon";
 import FollowButton from "components/FollowButton";
 import Badge from "shared/Badge/Badge";
+import apartamentDefault from "images/apartament.jpg";
+
 
 export interface CardAuthorBox4Props {
   className?: string;
   following?: boolean;
   authorIndex?: number;
+  mainImage?: string;
+  corretorImage?: string;
+  corretorName?: string;
+  propertyName?: string;
+  slug?: string;
+  
 }
 
 const CardAuthorBox4: FC<CardAuthorBox4Props> = ({
   className = "",
   following,
   authorIndex,
+  mainImage,
+  corretorImage,
+  corretorName,
+  propertyName,
+  slug
 }) => {
   return (
+    
     <div
-      className={`nc-CardAuthorBox4 relative flex flex-col overflow-hidden group bg-white dark:bg-neutral-800 group rounded-3xl hover:shadow-xl transition-shadow ${className}`}
+      className={`nc-CardAuthorBox4 relative flex flex-col overflow-hidden group bg-slate-50 dark:bg-neutral-800 group rounded-3xl hover:shadow-xl transition-shadow ${className}`}
       data-nc-id="CardAuthorBox4"
     >
+      
+
+
       <div className="relative flex-shrink-0 h-36">
         {authorIndex && (
           <Badge
@@ -38,7 +55,7 @@ const CardAuthorBox4: FC<CardAuthorBox4Props> = ({
 
         <NcImage
           containerClassName="flex h-full w-full flex-shrink-0 rounded-3xl overflow-hidden"
-          src={nftsAbstracts[Math.floor(Math.random() * nftsAbstracts.length)]}
+          src={mainImage ? mainImage : apartamentDefault}
         />
       </div>
 
@@ -46,7 +63,7 @@ const CardAuthorBox4: FC<CardAuthorBox4Props> = ({
         <div className="text-center relative flex items-center justify-center ">
           <div className="relative">
             <svg
-              className="mx-auto h-14 -mt-[38px] text-white dark:text-neutral-800 dark:group-hover:text-neutral-800"
+              className="mx-auto h-14 -mt-[38px] text-slate-50 dark:text-neutral-800 dark:group-hover:text-neutral-800"
               width="134"
               height="54"
               viewBox="0 0 134 54"
@@ -61,6 +78,7 @@ const CardAuthorBox4: FC<CardAuthorBox4Props> = ({
 
             <div className="absolute -top-7 left-1/2 -translate-x-1/2">
               <Avatar
+                imgUrl={corretorImage ? corretorImage : 'https://pps.whatsapp.net/v/t61.24694-24/255262822_932433137455965_4141700242338578442_n.jpg?ccb=11-4&oh=01_AVysjyLT9xnrK7RjsFb4pZBKYngoLNHkc9REelYMF8mCag&oe=631098F9'}
                 containerClassName=""
                 sizeClass="w-12 h-12 text-2xl"
                 radius="rounded-full"
@@ -70,27 +88,34 @@ const CardAuthorBox4: FC<CardAuthorBox4Props> = ({
         </div>
         <div className="mt-2.5 flex items-start items-center justify-between">
           <div>
+            <div>
             <h2 className={`text-base font-medium flex items-center`}>
               <span className="">
-                {personNames[Math.floor(Math.random() * personNames.length)]}
+                {propertyName ? propertyName : 'Apartamento - San Vicenzo'}
+              </span>
+              
+            </h2>
+            </div>
+            <h2 className={`text-sm flex items-center`}>
+              <span className="">
+                {corretorName ? corretorName : 'Angela Simone'}
               </span>
               <VerifyIcon />
             </h2>
             <span className={`block mt-0.5 text-sm `}>
-              <span className="font-medium">12.321</span>
-              <span className={`ml-1.5 text-neutral-500 dark:text-neutral-400`}>
-                ETH
+              <span className={`text-neutral-400 dark:text-neutral-500`}>
+                {corretorName ? 'Saiba mais...' : 'Exemplo de item favoritado'}
               </span>
             </span>
           </div>
-          <FollowButton
+          {/* <FollowButton
             sizeClass="px-4 py-2 min-w-[84px]"
             isFollowing={following}
-          />
+          /> */}
         </div>
       </div>
 
-      <Link to={"/page-author"} className="absolute inset-0"></Link>
+      <Link to={`/imoveis/${slug}`} className="absolute inset-0"></Link>
     </div>
   );
 };

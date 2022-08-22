@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Page } from "./types";
 import ScrollToTop from "./ScrollToTop";
 import Footer from "shared/Footer/Footer";
-import PageHome from "containers/PageHome/PageHome";
+import PageHome from "containers/PageHome/Vendas";
 import Page404 from "containers/Page404/Page404";
 import AuthorPage from "containers/AuthorPage/AuthorPage";
 import AccountPage from "containers/AccountPage/AccountPage";
@@ -19,41 +19,33 @@ import NftDetailPage from "containers/NftDetailPage/DetailPage";
 import PageSearch from "containers/PageSearch";
 import PageUploadItem from "containers/PageUploadItem";
 import PageConnectWallet from "containers/PageConnectWallet";
-import PageHome2 from "containers/PageHome/PageHome2";
+import Favoritos from "containers/PageHome/Favoritos";
 import PageHome3 from "containers/PageHome/PageHome3";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../lib/apollo";
+import { FavoriteContextProvider } from "contexts/FavoriteContext";
+import { TabFilterContextProvider } from "contexts/TabFilterContext";
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageSearch },
   { path: "/imoveis/:slug", exact: true, component: PageSearch },
-  { path: "/home2", exact: true, component: PageHome2 },
-  { path: "/home3", exact: true, component: PageHome3 },
+  { path: "/favoritos", exact: true, component: Favoritos },
+  { path: "/vendas", exact: true, component: PageHome },
   //
-  { path: "/home-header-2", exact: true, component: PageHome },
-  { path: "/nft-detailt", component: NftDetailPage },
-  { path: "/page-search", component: PageSearch },
+  
   { path: "/corretores", component: AuthorPage },
   { path: "/contato", component: PageContact },
   { path: "/contatos/creci/:slug", component: PageContact },
-  { path: "/account", component: AccountPage },
-  { path: "/page-upload-item", component: PageUploadItem },
-  { path: "/connect-wallet", component: PageConnectWallet },
-  //
-  { path: "/blog", component: BlogPage },
-  { path: "/blog-single", component: BlogSingle },
-  //
-  { path: "/contact", component: PageContact },
-  { path: "/about", component: PageAbout },
-  { path: "/signup", component: PageSignUp },
-  { path: "/login", component: PageLogin },
-  { path: "/subscription", component: PageSubcription },
+  
+  
 ];
 
 const Routes = () => {
   return (
     <ApolloProvider client={client}>
     <BrowserRouter>
+    <TabFilterContextProvider>
+    <FavoriteContextProvider>
       <ScrollToTop />
       <SiteHeader />
       <Switch>
@@ -70,6 +62,8 @@ const Routes = () => {
         <Route component={Page404} />
       </Switch>
       <Footer />
+      </FavoriteContextProvider>
+      </TabFilterContextProvider>
     </BrowserRouter>
     </ApolloProvider>
   );

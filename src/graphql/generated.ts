@@ -5061,7 +5061,10 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type PropertiesQueryVariables = Exact<{ [key: string]: never; }>;
+export type PropertiesQueryVariables = Exact<{
+  searchValue?: InputMaybe<Scalars['String']>;
+  modalidadeValue?: InputMaybe<Array<InputMaybe<Modalidade>> | InputMaybe<Modalidade>>;
+}>;
 
 
 export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, modalidade?: Modalidade | null, vagas?: number | null, preco?: string | null, publishedAt?: any | null, slug?: string | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
@@ -5087,8 +5090,8 @@ export type SimoneQuery = { __typename?: 'Query', corretor?: { __typename?: 'Cor
 
 
 export const PropertiesDocument = gql`
-    query properties {
-  imovels {
+    query properties($searchValue: String, $modalidadeValue: [Modalidade]) {
+  imovels(where: {_search: $searchValue, OR: {modalidade_in: $modalidadeValue}}) {
     nome
     estado
     cidade
@@ -5152,6 +5155,8 @@ export const PropertiesDocument = gql`
  * @example
  * const { data, loading, error } = usePropertiesQuery({
  *   variables: {
+ *      searchValue: // value for 'searchValue'
+ *      modalidadeValue: // value for 'modalidadeValue'
  *   },
  * });
  */

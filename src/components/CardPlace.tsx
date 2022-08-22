@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "shared/Avatar/Avatar";
 import NcImage from "shared/NcImage/NcImage";
@@ -9,6 +9,7 @@ import Prices from "./Prices";
 import { ClockIcon } from "@heroicons/react/outline";
 import ItemTypeVideoIcon from "./ItemTypeVideoIcon";
 import dayjs from "dayjs";
+import { FavoriteContext } from "contexts/FavoriteContext";
 
 export interface CardNFTProps {
   className?: string;
@@ -40,14 +41,19 @@ export interface CardNFTProps {
     phone?: string;
     instagram?: string;
     fotoDePerfil?: string;
-    facebook?: string;
+    facebook?: string;  
     resume?: string;
   }
   
 }
 
+
+
 const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price, fotoPrincipal1, slug, modalidade}) => {
   const renderAvatars = () => {
+
+    
+
     return (
       <div className="flex -space-x-1 ">
         <Avatar
@@ -70,6 +76,9 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
     );
   };
 
+
+  const todayDate = new Date()
+
   return (
     <div
       className={`nc-CardNFT relative flex flex-col group !border-0 [ nc-box-has-hover nc-dark-box-bg-has-hover ] ${className}`}
@@ -89,6 +98,7 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
           <ItemTypeImageIcon className="absolute top-3 left-3 !w-9 !h-9" />
          */}
         <LikeButton
+          slug={slug}
           liked={isLiked}
           className="absolute top-3 left-3 z-10 !h-9"
         />
@@ -123,7 +133,8 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
           <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400">
             <ClockIcon className="w-4 h-4" />
             <span className="ml-1 mt-0.5">
-              {Number(dayjs(publishedAt).format('D')) - (Number(dayjs(publishedAt).format('D')) - 1)} {Number(dayjs(publishedAt).format('D')) - (Number(dayjs(publishedAt).format('D')) - 1) == 1? 'dia atrás' : 'dias atrás'}
+               {Math.ceil((new Date().getTime() - new Date(dayjs(publishedAt).format('YYYY-MM-DD')).getTime()) / (1000 * 60 * 60 * 24))} {Math.ceil((new Date().getTime() - new Date(dayjs(publishedAt).format('YYYY-MM-DD')).getTime()) / (1000 * 60 * 60 * 24)) == 1? 'dia atrás' : 'dias atrás'}
+
             </span>
           </div>  
         </div>

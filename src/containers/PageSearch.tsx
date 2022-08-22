@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import Pagination from "shared/Pagination/Pagination";
@@ -9,22 +9,53 @@ import HeaderFilterSearchPage from "components/HeaderFilterSearchPage";
 import Input from "shared/Input/Input";
 import ButtonCircle from "shared/Button/ButtonCircle";
 import CardPlace from "components/CardPlace";
-import { usePropertiesQuery } from "graphql/generated";
+import { Modalidade, usePropertiesQuery } from "graphql/generated";
 import NcImage from "shared/NcImage/NcImage";
 import authorBanner from "images/nfts/authorBanner.png";
 import { Link, useParams } from "react-router-dom";
 import DetailPage from "./NftDetailPage/DetailPage";
+import { FavoriteContext } from "contexts/FavoriteContext";
+import { TabFilterContext } from "contexts/TabFilterContext";
 
 export interface PageSearchProps {
   className?: string;
 }
 
 const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
-  
 
-  const {data: properties} = usePropertiesQuery()
+  const {modalidade} = useContext(TabFilterContext)
+
+  modalidade.forEach(item => {
+    if(item == 'Aluguel'){
+      item = Modalidade.Aluguel;
+    }
+    if(item == 'Venda'){
+      item = Modalidade.Venda;
+    }
+  return 
+  })
+
+  const [mainSearchValue, setMainSearchValue] = useState('')
+
+  const {data: properties} = usePropertiesQuery({variables: {
+    searchValue: mainSearchValue,
+    modalidadeValue: [Modalidade.Venda, Modalidade.Aluguel]
+  }})
+  
+  const {favoritedPropertiesSlugs} = useContext(FavoriteContext)
 
   const {slug} = useParams<{slug: string;}>()
+
+  function handleMainSearch(event:React.ChangeEvent<HTMLInputElement>){
+    setMainSearchValue(event?.target?.value)
+  }
+
+  function handleSubmitMainSearch(event: React.FormEvent<HTMLFormElement>){
+    
+    event.preventDefault()
+
+
+  }
 
   
   useEffect(() => {
@@ -53,7 +84,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
         </div>
       <div className="container">
         <header className="max-w-2xl mx-auto -mt-10 flex flex-col lg:-mt-7">
-          <form className="relative w-full " method="post">
+          <form className="relative w-full " method="post" onSubmit={handleSubmitMainSearch}>
             <label
               htmlFor="search-input"
               className="text-neutral-500 dark:text-neutral-300"
@@ -65,6 +96,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
                 placeholder="Procure aqui seu imóvel"
                 sizeClass="pl-14 py-5 pr-5 md:pl-16"
                 rounded="rounded-full"
+                onChange={handleMainSearch}
               />
               <ButtonCircle
                 className="absolute right-2.5 top-1/2 transform -translate-y-1/2"
@@ -113,6 +145,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
             return (
               
               <CardPlace
+              isLiked={favoritedPropertiesSlugs?.includes(item?.slug as string)}
               key={item?.nome?.toString()}
               slug={item?.slug?.toString()}
               name={item?.nome?.toString()}

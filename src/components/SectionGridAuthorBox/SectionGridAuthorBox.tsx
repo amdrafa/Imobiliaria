@@ -4,26 +4,30 @@ import CardAuthorBox3 from "components/CardAuthorBox3/CardAuthorBox3";
 import CardAuthorBox4 from "components/CardAuthorBox4/CardAuthorBox4";
 import Heading from "components/Heading/Heading";
 import NavItem2 from "components/NavItem2";
+import { PropertiesQuery } from "graphql/generated";
 import React, { FC } from "react";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import ButtonSecondary from "shared/Button/ButtonSecondary";
 import Nav from "shared/Nav/Nav";
 import SortOrderFilter from "./SortOrderFilter";
 
-export interface SectionGridAuthorBoxProps {
+export type SectionGridAuthorBoxProps = {
   className?: string;
   sectionStyle?: "style1" | "style2";
   gridClassName?: string;
   boxCard?: "box1" | "box2" | "box3" | "box4";
   data?: any[];
+  
 }
+
+// type SectionGridAuthorBoxPropsNew = Omit<SectionGridAuthorBoxProps, '__typename'>;
 
 const SectionGridAuthorBox: FC<SectionGridAuthorBoxProps> = ({
   className = "",
   boxCard = "box1",
   sectionStyle = "style1",
   gridClassName = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
-  data = Array.from("11111111"),
+  data = Array.from(""),
 }) => {
   const [tabActive, setTabActive] = React.useState("Apartamento");
 
@@ -45,6 +49,7 @@ const SectionGridAuthorBox: FC<SectionGridAuthorBoxProps> = ({
           <CardAuthorBox4
             authorIndex={index < 3 ? index + 1 : undefined}
             key={index}
+            
           />
         );
 
@@ -160,7 +165,16 @@ const SectionGridAuthorBox: FC<SectionGridAuthorBoxProps> = ({
     >
       {sectionStyle === "style1" ? renderHeading1() : renderHeading2()}
       <div className={`grid gap-4 md:gap-7 ${gridClassName}`}>
-        {data.map((_, index) => renderCard(index))}
+        {data.map((item, index) => (
+          <CardAuthorBox4 
+          key={item?.corretor?.nome}
+          corretorImage={item?.corretor?.fotoperfil?.url}
+          mainImage={item?.fotoPrincipal1?.url}
+          corretorName={item?.corretor?.nome}
+          propertyName={item?.nome}
+          slug={item?.slug}
+          />
+        ))}
       </div>
       <div className="mt-16 flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-5">
       

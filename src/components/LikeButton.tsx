@@ -1,20 +1,59 @@
-import React, { useState } from "react";
+import { FavoriteContext } from "contexts/FavoriteContext";
+import { PropertiesQuery } from "graphql/generated";
+import React, { useContext, useState } from "react";
 
 export interface LikeButtonProps {
   className?: string;
   liked?: boolean;
+  slug?: string;
+  // handleClick?: React.Dispatch<React.SetStateAction<PropertiesQuery | undefined>>;
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({
   className,
-  liked = false
+  liked = false,
+  slug
+  
 }) => {
+
+  const {setFavoritedPropertiesSlugs, favoritedPropertiesSlugs, filteredData} = useContext(FavoriteContext);
+
   const [isLiked, setIsLiked] = useState(liked);
 
   return (
     <button
       className={`bg-black/50 px-3.5 h-10 flex items-center justify-center rounded-full text-white ${className}`}
-      onClick={() => setIsLiked(!isLiked)}
+      onClick={() => {
+
+        let filteredFavorites = favoritedPropertiesSlugs;
+
+        const index = filteredFavorites?.findIndex((favorite?) => favorite == slug as string)
+
+        
+          // let index = favoritedPropertiesSlugs?.findIndex(item => item == slug)
+          // let newFavoritedProperties = favoritedPropertiesSlugs?.splice(index, 1)
+          // setFavoritedPropertiesSlugs(newFavoritedProperties as [])
+
+          if(filteredFavorites?.includes(slug as string)){
+
+            filteredFavorites.splice(index as number, 1)
+
+            setFavoritedPropertiesSlugs(filteredFavorites)
+            console.log('já existe') 
+          }else{
+            setFavoritedPropertiesSlugs([...favoritedPropertiesSlugs as [], slug as string])
+            console.log('nao existe')
+          }
+        
+          
+          
+        
+        
+        
+        setIsLiked(!isLiked)
+        
+        console.log(favoritedPropertiesSlugs, index)
+      }}
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
         <path

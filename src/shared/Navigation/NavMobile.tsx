@@ -135,10 +135,10 @@ const NavMobile: React.FC<NavMobileProps> = ({
       </ul>
       <div className="flex items-center justify-between py-6 px-5 space-x-2">
         <ButtonPrimary href={"/page-upload-item"} className="!px-10">
-          Anunciar
+          Procurar imóvel
         </ButtonPrimary>
-        <ButtonSecondary href={"/connect-wallet"} className="flex-1">
-          Entrar em contato
+        <ButtonSecondary href={"/contato"} className="flex-1">
+          Contato
         </ButtonSecondary>
       </div>
     </div>

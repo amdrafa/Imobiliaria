@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import Avatar from "shared/Avatar/Avatar";
 import Badge from "shared/Badge/Badge";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 import NextImageArrow from "components/NextImageArrow";
 import NextImageArrowRight from "components/NextImageArrowRight";
 import ImageModal from "components/ImageModal";
+import { FavoriteContext } from "contexts/FavoriteContext";
 
 
 export interface NftDetailPageProps {
@@ -38,6 +39,8 @@ const DetailPage: FC<NftDetailPageProps> = ({
 }) => {
 
   // const { asPath } = useRouter()
+
+  const {favoritedPropertiesSlugs} = useContext(FavoriteContext)
 
   const {data: property, loading} = usePropertydetailQuery({
     variables: {
@@ -240,7 +243,9 @@ const DetailPage: FC<NftDetailPageProps> = ({
                   containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
                 />
               {/* META FAVORITES */}
-              <LikeButton className="absolute left-6 top-3 " />
+              {/* <LikeButton 
+              liked={favoritedPropertiesSlugs?.includes(property?.imovel?.slug?.toString() as string)}
+              className="absolute left-6 top-3 " /> */}
 
               {mainImage == property?.imovel?.fotoPrincipal1?.url ? ('') : (
                 <NextImageArrow 
