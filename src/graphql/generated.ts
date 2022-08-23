@@ -800,8 +800,7 @@ export enum Categoria {
   Comercial = 'Comercial',
   Galpao = 'Galpao',
   Sitio = 'Sitio',
-  Terreno = 'Terreno',
-  Todos = 'Todos'
+  Terreno = 'Terreno'
 }
 
 /** Representing a color value comprising of HEX, RGBA and css color values */
@@ -5064,6 +5063,11 @@ export enum _SystemDateTimeFieldVariation {
 export type PropertiesQueryVariables = Exact<{
   searchValue?: InputMaybe<Scalars['String']>;
   modalidadeValue?: InputMaybe<Array<InputMaybe<Modalidade>> | InputMaybe<Modalidade>>;
+  roomsValue?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
+  bathroomsValue?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
+  suitesValue?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
+  ParkingCarValue?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
+  categoryValue?: InputMaybe<Array<InputMaybe<Categoria>> | InputMaybe<Categoria>>;
 }>;
 
 
@@ -5090,8 +5094,10 @@ export type SimoneQuery = { __typename?: 'Query', corretor?: { __typename?: 'Cor
 
 
 export const PropertiesDocument = gql`
-    query properties($searchValue: String, $modalidadeValue: [Modalidade]) {
-  imovels(where: {_search: $searchValue, OR: {modalidade_in: $modalidadeValue}}) {
+    query properties($searchValue: String, $modalidadeValue: [Modalidade], $roomsValue: [Int], $bathroomsValue: [Int], $suitesValue: [Int], $ParkingCarValue: [Int], $categoryValue: [Categoria]) {
+  imovels(
+    where: {_search: $searchValue, OR: {modalidade_in: $modalidadeValue, OR: {quartos_in: $roomsValue, OR: {banheiros_in: $bathroomsValue, OR: {suites_in: $suitesValue, OR: {vagas_in: $ParkingCarValue, OR: {categoria_in: $categoryValue}}}}}}}
+  ) {
     nome
     estado
     cidade
@@ -5157,6 +5163,11 @@ export const PropertiesDocument = gql`
  *   variables: {
  *      searchValue: // value for 'searchValue'
  *      modalidadeValue: // value for 'modalidadeValue'
+ *      roomsValue: // value for 'roomsValue'
+ *      bathroomsValue: // value for 'bathroomsValue'
+ *      suitesValue: // value for 'suitesValue'
+ *      ParkingCarValue: // value for 'ParkingCarValue'
+ *      categoryValue: // value for 'categoryValue'
  *   },
  * });
  */

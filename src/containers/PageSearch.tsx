@@ -9,7 +9,7 @@ import HeaderFilterSearchPage from "components/HeaderFilterSearchPage";
 import Input from "shared/Input/Input";
 import ButtonCircle from "shared/Button/ButtonCircle";
 import CardPlace from "components/CardPlace";
-import { Modalidade, usePropertiesQuery } from "graphql/generated";
+import { Categoria, Modalidade, usePropertiesQuery } from "graphql/generated";
 import NcImage from "shared/NcImage/NcImage";
 import authorBanner from "images/nfts/authorBanner.png";
 import { Link, useParams } from "react-router-dom";
@@ -23,23 +23,163 @@ export interface PageSearchProps {
 
 const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
-  const {modalidade} = useContext(TabFilterContext)
+  const {modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive} = useContext(TabFilterContext)
 
-  modalidade.forEach(item => {
-    if(item == 'Aluguel'){
-      item = Modalidade.Aluguel;
+  const [defaultFileType, setDefaultFileType] = useState([1,2,3,4,5])
+
+  const [defaultBathroomsNumber, setDefaultBathroomsNumber] = useState([0,1,2,3,4,5])
+
+  const [defaultSuitesNumber, setDefaultSuitesNumber] = useState([0,1,2,3,4,5])
+
+  const [defaultParkingCarNumber, setDefaultParkingCarNumber] = useState([0,1,2,3,4,5])
+
+  const [defaultCategory, setDefaultCategory] = useState([Categoria.Apartamento, Categoria.Casa, Categoria.Chacara, Categoria.Comercial, Categoria.Galpao, Categoria.Sitio, Categoria.Terreno])
+
+  const [updatedModalidade, setUpdatedModalidade] = useState([Modalidade.Aluguel, Modalidade.Venda])
+
+  //Modalidade
+
+  useEffect(() => {
+
+    const updateValues = async () => {
+
+      let updatedValue = []
+
+      if(saleTypeStates.includes('Venda') && saleTypeStates.includes('Aluguel')){
+        setUpdatedModalidade([Modalidade.Aluguel, Modalidade.Venda])
+        return ;
+      }
+
+      if(saleTypeStates.includes('Venda') && !saleTypeStates.includes('Aluguel')){
+          setUpdatedModalidade(updatedModalidade.filter(item => {
+          return item == 'Venda';
+        }))
+        return ;
+      }
+
+      if(saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')){
+        setUpdatedModalidade(updatedModalidade.filter(item => {
+        return item == 'Aluguel';
+      }))
+      return ;
+      }
+
+    
+      if(!saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')){
+        setUpdatedModalidade([Modalidade.Aluguel, Modalidade.Venda])
+      return ;
+      }
+      
+  
     }
-    if(item == 'Venda'){
-      item = Modalidade.Venda;
+    updateValues()
+    
+  }, [saleTypeStates])
+
+  //Rooms
+
+  useEffect(() => {
+
+    if(fileTypesState.length >= 1){
+      setDefaultFileType(fileTypesState)
+    }else{
+      setDefaultFileType([1,2,3,4,5])
     }
-  return 
-  })
+    
+  }, [fileTypesState])
+
+  // bathrooms
+
+  useEffect(() => {
+
+    if(bathroomState.length >= 1){
+      setDefaultBathroomsNumber(bathroomState)
+    }else{
+      setDefaultBathroomsNumber([0,1,2,3,4,5])
+    }
+    
+  }, [bathroomState])
+
+  // Suites
+
+  useEffect(() => {
+
+    if(suitesState.length >= 1){
+      setDefaultSuitesNumber(suitesState)
+    }else{
+      setDefaultSuitesNumber([0,1,2,3,4,5])
+    }
+    
+  }, [suitesState])
+
+  // parking car
+
+  useEffect(() => {
+
+    if(carSpotState.length >= 1){
+      setDefaultParkingCarNumber(carSpotState)
+    }else{
+      setDefaultParkingCarNumber([0,1,2,3,4,5])
+    }
+    
+  }, [carSpotState])
+
+  // Category
+
+  useEffect(() => {
+
+    switch(tabActive){
+      case 'Todos':
+        setDefaultCategory([Categoria.Apartamento, Categoria.Casa, Categoria.Chacara, Categoria.Comercial, Categoria.Galpao, Categoria.Sitio, Categoria.Terreno])
+      break;
+
+      case 'Apartamento':
+        setDefaultCategory([Categoria.Apartamento])
+      break;
+
+      case 'Casa':
+        setDefaultCategory([Categoria.Casa])
+      break;
+
+      case 'Terreno':
+        setDefaultCategory([Categoria.Terreno])
+      break;
+
+      case 'Comercial':
+        setDefaultCategory([Categoria.Comercial])
+      break;
+
+      case 'Galpao':
+        setDefaultCategory([Categoria.Galpao])
+      break;
+
+      case 'Sitio':
+        setDefaultCategory([Categoria.Sitio])
+      break;
+
+      case 'Chacara':
+        setDefaultCategory([Categoria.Chacara])
+      break;
+    }
+
+    // if(tabActive.length >= 1){
+    //   setDefaultCategory()
+    // }else{
+    //   setDefaultCategory([Categoria.Apartamento, Categoria.Casa, Categoria.Chacara, Categoria.Comercial, Categoria.Galpao, Categoria.Sitio, Categoria.Terreno])
+    // }
+    
+  }, [tabActive])
 
   const [mainSearchValue, setMainSearchValue] = useState('')
 
   const {data: properties} = usePropertiesQuery({variables: {
     searchValue: mainSearchValue,
-    modalidadeValue: [Modalidade.Venda, Modalidade.Aluguel]
+    modalidadeValue: updatedModalidade,
+    roomsValue: defaultFileType,
+    bathroomsValue: defaultBathroomsNumber,
+    suitesValue: defaultSuitesNumber,
+    ParkingCarValue: defaultParkingCarNumber,
+    categoryValue: defaultCategory
   }})
   
   const {favoritedPropertiesSlugs} = useContext(FavoriteContext)
@@ -57,21 +197,22 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
   }
 
-  
-  useEffect(() => {
-    console.log(properties)
-    
-   }, [properties])
 
   return (
     slug? (
+      <>
+      <Helmet>
+        <title>Imóvel || Angela Simone</title>
+      </Helmet>
       <DetailPage 
       slug={slug}
       />
+      </>
+      
     ) : (
       <div className={`nc-PageSearch  ${className}`} data-nc-id="PageSearch">
       <Helmet>
-        <title>Home</title>
+        <title>Home || Angela Simone</title>
       </Helmet>
 
       

@@ -198,7 +198,7 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
       data-nc-id="PageContact"
     >
       <Helmet>
-        <title>Contatos</title>
+        <title>Contatos || Angela Simone</title>
       </Helmet>
 
       {loading ? ('') : 

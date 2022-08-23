@@ -7,136 +7,147 @@ import Checkbox from "shared/Checkbox/Checkbox";
 import Slider from "rc-slider";
 import Radio from "shared/Radio/Radio";
 import { ChevronDownIcon } from "@heroicons/react/outline";
+import { BiBuildingHouse } from "react-icons/bi";
+import { TbBed } from "react-icons/tb";
+import { TbToiletPaper } from "react-icons/tb";
+import { MdOutlineShower } from "react-icons/md";
+import { BiCar } from "react-icons/bi";
+import { TbArmchair, TbWallet } from "react-icons/tb";
+
 import { TabFilterContext } from "contexts/TabFilterContext";
-
-// DEMO DATA
-const typeOfSales = [
-  {
-    name: "Aluguel",
-  },
-  {
-    name: "Venda",
-  },
-  
-];
-
-const RoomsNumber = [
-  {
-    name: "1",
-  },
-  {
-    name: "2",
-  },
-  {
-    name: "3",
-  },
-  {
-    name: "4",
-  },
-  {
-    name: "5",
-  },
-];
-
-const carSpot = [
-  {
-    name: "1",
-  },
-  {
-    name: "2",
-  },
-  {
-    name: "3",
-  },
-  {
-    name: "4",
-  },
-  {
-    name: "5",
-  },
-];
-
-const Suites = [
-  {
-    name: "1",
-  },
-  {
-    name: "2",
-  },
-  {
-    name: "3",
-  },
-  {
-    name: "4",
-  },
-  {
-    name: "5",
-  },
-];
-
-const bathrooms = [
-  {
-    name: "1",
-  },
-  {
-    name: "2",
-  },
-  {
-    name: "3",
-  },
-  {
-    name: "4",
-  },
-  {
-    name: "5",
-  },
-];
-
-
-
-
-
 
 //
 const TabFilters = () => {
+  function handleMobileTabChange(event: React.ChangeEvent<HTMLInputElement>) {}
 
-  const {modalidade, setModalidade} = useContext(TabFilterContext)
+  // DEMO DATA
+  const typeOfSales = [
+    {
+      name: "Aluguel",
+    },
+    {
+      name: "Venda",
+    },
+  ];
+
+  const RoomsNumber = [
+    {
+      name: "1",
+    },
+    {
+      name: "2",
+    },
+    {
+      name: "3",
+    },
+    {
+      name: "4",
+    },
+    {
+      name: "5",
+    },
+  ];
+
+  const carSpot = [
+    {
+      name: "1",
+    },
+    {
+      name: "2",
+    },
+    {
+      name: "3",
+    },
+    {
+      name: "4",
+    },
+    {
+      name: "5",
+    },
+  ];
+
+  const Suites = [
+    {
+      name: "1",
+    },
+    {
+      name: "2",
+    },
+    {
+      name: "3",
+    },
+    {
+      name: "4",
+    },
+    {
+      name: "5",
+    },
+  ];
+
+  const bathrooms = [
+    {
+      name: "1",
+    },
+    {
+      name: "2",
+    },
+    {
+      name: "3",
+    },
+    {
+      name: "4",
+    },
+    {
+      name: "5",
+    },
+  ];
+
+  const {
+    modalidade,
+    setModalidade,
+    setSaleTypeStates,
+    saleTypeStates,
+    fileTypesState,
+    setfileTypesState,
+    bathroomState,
+    setBathroomState,
+    setSuitesState,
+    suitesState,
+    carSpotState,
+    setCarSpotState,
+    isFurnishedState,
+    setIsFurnishedState,
+  } = useContext(TabFilterContext);
 
   const [isOpenMoreFilter, setisOpenMoreFilter] = useState(false);
   //
-  const [isFurnishedState, setIsFurnishedState] = useState(true);
-  const [rangePrices, setRangePrices] = useState([100, 50000]);
-  const [fileTypesState, setfileTypesState] = useState<string[]>([]);
-  const [bathroomState, setBathroomState] = useState<string[]>([]);
-  const [suitesState, setSuitesState] = useState<string[]>([]);
-  const [carSpotState, setCarSpotState] = useState<string[]>([]);
-  const [saleTypeStates, setSaleTypeStates] = useState<string[]>([]);
-  
+
+  const [rangePrices, setRangePrices] = useState([500, 5000000]);
 
   //
   const closeModalMoreFilter = () => setisOpenMoreFilter(false);
   const openModalMoreFilter = () => setisOpenMoreFilter(true);
 
   //
-  const handleChangeFileTypes = (checked: boolean, name: string) => {
+  const handleChangeFileTypes = (checked: boolean, name: number) => {
     checked
       ? setfileTypesState([...fileTypesState, name])
       : setfileTypesState(fileTypesState.filter((i) => i !== name));
   };
 
-  const handleChangeBathroom = (checked: boolean, name: string) => {
+  const handleChangeBathroom = (checked: boolean, name: number) => {
     checked
       ? setBathroomState([...bathroomState, name])
       : setBathroomState(bathroomState.filter((i) => i !== name));
   };
 
-  const handleChangeSuites = (checked: boolean, name: string) => {
+  const handleChangeSuites = (checked: boolean, name: number) => {
     checked
       ? setSuitesState([...suitesState, name])
       : setSuitesState(suitesState.filter((i) => i !== name));
   };
 
-  const handleChangeCarSpot = (checked: boolean, name: string) => {
+  const handleChangeCarSpot = (checked: boolean, name: number) => {
     checked
       ? setCarSpotState([...carSpotState, name])
       : setCarSpotState(carSpotState.filter((i) => i !== name));
@@ -145,7 +156,8 @@ const TabFilters = () => {
   const handleChangeSaleType = (checked: boolean, name: string) => {
     checked
       ? setSaleTypeStates([...saleTypeStates, name])
-      : setSaleTypeStates(saleTypeStates.filter((i) => i !== name)); setModalidade(saleTypeStates);
+      : setSaleTypeStates(saleTypeStates.filter((i) => i !== name));
+    setModalidade(saleTypeStates);
   };
 
   //
@@ -172,7 +184,6 @@ const TabFilters = () => {
 
   // OK
   const renderTabsTypeOfSales = () => {
-    
     return (
       <Popover className="relative">
         {({ open, close }) => (
@@ -191,29 +202,7 @@ const TabFilters = () => {
                 }
                 `}
             >
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M10 6.575L9.10838 8.125C8.90838 8.46666 9.07505 8.75 9.46672 8.75H10.525C10.925 8.75 11.0834 9.03333 10.8834 9.375L10 10.925"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M6.91672 15.0333V14.0667C5.00005 12.9083 3.42505 10.65 3.42505 8.25C3.42505 4.125 7.21672 0.891671 11.5 1.825C13.3834 2.24167 15.0334 3.49167 15.8917 5.21667C17.6334 8.71667 15.8 12.4333 13.1084 14.0583V15.025C13.1084 15.2667 13.2 15.825 12.3084 15.825H7.71672C6.80005 15.8333 6.91672 15.475 6.91672 15.0333Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M7.08325 18.3333C8.99159 17.7917 11.0083 17.7917 12.9166 18.3333"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <BiBuildingHouse fontSize={18} fontWeight={"sm"} />
 
               <span className="ml-2">Modalidade</span>
               {!saleTypeStates.length ? (
@@ -236,7 +225,6 @@ const TabFilters = () => {
               <Popover.Panel className="absolute z-40 w-screen max-w-sm px-4 mt-3 left-0 sm:px-0 lg:max-w-md">
                 <div className="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
                   <div className="relative flex flex-col px-5 py-4 space-y-5">
-                    
                     <div className="w-full" />
                     {typeOfSales.map((item) => (
                       <div key={item.name} className="">
@@ -278,7 +266,7 @@ const TabFilters = () => {
   };
 
   // OK
-  
+
   // OK
   const renderRoomsNumber = () => {
     return (
@@ -295,49 +283,7 @@ const TabFilters = () => {
                 }
                 `}
             >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.52002 7.11011H21.48"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.52002 2.11011V6.97011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15.48 2.11011V6.52011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <TbBed fontSize={18} />
 
               <span className="ml-2">Quartos</span>
               {!fileTypesState.length ? (
@@ -365,9 +311,11 @@ const TabFilters = () => {
                         <Checkbox
                           name={item.name}
                           label={item.name}
-                          defaultChecked={fileTypesState.includes(item.name)}
+                          defaultChecked={fileTypesState.includes(
+                            Number(item.name)
+                          )}
                           onChange={(checked) =>
-                            handleChangeFileTypes(checked, item.name)
+                            handleChangeFileTypes(checked, Number(item.name))
                           }
                         />
                       </div>
@@ -399,8 +347,6 @@ const TabFilters = () => {
     );
   };
 
-
-
   const renderCarSpot = () => {
     return (
       <Popover className="relative">
@@ -416,49 +362,7 @@ const TabFilters = () => {
                 }
                 `}
             >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.52002 7.11011H21.48"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.52002 2.11011V6.97011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15.48 2.11011V6.52011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <BiCar fontSize={18} />
 
               <span className="ml-2">Vagas</span>
               {!carSpotState.length ? (
@@ -486,9 +390,11 @@ const TabFilters = () => {
                         <Checkbox
                           name={item.name}
                           label={item.name}
-                          defaultChecked={carSpotState.includes(item.name)}
+                          defaultChecked={carSpotState.includes(
+                            Number(item.name)
+                          )}
                           onChange={(checked) =>
-                            handleChangeCarSpot(checked, item.name)
+                            handleChangeCarSpot(checked, Number(item.name))
                           }
                         />
                       </div>
@@ -520,7 +426,7 @@ const TabFilters = () => {
     );
   };
 
-  //Bathrooms 
+  //Bathrooms
 
   const renderSuitesNumber = () => {
     return (
@@ -537,57 +443,13 @@ const TabFilters = () => {
                 }
                 `}
             >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.52002 7.11011H21.48"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.52002 2.11011V6.97011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15.48 2.11011V6.52011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <MdOutlineShower fontSize={20} />
 
               <span className="ml-2">Suites</span>
               {!suitesState.length ? (
                 <ChevronDownIcon className="w-4 h-4 ml-3" />
               ) : (
-                <span onClick={() => setSuitesState([])}>
-                  {renderXClear()}
-                </span>
+                <span onClick={() => setSuitesState([])}>{renderXClear()}</span>
               )}
             </Popover.Button>
             <Transition
@@ -607,9 +469,11 @@ const TabFilters = () => {
                         <Checkbox
                           name={item.name}
                           label={item.name}
-                          defaultChecked={suitesState.includes(item.name)}
+                          defaultChecked={suitesState.includes(
+                            Number(item.name)
+                          )}
                           onChange={(checked) =>
-                            handleChangeSuites(checked, item.name)
+                            handleChangeSuites(checked, Number(item.name))
                           }
                         />
                       </div>
@@ -643,10 +507,6 @@ const TabFilters = () => {
 
   // suites
 
-
-  
-
-
   const renderBathroomNumber = () => {
     return (
       <Popover className="relative">
@@ -662,50 +522,7 @@ const TabFilters = () => {
                 }
                 `}
             >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.52002 7.11011H21.48"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8.52002 2.11011V6.97011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15.48 2.11011V6.52011"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M9.75 14.4501V13.2501C9.75 11.7101 10.84 11.0801 12.17 11.8501L13.21 12.4501L14.25 13.0501C15.58 13.8201 15.58 15.0801 14.25 15.8501L13.21 16.4501L12.17 17.0501C10.84 17.8201 9.75 17.1901 9.75 15.6501V14.4501V14.4501Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-
+              <TbToiletPaper fontSize={18} />
               <span className="ml-2">Banheiros</span>
               {!bathroomState.length ? (
                 <ChevronDownIcon className="w-4 h-4 ml-3" />
@@ -732,9 +549,11 @@ const TabFilters = () => {
                         <Checkbox
                           name={item.name}
                           label={item.name}
-                          defaultChecked={bathroomState.includes(item.name)}
+                          defaultChecked={bathroomState.includes(
+                            Number(item.name)
+                          )}
                           onChange={(checked) =>
-                            handleChangeBathroom(checked, item.name)
+                            handleChangeBathroom(checked, Number(item.name))
                           }
                         />
                       </div>
@@ -768,6 +587,15 @@ const TabFilters = () => {
 
   // OK
   const renderTabsPriceRage = () => {
+    var formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "BRL",
+
+      // These options are needed to round to whole numbers if that's what you want.
+      //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+      //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
+
     return (
       <Popover className="relative">
         {({ open, close }) => (
@@ -775,43 +603,11 @@ const TabFilters = () => {
             <Popover.Button
               className={`flex items-center justify-center px-4 py-2 text-sm rounded-full border border-primary-500 bg-primary-50 text-primary-900 focus:outline-none `}
             >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18.04 13.55C17.62 13.96 17.38 14.55 17.44 15.18C17.53 16.26 18.52 17.05 19.6 17.05H21.5V18.24C21.5 20.31 19.81 22 17.74 22H6.26C4.19 22 2.5 20.31 2.5 18.24V11.51C2.5 9.44001 4.19 7.75 6.26 7.75H17.74C19.81 7.75 21.5 9.44001 21.5 11.51V12.95H19.48C18.92 12.95 18.41 13.17 18.04 13.55Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.5 12.4101V7.8401C2.5 6.6501 3.23 5.59006 4.34 5.17006L12.28 2.17006C13.52 1.70006 14.85 2.62009 14.85 3.95009V7.75008"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M22.5588 13.9702V16.0302C22.5588 16.5802 22.1188 17.0302 21.5588 17.0502H19.5988C18.5188 17.0502 17.5288 16.2602 17.4388 15.1802C17.3788 14.5502 17.6188 13.9602 18.0388 13.5502C18.4088 13.1702 18.9188 12.9502 19.4788 12.9502H21.5588C22.1188 12.9702 22.5588 13.4202 22.5588 13.9702Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M7 12H14"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-
-              <span className="ml-2">{`R$${rangePrices[0]} - R$${rangePrices[1]}`}</span>
+              <TbWallet fontSize={18} />
+              <span className="ml-2">
+                {formatter.format(rangePrices[0])} -{" "}
+                {formatter.format(rangePrices[1])}
+              </span>
               {renderXClear()}
             </Popover.Button>
             <Transition
@@ -831,7 +627,7 @@ const TabFilters = () => {
                       <Slider
                         range
                         min={100}
-                        max={50000}
+                        max={5000000}
                         step={1}
                         defaultValue={[rangePrices[0], rangePrices[1]]}
                         allowCross={false}
@@ -850,16 +646,13 @@ const TabFilters = () => {
                           Preço mínimo
                         </label>
                         <div className="mt-1 relative rounded-md">
-                          <span className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-500 sm:text-sm">
-                            R$
-                          </span>
                           <input
                             type="text"
                             name="minPrice"
                             disabled
                             id="minPrice"
-                            className="block w-32 pr-10 pl-4 sm:text-sm border-neutral-200 dark:border-neutral-700 rounded-full bg-transparent"
-                            value={rangePrices[0]}
+                            className="block w-[150px] pr-10 pl-4 sm:text-sm border-neutral-200 dark:border-neutral-700 rounded-full bg-transparent"
+                            value={formatter.format(rangePrices[0])}
                           />
                         </div>
                       </div>
@@ -871,16 +664,13 @@ const TabFilters = () => {
                           Preço máximo
                         </label>
                         <div className="mt-1 relative rounded-md">
-                          <span className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-500 sm:text-sm">
-                          R$
-                          </span>
                           <input
                             type="text"
                             disabled
                             name="maxPrice"
                             id="maxPrice"
-                            className="block w-32 pr-10 pl-4 sm:text-sm border-neutral-200 dark:border-neutral-700 rounded-full bg-transparent"
-                            value={rangePrices[1]}
+                            className=" block w-44 pr-10 pl-4 sm:text-sm border-neutral-200 dark:border-neutral-700 rounded-full bg-transparent"
+                            value={formatter.format(rangePrices[1])}
                           />
                         </div>
                       </div>
@@ -889,7 +679,7 @@ const TabFilters = () => {
                   <div className="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
                     <ButtonThird
                       onClick={() => {
-                        setRangePrices([0.01, 10]);
+                        setRangePrices([500, 500000]);
                         close();
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
@@ -923,36 +713,7 @@ const TabFilters = () => {
         }`}
         onClick={() => setIsFurnishedState(!isFurnishedState)}
       >
-        <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none">
-          <path
-            d="M9.99992 10C12.3011 10 14.1666 8.13452 14.1666 5.83334C14.1666 3.53215 12.3011 1.66667 9.99992 1.66667C7.69873 1.66667 5.83325 3.53215 5.83325 5.83334C5.83325 8.13452 7.69873 10 9.99992 10Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M2.84155 18.3333C2.84155 15.1083 6.04991 12.5 9.99991 12.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M15.1667 17.8334C16.6394 17.8334 17.8334 16.6394 17.8334 15.1667C17.8334 13.6939 16.6394 12.5 15.1667 12.5C13.6939 12.5 12.5 13.6939 12.5 15.1667C12.5 16.6394 13.6939 17.8334 15.1667 17.8334Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M18.3333 18.3333L17.5 17.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <TbArmchair fontSize={18} />
         <span className="line-clamp-1 ml-2">Mobiliado</span>
         {isFurnishedState && renderXClear()}
       </div>
@@ -965,6 +726,7 @@ const TabFilters = () => {
       name: string;
       description?: string;
       defaultChecked?: boolean;
+      onchangeFunction?: ((checked: boolean) => void) | undefined;
     }[]
   ) => {
     const list1 = data.filter((_, i) => i < data.length / 2);
@@ -979,6 +741,7 @@ const TabFilters = () => {
               subLabel={item.description}
               label={item.name}
               defaultChecked={!!item.defaultChecked}
+              onChange={item.onchangeFunction}
             />
           ))}
         </div>
@@ -999,6 +762,13 @@ const TabFilters = () => {
 
   // FOR RESPONSIVE MOBILE
   const renderTabMobileFilter = () => {
+
+    var formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "BRL",
+
+    })
+
     return (
       <div className="flex-shrink-0">
         <div
@@ -1066,7 +836,22 @@ const TabFilters = () => {
                       <div className="py-7">
                         <h3 className="text-xl font-medium">Modalidade</h3>
                         <div className="mt-6 relative ">
-                          {renderMoreFilterItem(typeOfSales)}
+                          <div className="grid grid-cols-2">
+                            {typeOfSales.map((item) => (
+                              <div key={item.name} className="">
+                                <Checkbox
+                                  name={item.name}
+                                  label={item.name}
+                                  defaultChecked={saleTypeStates.includes(
+                                    item.name
+                                  )}
+                                  onChange={(checked) =>
+                                    handleChangeSaleType(checked, item.name)
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                       {/* --------- */}
@@ -1074,7 +859,104 @@ const TabFilters = () => {
                       <div className="py-7">
                         <h3 className="text-xl font-medium">Quartos</h3>
                         <div className="mt-6 relative ">
-                          {renderMoreFilterItem(RoomsNumber)}
+                          <div className="grid grid-cols-5">
+                            {RoomsNumber.map((item) => (
+                              <div key={item.name} className="">
+                                <Checkbox
+                                  name={item.name}
+                                  label={item.name}
+                                  defaultChecked={fileTypesState.includes(
+                                    Number(item.name)
+                                  )}
+                                  onChange={(checked) =>
+                                    handleChangeFileTypes(
+                                      checked,
+                                      Number(item.name)
+                                    )
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* --------- */}
+
+                      <div className="py-7">
+                        <h3 className="text-xl font-medium">Banheiros</h3>
+                        <div className="mt-6 relative ">
+                          <div className="grid grid-cols-5">
+                            {bathrooms.map((item) => (
+                              <div key={item.name} className="">
+                                <Checkbox
+                                  name={item.name}
+                                  label={item.name}
+                                  defaultChecked={bathroomState.includes(
+                                    Number(item.name)
+                                  )}
+                                  onChange={(checked) =>
+                                    handleChangeBathroom(
+                                      checked,
+                                      Number(item.name)
+                                    )
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="py-7">
+                        <h3 className="text-xl font-medium">Suites</h3>
+                        <div className="mt-6 relative ">
+                          <div className="grid grid-cols-5">
+                            {Suites.map((item) => (
+                              <div key={item.name} className="">
+                                <Checkbox
+                                  name={item.name}
+                                  label={item.name}
+                                  defaultChecked={suitesState.includes(
+                                    Number(item.name)
+                                  )}
+                                  onChange={(checked) =>
+                                    handleChangeSuites(
+                                      checked,
+                                      Number(item.name)
+                                    )
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="py-7">
+                        <h3 className="text-xl font-medium">
+                          Vagas de garagem
+                        </h3>
+                        <div className="mt-6 relative ">
+                          <div className="grid grid-cols-5">
+                            {carSpot.map((item) => (
+                              <div key={item.name} className="">
+                                <Checkbox
+                                  name={item.name}
+                                  label={item.name}
+                                  defaultChecked={carSpotState.includes(
+                                    Number(item.name)
+                                  )}
+                                  onChange={(checked) =>
+                                    handleChangeCarSpot(
+                                      checked,
+                                      Number(item.name)
+                                    )
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
@@ -1088,9 +970,9 @@ const TabFilters = () => {
                               <Slider
                                 range
                                 className="text-red-400"
-                                min={0}
-                                max={2000}
-                                defaultValue={[0, 1000]}
+                                min={500}
+                                max={5000000}
+                                defaultValue={rangePrices}
                                 allowCross={false}
                                 onChange={(_input: number | number[]) =>
                                   setRangePrices(_input as number[])
@@ -1104,44 +986,44 @@ const TabFilters = () => {
                                   htmlFor="minPrice"
                                   className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                                 >
-                                  Min price
+                                  Preço mínimo
                                 </label>
                                 <div className="mt-1 relative rounded-md">
                                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span className="text-neutral-500 sm:text-sm">
-                                      $
+                                      R$
                                     </span>
                                   </div>
                                   <input
                                     type="text"
-                                    name="minPrice"
+                                    name="Preço Mínimo"
                                     disabled
-                                    id="minPrice"
-                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900"
-                                    value={rangePrices[0]}
+                                    id="Preço Mínimo"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900 ml-1.5"
+                                    value={formatter.format(rangePrices[0])}
                                   />
                                 </div>
                               </div>
                               <div>
                                 <label
-                                  htmlFor="maxPrice"
+                                  htmlFor="Preço máximo"
                                   className="block text-sm font-medium text-neutral-700 dark:text-neutral-300"
                                 >
-                                  Max price
+                                  Preço máximo
                                 </label>
                                 <div className="mt-1 relative rounded-md">
                                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span className="text-neutral-500 sm:text-sm">
-                                      $
+                                      R$
                                     </span>
                                   </div>
                                   <input
                                     type="text"
                                     disabled
-                                    name="maxPrice"
+                                    name="Preço máximo"
                                     id="maxPrice"
-                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900"
-                                    value={rangePrices[1]}
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900 ml-1.5"
+                                    value={formatter.format(rangePrices[1])}
                                   />
                                 </div>
                               </div>
@@ -1152,14 +1034,13 @@ const TabFilters = () => {
 
                       {/* --------- */}
                       {/* ---- */}
-                      
                     </div>
                   </div>
 
                   <div className="p-6 flex-shrink-0 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
                     <ButtonThird
                       onClick={() => {
-                        setRangePrices([0.01, 10]);
+                        setRangePrices([500, 500000]);
                         setSaleTypeStates([]);
                         setfileTypesState([]);
                         closeModalMoreFilter();
@@ -1194,7 +1075,6 @@ const TabFilters = () => {
         {renderBathroomNumber()}
         {renderSuitesNumber()}
         {renderCarSpot()}
-        {isFurnished()}
       </div>
 
       {/* FOR RESPONSIVE MOBILE */}

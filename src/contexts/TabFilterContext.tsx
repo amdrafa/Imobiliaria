@@ -9,7 +9,30 @@ type FavoriteProviderProps = {
 
 interface FavoriteContextProps {
     modalidade: string[];
-    setModalidade: React.Dispatch<React.SetStateAction<string[]>>
+    setModalidade: React.Dispatch<React.SetStateAction<string[]>>;
+
+    saleTypeStates: string[];
+    setSaleTypeStates: React.Dispatch<React.SetStateAction<string[]>>;
+
+    fileTypesState: number[];
+    setfileTypesState: React.Dispatch<React.SetStateAction<number[]>>;
+
+    bathroomState:number[];
+    setBathroomState:React.Dispatch<React.SetStateAction<number[]>>;
+
+    suitesState:number[];
+    setSuitesState: React.Dispatch<React.SetStateAction<number[]>>;
+
+    carSpotState: number[];
+    setCarSpotState: React.Dispatch<React.SetStateAction<number[]>>;
+
+    isFurnishedState: boolean;
+    setIsFurnishedState: React.Dispatch<React.SetStateAction<boolean>>;
+
+    tabActive: string; 
+    setTabActive:React.Dispatch<React.SetStateAction<string>>;
+    
+
 //   filteredData: PropertiesQuery | undefined;
 //   favoritedPropertiesSlugs: string[] | undefined;
 //   setFavoritedPropertiesSlugs: React.Dispatch<React.SetStateAction<string[]>>
@@ -21,13 +44,34 @@ export function TabFilterContextProvider({ children }: FavoriteProviderProps) {
 
    
   const [modalidade, setModalidade] = useState([''])
+  const [saleTypeStates, setSaleTypeStates] = useState<string[]>([]);
 
-  useEffect(() => {console.log(modalidade)}, [modalidade])
+  const [bathroomState, setBathroomState] = useState<number[]>([]);
+  //rooms number
+  const [fileTypesState, setfileTypesState] = useState<number[]>([]);
+
+  // suites 
+
+  const [suitesState, setSuitesState] = useState<number[]>([]);
+
+  // vagas
+
+  const [carSpotState, setCarSpotState] = useState<number[]>([]);
+
+  // isFurnished
+
+  const [isFurnishedState, setIsFurnishedState] = useState(false)
+
+  // category
+
+  const [tabActive, setTabActive] = useState("Todos");
+
+  useEffect(() => {console.log(tabActive)}, [tabActive])
    
 
   
   return (
-    <TabFilterContext.Provider value={{modalidade, setModalidade}}>
+    <TabFilterContext.Provider value={{modalidade, setModalidade, saleTypeStates, setSaleTypeStates, fileTypesState, setfileTypesState, bathroomState, setBathroomState, setSuitesState, suitesState, carSpotState, setCarSpotState, setTabActive, tabActive, isFurnishedState, setIsFurnishedState}}>
       {children}
     </TabFilterContext.Provider>
   );

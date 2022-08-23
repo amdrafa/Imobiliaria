@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import Nav from "shared/Nav/Nav";
 import NavItem from "shared/NavItem/NavItem";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import TabFilters from "components/TabFilters";
 import { Transition } from "@headlessui/react";
+import { TabFilterContext } from "contexts/TabFilterContext";
 
 export interface HeaderFilterSearchPageProps {
   className?: string;
@@ -13,8 +14,11 @@ export interface HeaderFilterSearchPageProps {
 const HeaderFilterSearchPage: FC<HeaderFilterSearchPageProps> = ({
   className = "mb-12",
 }) => {
+
+  const {tabActive, setTabActive} = useContext(TabFilterContext)
+
   const [isOpen, setIsOpen] = React.useState(true);
-  const [tabActive, setTabActive] = React.useState("Todos");
+  
 
   return (
     <div className={`flex flex-col relative ${className}`}>

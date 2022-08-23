@@ -1,5 +1,5 @@
-query properties ($searchValue: String, $modalidadeValue: [Modalidade]) {
-  imovels (where: {_search: $searchValue, OR: {modalidade_in: $modalidadeValue}}) {
+query properties ($searchValue: String, $modalidadeValue: [Modalidade], $roomsValue: [Int], $bathroomsValue: [Int], $suitesValue: [Int], $ParkingCarValue: [Int], $categoryValue: [Categoria]) {
+  imovels (where: {_search: $searchValue, OR: {modalidade_in: $modalidadeValue, OR: {quartos_in: $roomsValue, OR: {banheiros_in: $bathroomsValue, OR: {suites_in: $suitesValue, OR: {vagas_in: $ParkingCarValue, OR: {categoria_in: $categoryValue}}}}}}}) {
     nome
     estado
     cidade

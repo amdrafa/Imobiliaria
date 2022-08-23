@@ -21,7 +21,11 @@ export function FavoriteContextProvider({ children }: FavoriteProviderProps) {
   
     const {data: properties} = usePropertiesQuery({variables: {
       searchValue: '',
-      modalidadeValue: [Modalidade.Venda, Modalidade.Aluguel]
+      modalidadeValue: [Modalidade.Venda, Modalidade.Aluguel],
+      roomsValue: [1,2,3,4,5],
+      bathroomsValue: [0,1,2,3,4,5],
+      suitesValue: [0,1,2,3,4,5],
+      ParkingCarValue: [0,1,2,3,4,5]
     }})
 
     let filteredData = properties;
