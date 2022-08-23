@@ -31,6 +31,9 @@ interface FavoriteContextProps {
 
     tabActive: string; 
     setTabActive:React.Dispatch<React.SetStateAction<string>>;
+
+    rangePrices: number[]; 
+    setRangePrices: React.Dispatch<React.SetStateAction<number[]>>;
     
 
 //   filteredData: PropertiesQuery | undefined;
@@ -66,12 +69,16 @@ export function TabFilterContextProvider({ children }: FavoriteProviderProps) {
 
   const [tabActive, setTabActive] = useState("Todos");
 
+  // price range 
+
+  const [rangePrices, setRangePrices] = useState([500, 5000000]);
+
   useEffect(() => {console.log(tabActive)}, [tabActive])
    
 
   
   return (
-    <TabFilterContext.Provider value={{modalidade, setModalidade, saleTypeStates, setSaleTypeStates, fileTypesState, setfileTypesState, bathroomState, setBathroomState, setSuitesState, suitesState, carSpotState, setCarSpotState, setTabActive, tabActive, isFurnishedState, setIsFurnishedState}}>
+    <TabFilterContext.Provider value={{modalidade, setModalidade, saleTypeStates, setSaleTypeStates, fileTypesState, setfileTypesState, bathroomState, setBathroomState, setSuitesState, suitesState, carSpotState, setCarSpotState, setTabActive, tabActive, isFurnishedState, setIsFurnishedState, rangePrices, setRangePrices}}>
       {children}
     </TabFilterContext.Provider>
   );

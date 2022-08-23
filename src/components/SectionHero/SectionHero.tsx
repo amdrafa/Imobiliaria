@@ -29,7 +29,7 @@ const SectionHero: FC<SectionHeroProps> = ({
             {subHeading}
           </span>
           <div className="pt-7 flex  space-x-4">
-            <ButtonPrimary href="/page-search">
+            <ButtonPrimary href="/contato">
               <span className="">Entrar em contato</span>
               <svg className="w-5 h-5 ml-2.5" viewBox="0 0 24 24" fill="none">
                 <path
@@ -59,7 +59,7 @@ const SectionHero: FC<SectionHeroProps> = ({
               </svg>
               
             </ButtonPrimary>
-            <ButtonSecondary href="/page-upload-item">
+            <ButtonSecondary href="/">
               <span>Procurar um imóvel</span>
               <SearchIcon className="w-5 h-5 ml-2.5" />
             </ButtonSecondary>

@@ -24,6 +24,7 @@ const DEMO_PAGINATION: CustomLink[] = [
 
 export interface PaginationProps {
   className?: string;
+  currentItem?: number;
 }
 
 const Pagination: FC<PaginationProps> = ({ className = "" }) => {

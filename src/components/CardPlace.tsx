@@ -27,7 +27,7 @@ export interface CardNFTProps {
   bathrooms?: number;
   suites?: number;
   parkingSpace?: number;
-  price?: string;
+  price?: number;
   publishedAt?: string;
   slug?: string;
   fotoPrincipal1?:string;
@@ -129,11 +129,15 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
         <div className="w-2d4 w-full border-b border-neutral-100 dark:border-neutral-700"></div>
 
         <div className="flex justify-between items-end ">
-          <Prices price={price?.toString()} labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" labelText="Preço" />
+          <Prices price={new Intl.NumberFormat("pt-br", {
+            style: 'currency',
+            currency: 'BRL',
+          })
+          .format(Number(price))} labelTextClassName="bg-white dark:bg-neutral-900 dark:group-hover:bg-neutral-800 group-hover:bg-neutral-50" labelText="Preço" />
           <div className="flex items-center text-sm text-neutral-500 dark:text-neutral-400">
             <ClockIcon className="w-4 h-4" />
             <span className="ml-1 mt-0.5">
-               {Math.ceil((new Date().getTime() - new Date(dayjs(publishedAt).format('YYYY-MM-DD')).getTime()) / (1000 * 60 * 60 * 24))} {Math.ceil((new Date().getTime() - new Date(dayjs(publishedAt).format('YYYY-MM-DD')).getTime()) / (1000 * 60 * 60 * 24)) == 1? 'dia atrás' : 'dias atrás'}
+               {Math.ceil((new Date().getTime() - new Date(dayjs(publishedAt).format('YYYY-MM-DD')).getTime()) / (1000 * 60 * 60 * 24))} {Math.ceil((new Date().getTime() - new Date(dayjs(publishedAt).format('YYYY-MM-DD')).getTime()) / (1000 * 60 * 60 * 24)) == 1? 'd atrás' : 'd atrás'}
 
             </span>
           </div>  

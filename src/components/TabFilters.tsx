@@ -117,12 +117,14 @@ const TabFilters = () => {
     setCarSpotState,
     isFurnishedState,
     setIsFurnishedState,
+    rangePrices,
+    setRangePrices
   } = useContext(TabFilterContext);
 
   const [isOpenMoreFilter, setisOpenMoreFilter] = useState(false);
   //
 
-  const [rangePrices, setRangePrices] = useState([500, 5000000]);
+  
 
   //
   const closeModalMoreFilter = () => setisOpenMoreFilter(false);
@@ -679,7 +681,7 @@ const TabFilters = () => {
                   <div className="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
                     <ButtonThird
                       onClick={() => {
-                        setRangePrices([500, 500000]);
+                        setRangePrices([500, 5000000]);
                         close();
                       }}
                       sizeClass="px-4 py-2 sm:px-5"
@@ -989,17 +991,12 @@ const TabFilters = () => {
                                   Preço mínimo
                                 </label>
                                 <div className="mt-1 relative rounded-md">
-                                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span className="text-neutral-500 sm:text-sm">
-                                      R$
-                                    </span>
-                                  </div>
                                   <input
                                     type="text"
                                     name="Preço Mínimo"
                                     disabled
                                     id="Preço Mínimo"
-                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900 ml-1.5"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900 ml-1.5"
                                     value={formatter.format(rangePrices[0])}
                                   />
                                 </div>
@@ -1012,17 +1009,17 @@ const TabFilters = () => {
                                   Preço máximo
                                 </label>
                                 <div className="mt-1 relative rounded-md">
-                                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  {/* <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span className="text-neutral-500 sm:text-sm">
                                       R$
                                     </span>
-                                  </div>
+                                  </div> */}
                                   <input
                                     type="text"
                                     disabled
                                     name="Preço máximo"
                                     id="maxPrice"
-                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900 ml-1.5"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-3 sm:text-sm border-neutral-200 rounded-full text-neutral-900 ml-1.5"
                                     value={formatter.format(rangePrices[1])}
                                   />
                                 </div>
@@ -1040,8 +1037,11 @@ const TabFilters = () => {
                   <div className="p-6 flex-shrink-0 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
                     <ButtonThird
                       onClick={() => {
-                        setRangePrices([500, 500000]);
+                        setRangePrices([500, 5000000]);
                         setSaleTypeStates([]);
+                        setBathroomState([])
+                        setCarSpotState([])
+                        setSuitesState([])
                         setfileTypesState([]);
                         closeModalMoreFilter();
                       }}

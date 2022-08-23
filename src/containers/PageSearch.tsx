@@ -9,13 +9,14 @@ import HeaderFilterSearchPage from "components/HeaderFilterSearchPage";
 import Input from "shared/Input/Input";
 import ButtonCircle from "shared/Button/ButtonCircle";
 import CardPlace from "components/CardPlace";
-import { Categoria, Modalidade, usePropertiesQuery } from "graphql/generated";
+import { Categoria, Modalidade, usePropertiesLenghtQuery, usePropertiesQuery } from "graphql/generated";
 import NcImage from "shared/NcImage/NcImage";
 import authorBanner from "images/nfts/authorBanner.png";
 import { Link, useParams } from "react-router-dom";
 import DetailPage from "./NftDetailPage/DetailPage";
 import { FavoriteContext } from "contexts/FavoriteContext";
 import { TabFilterContext } from "contexts/TabFilterContext";
+import { PaginationContainer } from "components/PaginationContainer";
 
 export interface PageSearchProps {
   className?: string;
@@ -23,7 +24,9 @@ export interface PageSearchProps {
 
 const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
-  const {modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive} = useContext(TabFilterContext)
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const {modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive, rangePrices} = useContext(TabFilterContext)
 
   const [defaultFileType, setDefaultFileType] = useState([1,2,3,4,5])
 
@@ -124,6 +127,18 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     
   }, [carSpotState])
 
+  // prices range
+
+  useEffect(() => {
+
+    // if(carSpotState.length >= 1){
+    //   setDefaultParkingCarNumber(carSpotState)
+    // }else{
+    //   setDefaultParkingCarNumber([0,1,2,3,4,5])
+    // }
+    
+  }, [rangePrices])
+
   // Category
 
   useEffect(() => {
@@ -149,15 +164,15 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
         setDefaultCategory([Categoria.Comercial])
       break;
 
-      case 'Galpao':
+      case 'Galpão':
         setDefaultCategory([Categoria.Galpao])
       break;
 
-      case 'Sitio':
+      case 'Sítio':
         setDefaultCategory([Categoria.Sitio])
       break;
 
-      case 'Chacara':
+      case 'Chácara':
         setDefaultCategory([Categoria.Chacara])
       break;
     }
@@ -179,8 +194,15 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     bathroomsValue: defaultBathroomsNumber,
     suitesValue: defaultSuitesNumber,
     ParkingCarValue: defaultParkingCarNumber,
-    categoryValue: defaultCategory
+    categoryValue: defaultCategory,
+    greaterThanValue: rangePrices[0],
+    smallerThanValue: rangePrices[1],
+    firstValue: 3,
+    skipValue: 1
   }})
+
+  const {data: propertiesLenght} = usePropertiesLenghtQuery()
+
   
   const {favoritedPropertiesSlugs} = useContext(FavoriteContext)
 
@@ -282,7 +304,13 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
           {/* LOOP ITEMS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 mt-8 lg:mt-10">
             
-          {properties?.imovels?.map(item => {
+          {Number(properties?.imovels?.length) < 1 ? (
+            <div className="text-gray-400 mt-6">
+              Nenhum imóvel encontrado...
+            </div>
+          ) : (
+            <>
+            {properties?.imovels?.map(item => {
             return (
               
               <CardPlace
@@ -302,7 +330,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
               bathrooms={Number(item?.banheiros)}
               suites={Number(item?.suites)}
               parkingSpace={Number(item?.vagas)}
-              price={item?.preco?.toString()}
+              price={Number(item?.preco)}
               publishedAt={item?.publishedAt}
               fotoPrincipal1={item?.fotoPrincipal1?.url}
               foto2={item?.foto2?.url}
@@ -321,12 +349,23 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
               
             )
           })}
+            </>
+          )}
             
           </div>
 
           {/* PAGINATION */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
-            <Pagination />
+            {/* <Pagination 
+            currentItem={currentPage}
+            /> */}
+
+            <PaginationContainer 
+            currentPage={currentPage}
+            totalCountOfRegisters={Number(propertiesLenght?.imovels?.length)}
+            onPageChanges={setCurrentPage}
+            registersPerPage={3}
+            />
           </div>
         </main>
 

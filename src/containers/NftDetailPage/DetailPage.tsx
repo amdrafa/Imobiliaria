@@ -153,7 +153,11 @@ const DetailPage: FC<NftDetailPageProps> = ({
                 Preço
               </span>
               <span className="text-3xl xl:text-4xl font-semibold text-green-500">
-                R${property?.imovel?.preco?.toString()}
+                {new Intl.NumberFormat("pt-br", {
+            style: 'currency',
+            currency: 'BRL',
+          })
+          .format(Number(property?.imovel?.preco))}
               </span>
             </div>
             

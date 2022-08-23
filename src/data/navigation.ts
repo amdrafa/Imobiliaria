@@ -39,7 +39,7 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
   },
   {
     id: ncNanoId(),
-    href: "#",
+    href: "/",
     name: "Descubra mais",
     type: "dropdown",
     children: otherPageChildMenus,

@@ -1,0 +1,6 @@
+query propertiesLenght {
+  imovels {
+    nome
+  }
+}
+
