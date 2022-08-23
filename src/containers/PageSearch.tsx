@@ -17,6 +17,7 @@ import DetailPage from "./NftDetailPage/DetailPage";
 import { FavoriteContext } from "contexts/FavoriteContext";
 import { TabFilterContext } from "contexts/TabFilterContext";
 import { PaginationContainer } from "components/PaginationContainer";
+import { SpinnerTailwind } from "components/Spinner";
 
 export interface PageSearchProps {
   className?: string;
@@ -187,7 +188,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
   const [mainSearchValue, setMainSearchValue] = useState('')
 
-  const {data: properties} = usePropertiesQuery({variables: {
+  const {data: properties, loading} = usePropertiesQuery({variables: {
     searchValue: mainSearchValue,
     modalidadeValue: updatedModalidade,
     roomsValue: defaultFileType,
@@ -197,8 +198,8 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     categoryValue: defaultCategory,
     greaterThanValue: rangePrices[0],
     smallerThanValue: rangePrices[1],
-    firstValue: 3,
-    skipValue: 1
+    firstValue: 8,
+    skipValue: currentPage == 1 ? 0 : (currentPage - 1) * 8
   }})
 
   const {data: propertiesLenght} = usePropertiesLenghtQuery()
@@ -301,58 +302,69 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
           {/* FILTER */}
           <HeaderFilterSearchPage />
 
+          
+
           {/* LOOP ITEMS */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 mt-8 lg:mt-10">
-            
-          {Number(properties?.imovels?.length) < 1 ? (
-            <div className="text-gray-400 mt-6">
-              Nenhum imóvel encontrado...
+          
+          {loading ? (
+            <div className="mt-28 w-full flex justify-center">
+              <SpinnerTailwind />
             </div>
-          ) : (
-            <>
-            {properties?.imovels?.map(item => {
-            return (
-              
-              <CardPlace
-              isLiked={favoritedPropertiesSlugs?.includes(item?.slug as string)}
-              key={item?.nome?.toString()}
-              slug={item?.slug?.toString()}
-              name={item?.nome?.toString()}
-              state={item?.estado?.toString()}
-              city={item?.cidade?.toString()}
-              district={item?.bairro?.toString()}
-              street={item?.rua?.toString()}
-              rooms={Number(item?.quartos)}
-              quantity={Number(item?.unidades)}
-              categoria={item?.categoria?.toString()}
-              mobiliado={true}
-              modalidade={item?.modalidade?.toString()}
-              bathrooms={Number(item?.banheiros)}
-              suites={Number(item?.suites)}
-              parkingSpace={Number(item?.vagas)}
-              price={Number(item?.preco)}
-              publishedAt={item?.publishedAt}
-              fotoPrincipal1={item?.fotoPrincipal1?.url}
-              foto2={item?.foto2?.url}
-              foto3={item?.foto3?.url}
-              foto4={item?.foto4?.url}
-              realtor={{
-                name: item?.corretor?.nome,
-                creci: item?.corretor?.creci,
-                email: item?.corretor?.email,
-                phone: item?.corretor?.telefone,
-                fotoDePerfil: item?.corretor?.fotoperfil?.url,
-                instagram: item?.corretor?.instagram?.toString(),
-                facebook: item?.corretor?.facebook?.toString(),
-              }}
-              />
-              
-            )
-          })}
-            </>
-          )}
             
-          </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 mt-8 lg:mt-10">
+            
+            
+            {Number(properties?.imovels?.length) < 1 ? (
+              <div className="text-gray-400 mt-6">
+                Nenhum imóvel encontrado...
+              </div>
+            ) : (
+              <>
+              {properties?.imovels?.map(item => {
+              return (
+                
+                <CardPlace
+                isLiked={favoritedPropertiesSlugs?.includes(item?.slug as string)}
+                key={item?.nome?.toString()}
+                slug={item?.slug?.toString()}
+                name={item?.nome?.toString()}
+                state={item?.estado?.toString()}
+                city={item?.cidade?.toString()}
+                district={item?.bairro?.toString()}
+                street={item?.rua?.toString()}
+                rooms={Number(item?.quartos)}
+                quantity={Number(item?.unidades)}
+                categoria={item?.categoria?.toString()}
+                mobiliado={true}
+                modalidade={item?.modalidade?.toString()}
+                bathrooms={Number(item?.banheiros)}
+                suites={Number(item?.suites)}
+                parkingSpace={Number(item?.vagas)}
+                price={Number(item?.preco)}
+                publishedAt={item?.publishedAt}
+                fotoPrincipal1={item?.fotoPrincipal1?.url}
+                foto2={item?.foto2?.url}
+                foto3={item?.foto3?.url}
+                foto4={item?.foto4?.url}
+                realtor={{
+                  name: item?.corretor?.nome,
+                  creci: item?.corretor?.creci,
+                  email: item?.corretor?.email,
+                  phone: item?.corretor?.telefone,
+                  fotoDePerfil: item?.corretor?.fotoperfil?.url,
+                  instagram: item?.corretor?.instagram?.toString(),
+                  facebook: item?.corretor?.facebook?.toString(),
+                }}
+                />
+                
+              )
+            })}
+              </>
+            )}
+              
+            </div>
+          )}
 
           {/* PAGINATION */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
@@ -360,12 +372,14 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
             currentItem={currentPage}
             /> */}
 
-            <PaginationContainer 
-            currentPage={currentPage}
-            totalCountOfRegisters={Number(propertiesLenght?.imovels?.length)}
-            onPageChanges={setCurrentPage}
-            registersPerPage={3}
-            />
+            {properties?.imovels?.length != 0 && (
+              <PaginationContainer 
+              currentPage={currentPage}
+              totalCountOfRegisters={Number(propertiesLenght?.imovels?.length)}
+              onPageChanges={setCurrentPage}
+              registersPerPage={8}
+              />
+            )}
           </div>
         </main>
 

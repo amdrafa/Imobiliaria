@@ -24,6 +24,7 @@ import NextImageArrow from "components/NextImageArrow";
 import NextImageArrowRight from "components/NextImageArrowRight";
 import ImageModal from "components/ImageModal";
 import { FavoriteContext } from "contexts/FavoriteContext";
+import { SpinnerTailwind } from "components/Spinner";
 
 
 export interface NftDetailPageProps {
@@ -104,7 +105,13 @@ const DetailPage: FC<NftDetailPageProps> = ({
     return (
       <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
         {/* ---------- 1 ----------  */}
-        <div className="pb-9 space-y-5">
+        
+        {loading ? (
+          <div className="mt-16 mb-24 w-full flex justify-center">
+          <SpinnerTailwind />
+        </div>
+        ) : (
+          <div className="pb-9 space-y-5">
           <div className="flex justify-between items-center">
             <Badge name="Disponível" color="green" />
           </div>
@@ -131,6 +138,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
           
 
         </div>
+        )}
 
         {/* ---------- 7 ----------  */}
         {/* PRICE */}
@@ -148,7 +156,18 @@ const DetailPage: FC<NftDetailPageProps> = ({
 
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
-            <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
+            
+            {loading ? (
+               <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
+               <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
+                 Preço
+               </span>
+               <span className="text-3xl xl:text-4xl font-semibold text-green-500">
+                 R$ 000.000,00
+               </span>
+             </div>
+            ) : (
+              <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
               <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
                 Preço
               </span>
@@ -160,6 +179,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
           .format(Number(property?.imovel?.preco))}
               </span>
             </div>
+            )}
             
 
             <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-5 mt-2 sm:mt-0 sm:ml-10">

@@ -15,20 +15,20 @@ const widgetMenus: WidgetFooterMenu[] = [
     id: "1",
     title: "Explorar",
     menus: [
-      { href: "#", label: "Home" },
-      { href: "#", label: "Favoritos" },
-      { href: "#", label: "Anunciar Imóvel" },
-      { href: "#", label: "Corretores" },
+      { href: "/", label: "Home" },
+      { href: "/favoritos", label: "Favoritos" },
+      { href: "vendas", label: "Anunciar Imóvel" },
+      { href: "corretores", label: "Corretores" },
     ],
   },
   {
     id: "2",
     title: "Contatos",
     menus: [
-      
-      { href: "#", label: "Entrar em contato" },
-      { href: "#", label: "angelasimone@gmail.com" },
-      { href: "#", label: "48 9 9289-9009" },
+      { href: "/contato", label: "E-mail" },
+      { href: "/contato", label: "Entrar em contato" },
+      { href: "/contato", label: "Endereço" },
+      { href: "contato", label: "48 9 9289-9009" },
       
     ],
   },
@@ -67,7 +67,8 @@ const Footer: React.FC = () => {
             <Logo />
           </div>
           <div className="col-span-2 flex items-center md:col-span-3">
-            <SocialsList1 className="flex items-center space-x-2 lg:space-x-0 lg:flex-col lg:space-y-3 lg:items-start" />
+            <a target={'_blank'} href="https://www.instagram.com/angelasimone.l" className="text-primary-700 opacity-60 cursor-pointer ml-1.5 ">@angelasimone.l</a>
+           
           </div>
         </div>
         {widgetMenus.map(renderWidgetMenuItem)}

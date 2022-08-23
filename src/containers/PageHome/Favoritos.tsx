@@ -41,7 +41,7 @@ function Favoritos() {
       <div className="container relative space-y-24 my-24 lg:space-y-32 lg:my-2">
 
         {/* SECTION */}
-        <div className="relative py-14 lg:py-14">
+        <div className="relative py-0 lg:py-14">
 
           <div className="text-3xl font-semibold ">Imóveis favoritos</div>
           
