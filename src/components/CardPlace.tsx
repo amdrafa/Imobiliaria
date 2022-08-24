@@ -49,7 +49,7 @@ export interface CardNFTProps {
 
 
 
-const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price, fotoPrincipal1, slug, modalidade}) => {
+const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, quantity, publishedAt, price, fotoPrincipal1, slug, modalidade, city, district}) => {
   const renderAvatars = () => {
 
     
@@ -122,7 +122,9 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
           {/* Fazer um switch case com cada tipo de imóvel */}
         </h2>
 
-        <p className="text-gray-700 opacity-80 text-sm">{modalidade}</p>
+        <p className="text-gray-800 opacity-80 text-sm">{city} - {district}</p>
+        <p className="text-gray-700 opacity-40 text-sm">{modalidade}</p>
+        
         </div>
         
 

@@ -12,6 +12,10 @@ interface detailPageProps {
   bathrooms?: number;
   suites?: number;
   parkingSpace?: number;
+  cidade?: string;
+  estado?: string;
+  bairro?: string;
+
 }
 
 export function DetailPageInformations({
@@ -22,10 +26,13 @@ export function DetailPageInformations({
   bathrooms,
   suites,
   parkingSpace,
-  
+  cidade,
+  bairro,
+  estado
  }:detailPageProps){
     return (
         <div className="mb-14">
+            <div className="mb-2 text-lg">{cidade} - {estado} / {bairro}</div>
         <div className="grid grid-cols-2 ">
             
             <div className="flex justify-start items-center text-gray-500 my-2">

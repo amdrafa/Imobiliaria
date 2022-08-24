@@ -152,6 +152,9 @@ const DetailPage: FC<NftDetailPageProps> = ({
           bathrooms={Number(property?.imovel?.banheiros)}
           suites={Number(property?.imovel?.suites)}
           parkingSpace={Number(property?.imovel?.vagas)}
+          cidade={property?.imovel?.cidade?.toString()}
+          bairro={property?.imovel?.bairro?.toString()}
+          estado={property?.imovel?.estado?.toString()}
           />
 
 

@@ -1,29 +1,12 @@
-import React, { useContext } from "react";
-import SectionSliderCategories from "components/SectionSliderCategories/SectionSliderCategories";
-import SectionHowItWork from "components/SectionHowItWork/SectionHowItWork";
-import BackgroundSection from "components/BackgroundSection/BackgroundSection";
+import { useContext } from "react";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
 import SectionGridAuthorBox from "components/SectionGridAuthorBox/SectionGridAuthorBox";
-import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
-import SectionVideos from "./SectionVideos";
 import { Helmet } from "react-helmet";
-import SectionLargeSlider from "./SectionLargeSlider";
-import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
-import SectionHero2 from "components/SectionHero/SectionHero2";
-import SectionGridFeatureNFT2 from "./SectionGridFeatureNFT2";
-import SectionMagazine8 from "components/SectionMagazine8";
-import SectionSliderCardNftVideo from "components/SectionSliderCardNftVideo";
-import SectionSliderCollections2 from "components/SectionSliderCollections2";
-import { usePropertiesQuery } from "graphql/generated";
-import NcImage from "shared/NcImage/NcImage";
-import authorBanner from "images/nfts/authorBanner.png";
 import { FavoriteContext } from "contexts/FavoriteContext";
 
 function Favoritos() {
 
   const {filteredData, favoritedPropertiesSlugs} = useContext(FavoriteContext)
-
-  
   
   // const {data: properties } = usePropertiesQuery()
 

@@ -17,8 +17,8 @@ const widgetMenus: WidgetFooterMenu[] = [
     menus: [
       { href: "/", label: "Home" },
       { href: "/favoritos", label: "Favoritos" },
-      { href: "vendas", label: "Anunciar Imóvel" },
-      { href: "corretores", label: "Corretores" },
+      { href: "/vendas", label: "Anunciar Imóvel" },
+      { href: "/corretores", label: "Corretores" },
     ],
   },
   {
@@ -28,7 +28,7 @@ const widgetMenus: WidgetFooterMenu[] = [
       { href: "/contato", label: "E-mail" },
       { href: "/contato", label: "Entrar em contato" },
       { href: "/contato", label: "Endereço" },
-      { href: "contato", label: "48 9 9289-9009" },
+      { href: "/contato", label: "48 9 9289-9009" },
       
     ],
   },

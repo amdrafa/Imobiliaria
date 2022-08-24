@@ -1080,7 +1080,7 @@ const TabFilters = () => {
       {/* FOR RESPONSIVE MOBILE */}
       <div className="flex overflow-x-auto lg:hidden space-x-4">
         {renderTabMobileFilter()}
-        {isFurnished()}
+        
       </div>
     </div>
   );
