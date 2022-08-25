@@ -20,5 +20,5 @@
 
     [[redirects]]
   from = "/imoveis/*"
-  to = "/imoveis/:slug"
+  force = true
   status = 200
