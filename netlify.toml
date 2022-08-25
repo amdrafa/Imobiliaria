@@ -2,3 +2,23 @@
   from = "/corretores"
   to = "/index.html"
   status = 200
+
+  [[redirects]]
+  from = "/favoritos"
+  to = "/index.html"
+  status = 200
+
+   [[redirects]]
+  from = "/contato"
+  to = "/index.html"
+  status = 200
+
+   [[redirects]]
+  from = "/vendas"
+  to = "/index.html"
+  status = 200
+
+    [[redirects]]
+  from = "/imoveis/*"
+  to = "/index.html"
+  status = 200
