@@ -5,7 +5,7 @@ status = 200
 
 
 [[redirects]]
-from = "/*/*/*"
-to = "/contatos/creci/:slug"
+from = "/*/*"
+to = "/imoveis/:slug"
 status = 200
 
