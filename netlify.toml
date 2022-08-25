@@ -20,5 +20,6 @@
 
     [[redirects]]
   from = "/imoveis/*"
+  to = "/index.html"
   force = true
   status = 200
