@@ -1,5 +1,5 @@
 [[redirects]]
-from = "imoveis/*"
+from = "/imoveis/*"
 to = "imoveis/:slug"
 status = 200
 
