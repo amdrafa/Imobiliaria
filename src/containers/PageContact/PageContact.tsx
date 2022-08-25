@@ -158,7 +158,7 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
           ) : (
             <ButtonPrimary targetBlank href={`/notfound`} type="submit">Enviar mensagem</ButtonPrimary>
           )}
-          <ButtonSecondary type="button" onClick={() => setShowModal(false)}>Voltar</ButtonSecondary>
+          <ButtonSecondary type="button" onClick={() => setShowModalInformations(false)}>Voltar</ButtonSecondary>
         </div>
       </form>
     );
@@ -185,7 +185,7 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
           ) : (
             <ButtonPrimary targetBlank href={`/notfound`} type="submit">Enviar mensagem</ButtonPrimary>
           )}
-          <ButtonSecondary type="button" onClick={() => setShowModal(false)}>Voltar</ButtonSecondary>
+          <ButtonSecondary type="button" onClick={() => setShowModalPhone(false)}>Voltar</ButtonSecondary>
         </div>
       </form>
     );

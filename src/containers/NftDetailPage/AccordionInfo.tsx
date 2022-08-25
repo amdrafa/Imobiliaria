@@ -10,9 +10,12 @@ type AccordingInfoProps = {
   bathrooms?: number;
   suites?: number;
   parkingSpace?: number;
+  neighborhood?: string;
+  city?: string;
+  state?: string; 
 }
 
-export default function AccordionInfo({description, rooms, mobiliado, categoria, bathrooms, suites,parkingSpace}: AccordingInfoProps) {
+export default function AccordionInfo({description, rooms, mobiliado, categoria, bathrooms, suites,parkingSpace, city, neighborhood, state}: AccordingInfoProps) {
   return (
     <div className="w-full rounded-2xl">
       <Disclosure defaultOpen>
@@ -54,6 +57,9 @@ export default function AccordionInfo({description, rooms, mobiliado, categoria,
             bathrooms={bathrooms}
             suites={suites}
             parkingSpace={parkingSpace}
+            bairro={neighborhood}
+            cidade={city}
+            estado={state}
             />
             </Disclosure.Panel>
           </>
