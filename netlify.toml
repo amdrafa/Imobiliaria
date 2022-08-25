@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/*/*/*"
+  from = "/corretores"
   to = "/index.html"
   status = 200
