@@ -32,7 +32,7 @@ export function DetailPageInformations({
  }:detailPageProps){
     return (
         <div className="mb-14">
-            <div className="mb-2 text-lg">{cidade} - {estado} / {bairro}</div>
+            <div className="dark:text-gray-200 text-gray-800 mb-2 text-lg">{cidade} - {estado} / {bairro}</div>
         <div className="grid grid-cols-2 ">
             
             <div className="flex justify-start items-center text-gray-500 my-2">

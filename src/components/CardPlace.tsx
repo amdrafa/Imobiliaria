@@ -122,8 +122,8 @@ const CardPlace: FC<CardNFTProps> = ({ className = "", isLiked, name, realtor, q
           {/* Fazer um switch case com cada tipo de imóvel */}
         </h2>
 
-        <p className="text-gray-800 opacity-80 text-sm">{city} - {district}</p>
-        <p className="text-gray-700 opacity-40 text-sm">{modalidade}</p>
+        <p className="dark:text-gray-200 text-gray-800 opacity-80 text-sm">{city} - {district}</p>
+        <p className="dark:text-gray-300 text-gray-700 opacity-40 text-sm">{modalidade}</p>
         
         </div>
         
