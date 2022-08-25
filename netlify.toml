@@ -20,6 +20,6 @@
 
     [[redirects]]
   from = "/imoveis/*"
-  to = "/imoveis/:slug"
+  to = "/imoveis/*.tsx"
   force = true
   status = 200
