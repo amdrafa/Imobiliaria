@@ -1,6 +1,6 @@
 [[redirects]]
 from = "/*/*"
-to = "/:value/:slug"
+to = "index.html/imoveis/:slug"
 status = 200
 
 
