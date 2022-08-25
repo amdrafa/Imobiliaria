@@ -20,5 +20,5 @@
 
     [[redirects]]
   from = "/imoveis/*"
-  to = "/index.html"
+  to = "/imoveis"
   status = 200
