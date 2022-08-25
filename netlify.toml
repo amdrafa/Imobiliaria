@@ -22,5 +22,4 @@
   from = "/imoveis/*"
   to = "/imoveis/:slug"
   force = true
-  query = {slug = :slug}
   status = 200
