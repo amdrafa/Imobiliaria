@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/*/*/*"
+from = "/*/:slug"
 to = "index.html"
 status = 200
 
