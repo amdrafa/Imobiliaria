@@ -28,6 +28,18 @@ query properties ($searchValue: String, $modalidadeValue: [Modalidade], $roomsVa
     foto4{
       url(transformation: {document: {output: {format: jpg}}})
     }
+    foto5{
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto6{
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto7{
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto8{
+      url(transformation: {document: {output: {format: jpg}}})
+    }
     corretor {
       nome
       creci

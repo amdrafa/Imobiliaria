@@ -83,7 +83,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
 
    function handleCarrouselClickRight(img: string | undefined) {
 
-    if(mainImage == property?.imovel?.foto4?.url){
+    if(mainImage == property?.imovel?.foto8?.url){
       return
     }else{
       

@@ -43,6 +43,10 @@ export type Asset = Node & {
   foto2Imovel: Array<Imovel>;
   foto3Imovel: Array<Imovel>;
   foto4Imovel: Array<Imovel>;
+  foto5Imovel: Array<Imovel>;
+  foto6Imovel: Array<Imovel>;
+  foto7Imovel: Array<Imovel>;
+  foto8Imovel: Array<Imovel>;
   fotoPrincipal1Imovel: Array<Imovel>;
   /** The file handle */
   handle: Scalars['String'];
@@ -140,6 +144,58 @@ export type AssetFoto3ImovelArgs = {
 
 /** Asset system model */
 export type AssetFoto4ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto5ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto6ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto7ImovelArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ImovelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ImovelWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetFoto8ImovelArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -257,6 +313,10 @@ export type AssetCreateInput = {
   foto2Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
   foto3Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
   foto4Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  foto5Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  foto6Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  foto7Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
+  foto8Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
   fotoPrincipal1Imovel?: InputMaybe<ImovelCreateManyInlineInput>;
   handle: Scalars['String'];
   height?: InputMaybe<Scalars['Float']>;
@@ -352,6 +412,18 @@ export type AssetManyWhereInput = {
   foto4Imovel_every?: InputMaybe<ImovelWhereInput>;
   foto4Imovel_none?: InputMaybe<ImovelWhereInput>;
   foto4Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto5Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto5Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto5Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto6Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto6Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto6Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto7Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto7Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto7Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto8Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto8Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto8Imovel_some?: InputMaybe<ImovelWhereInput>;
   fotoPrincipal1Imovel_every?: InputMaybe<ImovelWhereInput>;
   fotoPrincipal1Imovel_none?: InputMaybe<ImovelWhereInput>;
   fotoPrincipal1Imovel_some?: InputMaybe<ImovelWhereInput>;
@@ -451,6 +523,10 @@ export type AssetUpdateInput = {
   foto2Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
   foto3Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
   foto4Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  foto5Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  foto6Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  foto7Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
+  foto8Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
   fotoPrincipal1Imovel?: InputMaybe<ImovelUpdateManyInlineInput>;
   handle?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Float']>;
@@ -637,6 +713,18 @@ export type AssetWhereInput = {
   foto4Imovel_every?: InputMaybe<ImovelWhereInput>;
   foto4Imovel_none?: InputMaybe<ImovelWhereInput>;
   foto4Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto5Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto5Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto5Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto6Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto6Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto6Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto7Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto7Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto7Imovel_some?: InputMaybe<ImovelWhereInput>;
+  foto8Imovel_every?: InputMaybe<ImovelWhereInput>;
+  foto8Imovel_none?: InputMaybe<ImovelWhereInput>;
+  foto8Imovel_some?: InputMaybe<ImovelWhereInput>;
   fotoPrincipal1Imovel_every?: InputMaybe<ImovelWhereInput>;
   fotoPrincipal1Imovel_none?: InputMaybe<ImovelWhereInput>;
   fotoPrincipal1Imovel_some?: InputMaybe<ImovelWhereInput>;
@@ -1746,6 +1834,10 @@ export type Imovel = Node & {
   foto2?: Maybe<Asset>;
   foto3?: Maybe<Asset>;
   foto4?: Maybe<Asset>;
+  foto5?: Maybe<Asset>;
+  foto6?: Maybe<Asset>;
+  foto7?: Maybe<Asset>;
+  foto8?: Maybe<Asset>;
   fotoPrincipal1?: Maybe<Asset>;
   /** List of Imovel versions */
   history: Array<Version>;
@@ -1806,6 +1898,26 @@ export type ImovelFoto3Args = {
 
 
 export type ImovelFoto4Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFoto5Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFoto6Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFoto7Args = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ImovelFoto8Args = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1871,6 +1983,10 @@ export type ImovelCreateInput = {
   foto2?: InputMaybe<AssetCreateOneInlineInput>;
   foto3?: InputMaybe<AssetCreateOneInlineInput>;
   foto4?: InputMaybe<AssetCreateOneInlineInput>;
+  foto5?: InputMaybe<AssetCreateOneInlineInput>;
+  foto6?: InputMaybe<AssetCreateOneInlineInput>;
+  foto7?: InputMaybe<AssetCreateOneInlineInput>;
+  foto8?: InputMaybe<AssetCreateOneInlineInput>;
   fotoPrincipal1?: InputMaybe<AssetCreateOneInlineInput>;
   mobiliado?: InputMaybe<Scalars['Boolean']>;
   modalidade?: InputMaybe<Modalidade>;
@@ -2006,6 +2122,10 @@ export type ImovelManyWhereInput = {
   foto2?: InputMaybe<AssetWhereInput>;
   foto3?: InputMaybe<AssetWhereInput>;
   foto4?: InputMaybe<AssetWhereInput>;
+  foto5?: InputMaybe<AssetWhereInput>;
+  foto6?: InputMaybe<AssetWhereInput>;
+  foto7?: InputMaybe<AssetWhereInput>;
+  foto8?: InputMaybe<AssetWhereInput>;
   fotoPrincipal1?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
@@ -2274,6 +2394,10 @@ export type ImovelUpdateInput = {
   foto2?: InputMaybe<AssetUpdateOneInlineInput>;
   foto3?: InputMaybe<AssetUpdateOneInlineInput>;
   foto4?: InputMaybe<AssetUpdateOneInlineInput>;
+  foto5?: InputMaybe<AssetUpdateOneInlineInput>;
+  foto6?: InputMaybe<AssetUpdateOneInlineInput>;
+  foto7?: InputMaybe<AssetUpdateOneInlineInput>;
+  foto8?: InputMaybe<AssetUpdateOneInlineInput>;
   fotoPrincipal1?: InputMaybe<AssetUpdateOneInlineInput>;
   mobiliado?: InputMaybe<Scalars['Boolean']>;
   modalidade?: InputMaybe<Modalidade>;
@@ -2464,6 +2588,10 @@ export type ImovelWhereInput = {
   foto2?: InputMaybe<AssetWhereInput>;
   foto3?: InputMaybe<AssetWhereInput>;
   foto4?: InputMaybe<AssetWhereInput>;
+  foto5?: InputMaybe<AssetWhereInput>;
+  foto6?: InputMaybe<AssetWhereInput>;
+  foto7?: InputMaybe<AssetWhereInput>;
+  foto8?: InputMaybe<AssetWhereInput>;
   fotoPrincipal1?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
@@ -5067,14 +5195,14 @@ export type PropertiesQueryVariables = Exact<{
 }>;
 
 
-export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, modalidade?: Modalidade | null, vagas?: number | null, preco?: number | null, publishedAt?: any | null, slug?: string | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
+export type PropertiesQuery = { __typename?: 'Query', imovels: Array<{ __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, categoria?: Categoria | null, mobiliado?: boolean | null, modalidade?: Modalidade | null, vagas?: number | null, preco?: number | null, publishedAt?: any | null, slug?: string | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, foto5?: { __typename?: 'Asset', url: string } | null, foto6?: { __typename?: 'Asset', url: string } | null, foto7?: { __typename?: 'Asset', url: string } | null, foto8?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null }> };
 
 export type PropertydetailQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type PropertydetailQuery = { __typename?: 'Query', imovel?: { __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, modalidade?: Modalidade | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: number | null, publishedAt?: any | null, slug?: string | null, descricao?: { __typename?: 'RichText', text: string } | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null } | null };
+export type PropertydetailQuery = { __typename?: 'Query', imovel?: { __typename?: 'Imovel', nome?: string | null, estado?: Estado | null, cidade?: string | null, bairro?: string | null, rua?: string | null, quartos?: number | null, banheiros?: number | null, suites?: number | null, unidades?: number | null, modalidade?: Modalidade | null, categoria?: Categoria | null, mobiliado?: boolean | null, vagas?: number | null, preco?: number | null, publishedAt?: any | null, slug?: string | null, descricao?: { __typename?: 'RichText', text: string } | null, fotoPrincipal1?: { __typename?: 'Asset', url: string } | null, foto2?: { __typename?: 'Asset', url: string } | null, foto3?: { __typename?: 'Asset', url: string } | null, foto4?: { __typename?: 'Asset', url: string } | null, foto5?: { __typename?: 'Asset', url: string } | null, foto6?: { __typename?: 'Asset', url: string } | null, foto7?: { __typename?: 'Asset', url: string } | null, foto8?: { __typename?: 'Asset', url: string } | null, corretor?: { __typename?: 'Corretor', nome: string, creci: string, email: string, telefone: string, instagram?: string | null, facebook?: string | null, youtube?: string | null, whatsappLink?: string | null, whatsappQrCode?: { __typename?: 'Asset', url: string } | null, fotoperfil: { __typename?: 'Asset', url: string }, resumo: { __typename?: 'RichText', text: string } } | null } | null };
 
 export type RealtorsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5127,6 +5255,18 @@ export const PropertiesDocument = gql`
       url(transformation: {document: {output: {format: jpg}}})
     }
     foto4 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto5 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto6 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto7 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto8 {
       url(transformation: {document: {output: {format: jpg}}})
     }
     corretor {
@@ -5221,6 +5361,18 @@ export const PropertydetailDocument = gql`
       url(transformation: {document: {output: {format: jpg}}})
     }
     foto4 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto5 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto6 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto7 {
+      url(transformation: {document: {output: {format: jpg}}})
+    }
+    foto8 {
       url(transformation: {document: {output: {format: jpg}}})
     }
     corretor {
