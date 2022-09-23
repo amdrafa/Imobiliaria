@@ -72,7 +72,8 @@ const AuthorPage: FC<AuthorPageProps> = ({ className = "" }) => {
                   </h2>
                   <div className="flex items-center text-sm font-medium space-x-2.5 mt-2.5 text-green-600 cursor-pointer">
                     <span className="text-neutral-600 dark:text-neutral-300">
-                    {realtor.creci}
+                    <div>{realtor.creci}</div>
+                    {realtor.creci === "CRECI 41.359F" && <div>CNAI 38150</div>}
                     </span>
                     
                   </div>

@@ -29,11 +29,15 @@ interface FavoriteContextProps {
     isFurnishedState: boolean;
     setIsFurnishedState: React.Dispatch<React.SetStateAction<boolean>>;
 
+    cityStates: string[]; 
+    setCityStates:React.Dispatch<React.SetStateAction<string[]>>;
+
     tabActive: string; 
     setTabActive:React.Dispatch<React.SetStateAction<string>>;
 
     rangePrices: number[]; 
     setRangePrices: React.Dispatch<React.SetStateAction<number[]>>;
+    
     
 
 //   filteredData: PropertiesQuery | undefined;
@@ -48,6 +52,8 @@ export function TabFilterContextProvider({ children }: FavoriteProviderProps) {
    
   const [modalidade, setModalidade] = useState([''])
   const [saleTypeStates, setSaleTypeStates] = useState<string[]>([]);
+
+  const [cityStates, setCityStates] = useState<string[]>([]);
 
   const [bathroomState, setBathroomState] = useState<number[]>([]);
   //rooms number
@@ -78,7 +84,7 @@ export function TabFilterContextProvider({ children }: FavoriteProviderProps) {
 
   
   return (
-    <TabFilterContext.Provider value={{modalidade, setModalidade, saleTypeStates, setSaleTypeStates, fileTypesState, setfileTypesState, bathroomState, setBathroomState, setSuitesState, suitesState, carSpotState, setCarSpotState, setTabActive, tabActive, isFurnishedState, setIsFurnishedState, rangePrices, setRangePrices}}>
+    <TabFilterContext.Provider value={{modalidade, setModalidade, saleTypeStates, setSaleTypeStates, fileTypesState, setfileTypesState, bathroomState, setBathroomState, setSuitesState, suitesState, carSpotState, setCarSpotState, setTabActive, tabActive, isFurnishedState, setIsFurnishedState, rangePrices, setRangePrices, cityStates, setCityStates}}>
       {children}
     </TabFilterContext.Provider>
   );

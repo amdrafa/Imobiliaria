@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://api-sa-east-1.hygraph.com/v2/cl6musng70zuy01umanibhzam/master'
+schema: 'https://api-sa-east-1.hygraph.com/v2/cl8eg12o12o2g01uecrenbyxn/master'
 documents: './src/graphql/**/*.graphql'
 generates:
   ./src/graphql/generated.ts:

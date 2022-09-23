@@ -27,11 +27,13 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
   const [currentPage, setCurrentPage] = useState(1)
 
-  const {modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive, rangePrices} = useContext(TabFilterContext)
+  const {modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive, rangePrices, cityStates} = useContext(TabFilterContext)
 
   const [defaultFileType, setDefaultFileType] = useState([1,2,3,4,5])
 
   const [defaultBathroomsNumber, setDefaultBathroomsNumber] = useState([0,1,2,3,4,5])
+
+  const [defaultCities, setDefaultCities] = useState(["a"]);
 
   const [defaultSuitesNumber, setDefaultSuitesNumber] = useState([0,1,2,3,4,5])
 
@@ -56,14 +58,14 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
       if(saleTypeStates.includes('Venda') && !saleTypeStates.includes('Aluguel')){
           setUpdatedModalidade(updatedModalidade.filter(item => {
-          return item == 'Venda';
+          return item === 'Venda';
         }))
         return ;
       }
 
       if(saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')){
         setUpdatedModalidade(updatedModalidade.filter(item => {
-        return item == 'Aluguel';
+        return item === 'Aluguel';
       }))
       return ;
       }
@@ -91,6 +93,20 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     }
     
   }, [fileTypesState])
+
+  useEffect(() => {
+
+
+
+
+
+    if(cityStates.length >= 1){
+      setDefaultCities(cityStates)
+    }else{
+      setDefaultCities(["Itajaí", "Tijucas", "Joinville", "Penha"])
+    }
+    
+  }, [cityStates])
 
   // bathrooms
 
@@ -199,7 +215,8 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     greaterThanValue: rangePrices[0],
     smallerThanValue: rangePrices[1],
     firstValue: 8,
-    skipValue: currentPage == 1 ? 0 : (currentPage - 1) * 8
+    skipValue: currentPage === 1 ? 0 : (currentPage - 1) * 8,
+
   }})
 
   const {data: propertiesLenght} = usePropertiesLenghtQuery()
@@ -214,12 +231,8 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
   }
 
   function handleSubmitMainSearch(event: React.FormEvent<HTMLFormElement>){
-    
     event.preventDefault()
-
-
   }
-
 
   return (
     slug? (
@@ -257,7 +270,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
                 className="shadow-lg border-0 dark:border"
                 id="search-input"
                 type="search"
-                placeholder="Procure aqui seu imóvel"
+                placeholder="Procure pela cidade do imóvel"
                 sizeClass="pl-14 py-5 pr-5 md:pl-16"
                 rounded="rounded-full"
                 onChange={handleMainSearch}
