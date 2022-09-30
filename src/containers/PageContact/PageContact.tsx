@@ -203,7 +203,9 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
 
       {loading ? ('') : 
       !realtor?.corretor ? (
-        <Page404 />
+        <div className="flex justify-center h-96 items-center">
+          Creci do corretor não encontrado. Vefifique se publicou corretamente.
+        </div>
       ) : (
         <>
         <div className="w-full mb-14">
@@ -218,14 +220,14 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
           <div className="relative bg-white dark:bg-neutral-900 dark:border dark:border-neutral-700 p-5 lg:p-8 rounded-3xl md:rounded-[40px] shadow-xl flex flex-col md:flex-row">
             <div className="w-32 lg:w-44 flex-shrink-0 mt-0 sm:mt-0">
               <NcImage
-                src={realtor?.corretor?.fotoperfil?.url}
+                src={realtor?.corretor?.fotoperfil?.url ? realtor?.corretor?.fotoperfil?.url : ''}
                 containerClassName="aspect-w-1 aspect-h-1 rounded-3xl overflow-hidden"
               />
             </div>
             <div className="pt-5 md:pt-1 md:ml-6 xl:ml-14 flex-grow">
               <div className="max-w-screen-sm">
                 <h2 className="inline-flex items-center text-2xl sm:text-3xl lg:text-4xl font-semibold hover:text-gray-700 hover:cursor-pointer">
-                  <span>{realtor?.corretor?.nome}</span>
+                  <span>{realtor?.corretor?.nome? realtor?.corretor?.nome : ''}</span>
                   <VerifyIcon
                     className="ml-2"
                     iconClass="w-6 h-6 sm:w-7 sm:h-7 xl:w-8 xl:h-8"
@@ -233,25 +235,25 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
                 </h2>
                 <div className="flex items-center text-sm font-medium space-x-2.5 mt-2.5 text-green-600 cursor-pointer">
                   <span className="text-neutral-600 dark:text-neutral-300">
-                  <div>{realtor?.corretor?.creci}</div>
-                  <div>{realtor?.corretor?.creci === "CRECI 41.359F" && "CNAI 38150"}</div>
+                  <div>{realtor?.corretor?.creci ? realtor?.corretor?.creci : ''}</div>
+                  <div>{realtor?.corretor?.creci === "CRECI 41.359F" ? "CNAI 38150" : ''}</div>
                   </span>
                   
                 </div>
 
                 <span className="block mt-4 text-sm text-neutral-500 dark:text-neutral-400">
-                {realtor?.corretor?.resumo?.text}
+                {realtor?.corretor?.resumo?.text ? realtor?.corretor?.resumo?.text : ''}
                 </span>
               </div>
               <div className="mt-4 ">
                 <SocialsList 
                 itemClass="block w-7 h-7"
-                socials={[
-                  { name: "Facebook", icon: facebook, href:  realtor?.corretor?.facebook == undefined || realtor?.corretor?.facebook == ''  ? 'notfound' : `https://www.facebook.com/${realtor?.corretor?.facebook}` },
-                  { name: "Whatsapp", icon: whatsapp, href: realtor?.corretor?.whatsappLink == undefined || realtor?.corretor?.whatsappLink == '' ? 'notfound' : `${realtor?.corretor?.whatsappLink}`  },
-                  { name: "Instagram", icon: instagram, href: realtor?.corretor?.instagram == undefined || realtor?.corretor?.instagram == '' ? 'notfound' : `https://www.instagram.com/${realtor?.corretor?.instagram}` },
-                  { name: "Youtube", icon: youtube, href: realtor?.corretor?.youtube == undefined ||realtor?.corretor?.youtube == '' ? 'notfound' : `https://www.youtube.com/${realtor?.corretor?.youtube}` },
-                ]}
+                socials={realtor?.corretor?.nome ? [
+                  { name: "Facebook", icon: facebook, href:  realtor?.corretor?.facebook == undefined || realtor?.corretor?.facebook === ''  ? 'notfound' : `https://www.facebook.com/${realtor?.corretor?.facebook}` },
+                  { name: "Whatsapp", icon: whatsapp, href: realtor?.corretor?.whatsappLink == undefined || realtor?.corretor?.whatsappLink === '' ? 'notfound' : `${realtor?.corretor?.whatsappLink}`  },
+                  { name: "Instagram", icon: instagram, href: realtor?.corretor?.instagram == undefined || realtor?.corretor?.instagram === '' ? 'notfound' : `https://www.instagram.com/${realtor?.corretor?.instagram}` },
+                  { name: "Youtube", icon: youtube, href: realtor?.corretor?.youtube == undefined ||realtor?.corretor?.youtube === '' ? 'notfound' : `https://www.youtube.com/${realtor?.corretor?.youtube}` },
+                ] : []}
                 />
               </div>
             </div>
@@ -270,7 +272,7 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
               {plans.map((plan) => (
                 <div
                   key={plan.name}
-                  onClick={() => plan.name == 'Whatsapp' ? setShowModal(true) : plan.name == 'Telefone' ? setShowModalPhone(true) : setShowModalInformations(true)}
+                  onClick={() => plan.name === 'Whatsapp' ? setShowModal(true) : plan.name === 'Telefone' ? setShowModalPhone(true) : setShowModalInformations(true)}
                   typeof="button"
                   tabIndex={0}
                   className="relative rounded-xl hover:shadow-lg hover:bg-neutral-50 border 
