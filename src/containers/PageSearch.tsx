@@ -27,17 +27,17 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
   const [currentPage, setCurrentPage] = useState(1)
 
-  const {modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive, rangePrices, cityStates} = useContext(TabFilterContext)
+  const { modalidade, saleTypeStates, fileTypesState, bathroomState, suitesState, carSpotState, isFurnishedState, tabActive, rangePrices, cityStates } = useContext(TabFilterContext)
 
-  const [defaultFileType, setDefaultFileType] = useState([1,2,3,4,5])
+  const [defaultFileType, setDefaultFileType] = useState([1, 2, 3, 4, 5])
 
-  const [defaultBathroomsNumber, setDefaultBathroomsNumber] = useState([0,1,2,3,4,5])
+  const [defaultBathroomsNumber, setDefaultBathroomsNumber] = useState([0, 1, 2, 3, 4, 5])
 
   const [defaultCities, setDefaultCities] = useState(["a"]);
 
-  const [defaultSuitesNumber, setDefaultSuitesNumber] = useState([0,1,2,3,4,5])
+  const [defaultSuitesNumber, setDefaultSuitesNumber] = useState([0, 1, 2, 3, 4, 5])
 
-  const [defaultParkingCarNumber, setDefaultParkingCarNumber] = useState([0,1,2,3,4,5])
+  const [defaultParkingCarNumber, setDefaultParkingCarNumber] = useState([0, 1, 2, 3, 4, 5])
 
   const [defaultCategory, setDefaultCategory] = useState([Categoria.Apartamento, Categoria.Casa, Categoria.Chacara, Categoria.Comercial, Categoria.Galpao, Categoria.Sitio, Categoria.Terreno])
 
@@ -51,47 +51,47 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
       let updatedValue = []
 
-      if(saleTypeStates.includes('Venda') && saleTypeStates.includes('Aluguel')){
+      if (saleTypeStates.includes('Venda') && saleTypeStates.includes('Aluguel')) {
         setUpdatedModalidade([Modalidade.Aluguel, Modalidade.Venda])
-        return ;
+        return;
       }
 
-      if(saleTypeStates.includes('Venda') && !saleTypeStates.includes('Aluguel')){
-          setUpdatedModalidade(updatedModalidade.filter(item => {
+      if (saleTypeStates.includes('Venda') && !saleTypeStates.includes('Aluguel')) {
+        setUpdatedModalidade(updatedModalidade.filter(item => {
           return item === 'Venda';
         }))
-        return ;
+        return;
       }
 
-      if(saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')){
+      if (saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')) {
         setUpdatedModalidade(updatedModalidade.filter(item => {
-        return item === 'Aluguel';
-      }))
-      return ;
+          return item === 'Aluguel';
+        }))
+        return;
       }
 
-    
-      if(!saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')){
+
+      if (!saleTypeStates.includes('Aluguel') && !saleTypeStates.includes('Venda')) {
         setUpdatedModalidade([Modalidade.Aluguel, Modalidade.Venda])
-      return ;
+        return;
       }
-      
-  
+
+
     }
     updateValues()
-    
+
   }, [saleTypeStates])
 
   //Rooms
 
   useEffect(() => {
 
-    if(fileTypesState.length >= 1){
+    if (fileTypesState.length >= 1) {
       setDefaultFileType(fileTypesState)
-    }else{
-      setDefaultFileType([1,2,3,4,5])
+    } else {
+      setDefaultFileType([1, 2, 3, 4, 5])
     }
-    
+
   }, [fileTypesState])
 
   useEffect(() => {
@@ -100,48 +100,48 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
 
 
-    if(cityStates.length >= 1){
+    if (cityStates.length >= 1) {
       setDefaultCities(cityStates)
-    }else{
+    } else {
       setDefaultCities(["Itajaí", "Tijucas", "Joinville", "Penha"])
     }
-    
+
   }, [cityStates])
 
   // bathrooms
 
   useEffect(() => {
 
-    if(bathroomState.length >= 1){
+    if (bathroomState.length >= 1) {
       setDefaultBathroomsNumber(bathroomState)
-    }else{
-      setDefaultBathroomsNumber([0,1,2,3,4,5])
+    } else {
+      setDefaultBathroomsNumber([0, 1, 2, 3, 4, 5])
     }
-    
+
   }, [bathroomState])
 
   // Suites
 
   useEffect(() => {
 
-    if(suitesState.length >= 1){
+    if (suitesState.length >= 1) {
       setDefaultSuitesNumber(suitesState)
-    }else{
-      setDefaultSuitesNumber([0,1,2,3,4,5])
+    } else {
+      setDefaultSuitesNumber([0, 1, 2, 3, 4, 5])
     }
-    
+
   }, [suitesState])
 
   // parking car
 
   useEffect(() => {
 
-    if(carSpotState.length >= 1){
+    if (carSpotState.length >= 1) {
       setDefaultParkingCarNumber(carSpotState)
-    }else{
-      setDefaultParkingCarNumber([0,1,2,3,4,5])
+    } else {
+      setDefaultParkingCarNumber([0, 1, 2, 3, 4, 5])
     }
-    
+
   }, [carSpotState])
 
   // prices range
@@ -153,45 +153,45 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     // }else{
     //   setDefaultParkingCarNumber([0,1,2,3,4,5])
     // }
-    
+
   }, [rangePrices])
 
   // Category
 
   useEffect(() => {
 
-    switch(tabActive){
+    switch (tabActive) {
       case 'Todos':
         setDefaultCategory([Categoria.Apartamento, Categoria.Casa, Categoria.Chacara, Categoria.Comercial, Categoria.Galpao, Categoria.Sitio, Categoria.Terreno])
-      break;
+        break;
 
       case 'Apartamento':
         setDefaultCategory([Categoria.Apartamento])
-      break;
+        break;
 
       case 'Casa':
         setDefaultCategory([Categoria.Casa])
-      break;
+        break;
 
       case 'Terreno':
         setDefaultCategory([Categoria.Terreno])
-      break;
+        break;
 
       case 'Comercial':
         setDefaultCategory([Categoria.Comercial])
-      break;
+        break;
 
       case 'Galpão':
         setDefaultCategory([Categoria.Galpao])
-      break;
+        break;
 
       case 'Sítio':
         setDefaultCategory([Categoria.Sitio])
-      break;
+        break;
 
       case 'Chácara':
         setDefaultCategory([Categoria.Chacara])
-      break;
+        break;
     }
 
     // if(tabActive.length >= 1){
@@ -199,205 +199,207 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
     // }else{
     //   setDefaultCategory([Categoria.Apartamento, Categoria.Casa, Categoria.Chacara, Categoria.Comercial, Categoria.Galpao, Categoria.Sitio, Categoria.Terreno])
     // }
-    
+
   }, [tabActive])
 
   const [mainSearchValue, setMainSearchValue] = useState('')
 
-  const {data: properties, loading} = usePropertiesQuery({variables: {
-    searchValue: mainSearchValue,
-    modalidadeValue: updatedModalidade,
-    roomsValue: defaultFileType,
-    bathroomsValue: defaultBathroomsNumber,
-    suitesValue: defaultSuitesNumber,
-    ParkingCarValue: defaultParkingCarNumber,
-    categoryValue: defaultCategory,
-    greaterThanValue: rangePrices[0],
-    smallerThanValue: rangePrices[1],
-    firstValue: 8,
-    skipValue: currentPage === 1 ? 0 : (currentPage - 1) * 8,
+  const { data: properties, loading } = usePropertiesQuery({
+    variables: {
+      searchValue: mainSearchValue,
+      modalidadeValue: updatedModalidade,
+      roomsValue: defaultFileType,
+      bathroomsValue: defaultBathroomsNumber,
+      suitesValue: defaultSuitesNumber,
+      ParkingCarValue: defaultParkingCarNumber,
+      categoryValue: defaultCategory,
+      greaterThanValue: rangePrices[0],
+      smallerThanValue: rangePrices[1],
+      firstValue: 8,
+      skipValue: currentPage === 1 ? 0 : (currentPage - 1) * 8,
 
-  }})
+    }
+  })
 
-  const {data: propertiesLenght} = usePropertiesLenghtQuery()
+  const { data: propertiesLenght } = usePropertiesLenghtQuery()
 
-  
-  const {favoritedPropertiesSlugs} = useContext(FavoriteContext)
 
-  const {slug} = useParams<{slug: string;}>()
+  const { favoritedPropertiesSlugs } = useContext(FavoriteContext)
 
-  function handleMainSearch(event:React.ChangeEvent<HTMLInputElement>){
+  const { slug } = useParams<{ slug: string; }>()
+
+  function handleMainSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setMainSearchValue(event?.target?.value)
   }
 
-  function handleSubmitMainSearch(event: React.FormEvent<HTMLFormElement>){
+  function handleSubmitMainSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
   }
 
   return (
-    slug? (
+    slug ? (
       <>
-      <Helmet>
-        <title>Imóvel || Angela Simone</title>
-      </Helmet>
-      <DetailPage 
-      slug={slug}
-      />
+        <Helmet>
+          <title>Imóvel || Angela Simone</title>
+        </Helmet>
+        <DetailPage
+          slug={slug}
+        />
       </>
-      
+
     ) : (
       <div className={`nc-PageSearch  ${className}`} data-nc-id="PageSearch">
-      <Helmet>
-        <title>Home || Angela Simone</title>
-      </Helmet>
+        <Helmet>
+          <title>Home || Angela Simone</title>
+        </Helmet>
 
-      
-      <div className="relative w-full h-40">
+
+        <div className="relative w-full h-40">
           <NcImage
             containerClassName="absolute inset-0"
             src={authorBanner}
             className="object-cover w-full h-full"
           />
         </div>
-      <div className="container">
-        <header className="max-w-2xl mx-auto -mt-10 flex flex-col lg:-mt-7">
-          <form className="relative w-full " method="post" onSubmit={handleSubmitMainSearch}>
-            <label
-              htmlFor="search-input"
-              className="text-neutral-500 dark:text-neutral-300"
-            >
-              <Input
-                className="shadow-lg border-0 dark:border"
-                id="search-input"
-                type="search"
-                placeholder="Procure pela cidade do imóvel"
-                sizeClass="pl-14 py-5 pr-5 md:pl-16"
-                rounded="rounded-full"
-                onChange={handleMainSearch}
-              />
-              <ButtonCircle
-                className="absolute right-2.5 top-1/2 transform -translate-y-1/2"
-                size=" w-11 h-11"
-                type="submit"
+        <div className="container">
+          <header className="max-w-2xl mx-auto -mt-10 flex flex-col lg:-mt-7">
+            <form className="relative w-full " method="post" onSubmit={handleSubmitMainSearch}>
+              <label
+                htmlFor="search-input"
+                className="text-neutral-500 dark:text-neutral-300"
               >
-                <i className="las la-arrow-right text-xl"></i>
-              </ButtonCircle>
-              <span className="absolute left-5 top-1/2 transform -translate-y-1/2 text-2xl md:left-6">
-                <svg
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M22 22L20 20"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </label>
-          </form>
-        </header>
-      </div>
-
-      <div className="container py-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
-        <main>
-          {/* FILTER */}
-          <HeaderFilterSearchPage />
-
-          
-
-          {/* LOOP ITEMS */}
-          
-          {loading ? (
-            <div className="mt-28 w-full flex justify-center">
-              <SpinnerTailwind />
-            </div>
-            
-          ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 mt-8 lg:mt-10">
-            
-            
-            {Number(properties?.imovels?.length) < 1 ? (
-              <div className="text-gray-400 mt-6">
-                Nenhum imóvel encontrado...
-              </div>
-            ) : (
-              <>
-              {properties?.imovels?.map(item => {
-              return (
-                
-                <CardPlace
-                isLiked={favoritedPropertiesSlugs?.includes(item?.slug as string)}
-                key={item?.nome?.toString()}
-                slug={item?.slug?.toString()}
-                name={item?.nome?.toString()}
-                state={item?.estado?.toString()}
-                city={item?.cidade?.toString()}
-                district={item?.bairro?.toString()}
-                street={item?.rua?.toString()}
-                rooms={Number(item?.quartos)}
-                quantity={Number(item?.unidades)}
-                categoria={item?.categoria?.toString()}
-                mobiliado={true}
-                modalidade={item?.modalidade?.toString()}
-                bathrooms={Number(item?.banheiros)}
-                suites={Number(item?.suites)}
-                parkingSpace={Number(item?.vagas)}
-                price={Number(item?.preco)}
-                publishedAt={item?.publishedAt}
-                fotoPrincipal1={item?.fotoPrincipal1?.url}
-                foto2={item?.foto2?.url}
-                foto3={item?.foto3?.url}
-                foto4={item?.foto4?.url}
-                realtor={{
-                  name: item?.corretor?.nome,
-                  creci: item?.corretor?.creci,
-                  email: item?.corretor?.email,
-                  phone: item?.corretor?.telefone,
-                  fotoDePerfil: item?.corretor?.fotoperfil?.url,
-                  instagram: item?.corretor?.instagram?.toString(),
-                  facebook: item?.corretor?.facebook?.toString(),
-                }}
+                <Input
+                  className="shadow-lg border-0 dark:border"
+                  id="search-input"
+                  type="search"
+                  placeholder="Procure pela cidade do imóvel"
+                  sizeClass="pl-14 py-5 pr-5 md:pl-16"
+                  rounded="rounded-full"
+                  onChange={handleMainSearch}
                 />
-                
-              )
-            })}
-              </>
-            )}
-              
-            </div>
-          )}
+                <ButtonCircle
+                  className="absolute right-2.5 top-1/2 transform -translate-y-1/2"
+                  size=" w-11 h-11"
+                  type="submit"
+                >
+                  <i className="las la-arrow-right text-xl"></i>
+                </ButtonCircle>
+                <span className="absolute left-5 top-1/2 transform -translate-y-1/2 text-2xl md:left-6">
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M22 22L20 20"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </label>
+            </form>
+          </header>
+        </div>
 
-          {/* PAGINATION */}
-          <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
-            {/* <Pagination 
+        <div className="container py-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
+          <main>
+            {/* FILTER */}
+            <HeaderFilterSearchPage />
+
+
+
+            {/* LOOP ITEMS */}
+
+            {loading ? (
+              <div className="mt-28 w-full flex justify-center">
+                <SpinnerTailwind />
+              </div>
+
+            ) : (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 mt-8 lg:mt-10">
+
+
+                {Number(properties?.imovels?.length) < 1 ? (
+                  <div className="text-gray-400 mt-6">
+                    Nenhum imóvel encontrado...
+                  </div>
+                ) : (
+                  <>
+                    {properties?.imovels?.map(item => {
+                      return (
+
+                        <CardPlace
+                          isLiked={favoritedPropertiesSlugs?.includes(item?.slug as string)}
+                          key={item?.nome?.toString()}
+                          slug={item?.slug?.toString()}
+                          name={item?.nome?.toString()}
+                          state={item?.estado?.toString()}
+                          city={item?.cidade?.toString()}
+                          district={item?.bairro?.toString()}
+                          street={item?.rua?.toString()}
+                          rooms={Number(item?.quartos)}
+                          quantity={Number(item?.unidades)}
+                          categoria={item?.categoria?.toString()}
+                          mobiliado={true}
+                          modalidade={item?.modalidade?.toString()}
+                          bathrooms={Number(item?.banheiros)}
+                          suites={Number(item?.suites)}
+                          parkingSpace={Number(item?.vagas)}
+                          price={Number(item?.preco)}
+                          publishedAt={item?.publishedAt}
+                          fotoPrincipal1={item?.fotoPrincipal1?.url}
+                          foto2={item?.foto2?.url}
+                          foto3={item?.foto3?.url}
+                          foto4={item?.foto4?.url}
+                          realtor={{
+                            name: item?.corretor?.nome,
+                            creci: item?.corretor?.creci,
+                            email: item?.corretor?.email,
+                            phone: item?.corretor?.telefone,
+                            fotoDePerfil: item?.corretor?.fotoperfil?.url,
+                            instagram: item?.corretor?.instagram?.toString(),
+                            facebook: item?.corretor?.facebook?.toString(),
+                          }}
+                        />
+
+                      )
+                    })}
+                  </>
+                )}
+
+              </div>
+            )}
+
+            {/* PAGINATION */}
+            <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
+              {/* <Pagination 
             currentItem={currentPage}
             /> */}
 
-            {properties?.imovels?.length != 0 && (
-              <PaginationContainer 
-              currentPage={currentPage}
-              totalCountOfRegisters={Number(propertiesLenght?.imovels?.length)}
-              onPageChanges={setCurrentPage}
-              registersPerPage={8}
-              />
-            )}
-          </div>
-        </main>
+              {properties?.imovels?.length != 0 && (
+                <PaginationContainer
+                  currentPage={currentPage}
+                  totalCountOfRegisters={Number(propertiesLenght?.imovels?.length)}
+                  onPageChanges={setCurrentPage}
+                  registersPerPage={8}
+                />
+              )}
+            </div>
+          </main>
 
+        </div>
       </div>
-    </div>
     )
   );
 };

@@ -28,11 +28,11 @@ const widgetMenus: WidgetFooterMenu[] = [
       { href: "/contato", label: "E-mail" },
       { href: "/contato", label: "Entrar em contato" },
       { href: "/contato", label: "Endereço" },
-      { href: "/contato", label: "48 9 9289-9009" },
-      
+      { href: "/contato", label: "48 9 9128-9814" },
+
     ],
   },
-  
+
 ];
 
 const Footer: React.FC = () => {
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
           </div>
           <div className="col-span-2 flex items-center md:col-span-3">
             <a target={'_blank'} href="https://www.instagram.com/angelasimone.l" className="text-primary-700 opacity-60 cursor-pointer ml-1.5 ">@angelasimone.l</a>
-           
+
           </div>
         </div>
         {widgetMenus.map(renderWidgetMenuItem)}
