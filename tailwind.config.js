@@ -40,7 +40,7 @@ module.exports = {
           400: customColors("--c-primary-400"),
           500: customColors("--c-primary-500"),
           6000: customColors("--c-primary-600"),
-          700: customColors("--c-primary-700"),
+          700: customColors("#006ACD"),
           800: customColors("--c-primary-800"),
           900: customColors("--c-primary-900"),
         },
