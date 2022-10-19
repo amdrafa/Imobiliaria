@@ -32,10 +32,12 @@ export default function AccordionInfo({ description, rooms, mobiliado, categoria
               className="px-4 pt-4 pb-2 text-neutral-500 text-sm dark:text-neutral-400"
               as="html"
             >
+              <pre>
 
-              {description}
 
+                {description}
 
+              </pre>
             </Disclosure.Panel>
           </>
         )}
