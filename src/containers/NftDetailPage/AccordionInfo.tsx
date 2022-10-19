@@ -22,7 +22,7 @@ export default function AccordionInfo({ description, rooms, mobiliado, categoria
         {({ open }) => (
           <>
             <Disclosure.Button className="flex justify-between w-full px-4 py-2 font-medium text-left bg-neutral-100 dark:bg-neutral-700 dark:hover:bg-neutral-500 rounded-lg hover:bg-neutral-200 focus:outline-none focus-visible:ring focus-visible:ring-neutral-500 focus-visible:ring-opacity-75">
-              <span>Descrição</span>
+              <span>Descriçãotest</span>
               <ChevronUpIcon
                 className={`${open ? "transform rotate-180" : ""
                   } w-5 h-5 text-neutral-500`}
@@ -32,9 +32,9 @@ export default function AccordionInfo({ description, rooms, mobiliado, categoria
               className="px-4 pt-4 pb-2 text-neutral-500 text-sm dark:text-neutral-400"
               as="p"
             >
-              <span>
+              <textarea>
                 {description}
-              </span>
+              </textarea>
 
             </Disclosure.Panel>
           </>
