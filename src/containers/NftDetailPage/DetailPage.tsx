@@ -286,7 +286,7 @@ const DetailPage: FC<NftDetailPageProps> = ({
               )}
 
 
-              {mainImage == property?.imovel?.foto4?.url ? ('') : (
+              {mainImage == property?.imovel?.foto8?.url ? ('') : (
                 <NextImageArrowRight handleUserClick={handleCarrouselClickRight} className="absolute right-4 top-72 " />
               )}
 
