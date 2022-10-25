@@ -30,14 +30,14 @@ export default function AccordionInfo({ description, rooms, mobiliado, categoria
             </Disclosure.Button>
             <Disclosure.Panel
               className="px-4 pt-4 pb-2 text-neutral-500 text-sm dark:text-neutral-400"
-              as="html"
+              as="p"
             >
-              <pre>
 
 
-                {description}
 
-              </pre>
+              {description}
+
+
             </Disclosure.Panel>
           </>
         )}

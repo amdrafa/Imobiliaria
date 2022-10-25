@@ -41,103 +41,107 @@ const DetailPage: FC<NftDetailPageProps> = ({
 
   // const { asPath } = useRouter()
 
-  const {favoritedPropertiesSlugs} = useContext(FavoriteContext)
+  const { favoritedPropertiesSlugs } = useContext(FavoriteContext)
 
-  const {data: property, loading} = usePropertydetailQuery({
+  const { data: property, loading } = usePropertydetailQuery({
     variables: {
       slug: slug
     }
   })
-  
+
   const [imageIndex, setImageIndex] = useState(0)
 
   const images = [
     property?.imovel?.fotoPrincipal1?.url?.toString(),
-     property?.imovel?.foto2?.url?.toString(),
+    property?.imovel?.foto2?.url?.toString(),
     property?.imovel?.foto3?.url?.toString(),
     property?.imovel?.foto4?.url?.toString(),
-   ]
+    property?.imovel?.foto5?.url?.toString(),
+    property?.imovel?.foto6?.url?.toString(),
+    property?.imovel?.foto7?.url?.toString(),
+    property?.imovel?.foto8?.url?.toString(),
+  ]
 
   const [mainImage, setMainImage] = useState<string | undefined>(property?.imovel?.fotoPrincipal1?.url)
 
   useEffect(() => {
-    
+
     setMainImage(property?.imovel?.fotoPrincipal1?.url)
-    
-   }, [property])
 
-   function handleCarrouselClick(img: string | undefined) {
+  }, [property])
 
-    if(mainImage == property?.imovel?.fotoPrincipal1?.url){
+  function handleCarrouselClick(img: string | undefined) {
+
+    if (mainImage === property?.imovel?.fotoPrincipal1?.url) {
       return
-    }else{
-      
-      
+    } else {
+
+
       setMainImage(images[imageIndex - 1])
       setImageIndex(imageIndex - 1)
 
-      return ;
+      return;
     }
-    
-   }
 
-   function handleCarrouselClickRight(img: string | undefined) {
+  }
 
-    if(mainImage == property?.imovel?.foto8?.url){
+  function handleCarrouselClickRight(img: string | undefined) {
+
+    if (mainImage === property?.imovel?.foto8?.url) {
       return
-    }else{
-      
-      if(images[imageIndex + 1] == undefined){
+    } else {
+
+      if (images[imageIndex + 1] === undefined) {
         return
       }
       setMainImage(images[imageIndex + 1])
       setImageIndex(imageIndex + 1)
 
-      return ;
+      return;
     }
 
-    
-   }
 
-   
+  }
+
+
 
   const renderSection1 = () => {
     return (
       <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
         {/* ---------- 1 ----------  */}
-        
+
         {loading ? (
           <div className="mt-16 mb-24 w-full flex justify-center">
-          <SpinnerTailwind />
-        </div>
+            <SpinnerTailwind />
+          </div>
         ) : (
           <div className="pb-9 space-y-5">
-          <div className="flex justify-between items-center">
-            <Badge name="Disponível" color="green" />
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            {property?.imovel?.nome}
-          </h2>
-
-          {/* ---------- 4 ----------  */}
-          <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
-            <a href={`http://${window.location.host}/contatos/creci/${property?.imovel?.corretor?.creci}`}>
-            <div className="flex items-center ">
-              <Avatar sizeClass="h-9 w-9" radius="rounded-full" imgUrl={property?.imovel?.corretor?.fotoperfil?.url} />
-              <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
-                <span className="text-sm">Corretor</span>
-                <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
-                  <span>{property?.imovel?.corretor?.nome}</span>
-                  <VerifyIcon iconClass="w-4 h-4" />
-                </span>
-              </span>
+            <div className="flex justify-between items-center">
+              <Badge name="Disponível" color="green" />
             </div>
-            </a>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
+              {property?.imovel?.nome}
+            </h2>
+
+            {/* ---------- 4 ----------  */}
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
+              <a href={`http://${window.location.host}/contatos/creci/${property?.imovel?.corretor?.creci}`}>
+                <div className="flex items-center ">
+                  <Avatar sizeClass="h-9 w-9" radius="rounded-full" imgUrl={property?.imovel?.corretor?.fotoperfil?.url} />
+                  <span className="ml-2.5 text-neutral-500 dark:text-neutral-400 flex flex-col">
+                    <span className="text-sm">Corretor</span>
+                    <span className="text-neutral-900 dark:text-neutral-200 font-medium flex items-center">
+                      <span>{property?.imovel?.corretor?.nome}</span>
+                      <VerifyIcon iconClass="w-4 h-4" />
+                    </span>
+                  </span>
+                </div>
+              </a>
+            </div>
+
+
+
           </div>
-
-          
-
-        </div>
         )}
 
         {/* ---------- 7 ----------  */}
@@ -145,55 +149,55 @@ const DetailPage: FC<NftDetailPageProps> = ({
         <div className="pb-9 pt-6">
           <div className="block">
 
-          <DetailPageInformations 
-          rooms={Number(property?.imovel?.quartos)}
-          mobiliado={property?.imovel?.mobiliado?.valueOf()}
-          categoria={(property?.imovel?.categoria?.toString())}
-          bathrooms={Number(property?.imovel?.banheiros)}
-          suites={Number(property?.imovel?.suites)}
-          parkingSpace={Number(property?.imovel?.vagas)}
-          cidade={property?.imovel?.cidade?.toString()}
-          bairro={property?.imovel?.bairro?.toString()}
-          estado={property?.imovel?.estado?.toString()}
-          />
+            <DetailPageInformations
+              rooms={Number(property?.imovel?.quartos)}
+              mobiliado={property?.imovel?.mobiliado?.valueOf()}
+              categoria={(property?.imovel?.categoria?.toString())}
+              bathrooms={Number(property?.imovel?.banheiros)}
+              suites={Number(property?.imovel?.suites)}
+              parkingSpace={Number(property?.imovel?.vagas)}
+              cidade={property?.imovel?.cidade?.toString()}
+              bairro={property?.imovel?.bairro?.toString()}
+              estado={property?.imovel?.estado?.toString()}
+            />
 
 
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
-            
-            {loading ? (
-               <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
-               <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
-                 Preço
-               </span>
-               <span className="text-3xl xl:text-4xl font-semibold text-green-500">
-                 R$ 000.000,00
-               </span>
-             </div>
-            ) : (
-              <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
-              <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
-                Preço
-              </span>
-              <span className="text-3xl xl:text-4xl font-semibold text-green-500">
-                {new Intl.NumberFormat("pt-br", {
-            style: 'currency',
-            currency: 'BRL',
-          })
-          .format(Number(property?.imovel?.preco))}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
+
+              {loading ? (
+                <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
+                  <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
+                    Preço
+                  </span>
+                  <span className="text-3xl xl:text-4xl font-semibold text-green-500">
+                    R$ 000.000,00
+                  </span>
+                </div>
+              ) : (
+                <div className="flex-1 flex flex-col sm:flex-row items-baseline p-6 border-2 border-green-500 rounded-xl relative">
+                  <span className="absolute bottom-full translate-y-1 py-1 px-1.5 bg-white dark:bg-neutral-900 text-sm text-neutral-500 dark:text-neutral-400">
+                    Preço
+                  </span>
+                  <span className="text-3xl xl:text-4xl font-semibold text-green-500">
+                    {new Intl.NumberFormat("pt-br", {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })
+                      .format(Number(property?.imovel?.preco))}
+                  </span>
+                </div>
+              )}
+
+
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-5 mt-2 sm:mt-0 sm:ml-10">
+                [{property?.imovel?.unidades} em estoque]
               </span>
             </div>
-            )}
-            
 
-            <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-5 mt-2 sm:mt-0 sm:ml-10">
-              [{property?.imovel?.unidades} em estoque]
-            </span>
+
           </div>
 
-          
-          </div>
 
-          
 
           <div className="mt-8 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
             <ButtonPrimary href={`http://${window.location.host}/contatos/creci/${property?.imovel?.corretor?.creci}`} className="flex-1">
@@ -230,20 +234,20 @@ const DetailPage: FC<NftDetailPageProps> = ({
 
               <span className="ml-2.5">{property?.imovel?.modalidade == 'Venda' ? 'Comprar' : 'Alugar'}</span>
             </ButtonPrimary>
-          
+
             <ButtonSecondary href={"/"} className="flex-1" >
-            
-            <SearchIcon className="w-5 h-5 ml-2.5" />
+
+              <SearchIcon className="w-5 h-5 ml-2.5" />
 
               <span className="ml-2.5">Ver mais</span>
             </ButtonSecondary>
-            
+
           </div>
 
           {/* <NftDetailPageInformations /> */}
         </div>
 
-        
+
 
         {/* ---------- 9 ----------  */}
         {/* <div className="pt-9">
@@ -266,41 +270,41 @@ const DetailPage: FC<NftDetailPageProps> = ({
             {/* HEADING */}
             <div className="relative">
               <NcImage
-                  src={loading ? '' : mainImage}
-                  containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
-                />
+                src={loading ? '' : mainImage}
+                containerClassName="aspect-w-11 aspect-h-12 rounded-3xl overflow-hidden"
+              />
               {/* META FAVORITES */}
               {/* <LikeButton 
               liked={favoritedPropertiesSlugs?.includes(property?.imovel?.slug?.toString() as string)}
               className="absolute left-6 top-3 " /> */}
 
               {mainImage == property?.imovel?.fotoPrincipal1?.url ? ('') : (
-                <NextImageArrow 
-              className="absolute left-4 top-72 "
-              handleUserClick={handleCarrouselClick}
-              />
+                <NextImageArrow
+                  className="absolute left-4 top-72 "
+                  handleUserClick={handleCarrouselClick}
+                />
               )}
-              
+
 
               {mainImage == property?.imovel?.foto4?.url ? ('') : (
-                <NextImageArrowRight handleUserClick={handleCarrouselClickRight} className="absolute right-4 top-72 "/>
-              ) }
-              
+                <NextImageArrowRight handleUserClick={handleCarrouselClickRight} className="absolute right-4 top-72 " />
+              )}
+
             </div>
 
             {/* <ImageModal /> */}
 
-            <AccordionInfo 
-            description={property?.imovel?.descricao?.text}
-            rooms={Number(property?.imovel?.quartos)}
-            mobiliado={property?.imovel?.mobiliado?.valueOf()}
-            categoria={(property?.imovel?.categoria?.toString())}
-            bathrooms={Number(property?.imovel?.banheiros)}
-            suites={Number(property?.imovel?.suites)}
-            parkingSpace={Number(property?.imovel?.vagas)}
-            city={property?.imovel?.cidade?.toString()}
-            neighborhood={property?.imovel?.bairro?.toString()}
-            state={property?.imovel?.estado?.toString()}
+            <AccordionInfo
+              description={property?.imovel?.descricao?.text}
+              rooms={Number(property?.imovel?.quartos)}
+              mobiliado={property?.imovel?.mobiliado?.valueOf()}
+              categoria={(property?.imovel?.categoria?.toString())}
+              bathrooms={Number(property?.imovel?.banheiros)}
+              suites={Number(property?.imovel?.suites)}
+              parkingSpace={Number(property?.imovel?.vagas)}
+              city={property?.imovel?.cidade?.toString()}
+              neighborhood={property?.imovel?.bairro?.toString()}
+              state={property?.imovel?.estado?.toString()}
             />
           </div>
 
@@ -312,12 +316,12 @@ const DetailPage: FC<NftDetailPageProps> = ({
       </main>
 
       {/* OTHER SECTION */}
-      
-        <div className="container py-14 lg:py-14">
-          {/* SECTION 1 */}
-          
-        </div>
-      
+
+      <div className="container py-14 lg:py-14">
+        {/* SECTION 1 */}
+
+      </div>
+
     </div>
   );
 };
